@@ -57,6 +57,7 @@ Testing implementation paths may be justified when the requirement is specifical
 - preserving compatibility with an external contract
 
 When using this exception, the test must state the reason in its name or nearby comment.
+An implementation-detail test is only justified when it names the stated requirement it protects.
 
 ## Role Boundary
 
