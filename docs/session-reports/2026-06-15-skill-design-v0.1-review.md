@@ -4,6 +4,12 @@
 
 Apply review feedback to `docs/skill-design/evolving-agent-process-v0.1.md` without implementing the skill yet.
 
+## Evidence Status
+
+- Dogfood: no.
+- Counts as Stage 0 real task: no.
+- Reason: this was Hermes/bootstrap design refinement before the runnable Codex skill was installed.
+
 ## Changes
 
 Updated the skill design document to clarify:
@@ -17,10 +23,25 @@ Updated the skill design document to clarify:
 
 ## Verification
 
-```text
-Command/path: Python keyword check over docs/skill-design/evolving-agent-process-v0.1.md
-Result: passed; all required design keywords were present, and proposed description length was under 1024 characters.
+```bash
+python3 - <<'PY'
+from pathlib import Path
+s = Path('docs/skill-design/evolving-agent-process-v0.1.md').read_text()
+checks = [
+    'Dogfood is not a fourth task type',
+    'dogfood: yes/no',
+    'If the user explicitly asks to record friction, a decision, or follow-up',
+    'Keep the final response proportional to the task',
+    '## Session Report Recursion Guard',
+    '## Installation Boundary',
+    'Confirm the actual Codex skill directory on this machine before writing files',
+]
+missing = [c for c in checks if c not in s]
+print('missing:', missing)
+PY
 ```
+
+Result: passed at the time; later review found the proposed frontmatter description still needed YAML quoting and better trigger scoping.
 
 ## Good
 

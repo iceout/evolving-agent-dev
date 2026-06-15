@@ -318,14 +318,18 @@ First implementation should be a personal dogfood install, not a repo-published 
 Suggested boundary:
 
 - Keep this design document in the repo under `docs/skill-design/`.
-- Create the runnable skill outside this repo in the local Codex skill location for personal use.
+- Keep a version-tracked canonical `SKILL.md` draft in the repo before installing it locally.
+- Install by copying or symlinking that tracked draft into the local Codex skill location for personal dogfood.
+- Prefer a symlink if Codex supports it; otherwise record the source commit and destination path in the session report when copying.
+- Treat the repo-tracked draft as reviewable source; the local installed copy is runtime state.
 - Do not add scripts, agents configuration, or automation in v0.1.
 - Do not require `agents/openai.yaml` for v0.1 unless Codex itself needs it in the local environment.
 - After dogfood data shows the skill is useful, decide whether to publish it in-repo, package it as a plugin, or keep it personal.
 
-Open installation question for implementation time:
+Open installation questions for implementation time:
 
-- Confirm the actual Codex skill directory on this machine before writing files. Candidate locations may include `$CODEX_HOME/skills/evolving-agent-process/` or another Codex-configured skill path. Do not guess silently.
+- Confirm the actual Codex skill directory on this machine before writing runtime files. Candidate locations may include `$CODEX_HOME/skills/evolving-agent-process/` or another Codex-configured skill path. Do not guess silently.
+- Confirm whether Codex loads symlinked skills. If not, use a copy and record how to refresh it from the repo-tracked draft.
 
 ## Role Separation
 
@@ -386,11 +390,57 @@ The skill should explicitly warn Codex not to:
 - promote one friction item directly to policy / ADR / evaluation
 - copy the whole process into the skill and create a second source of truth
 
+## v0.1 Smoke Test Plan
+
+After installing the skill, run small manual smoke tests before counting dogfood data. These tests should use fresh Codex sessions when possible.
+
+### Smoke Test A: Review-only does not over-write
+
+Prompt: ask Codex to review a process artifact without editing.
+
+Pass criteria:
+
+- skill reads relevant docs
+- output is findings-oriented
+- no session report is created unless explicitly requested
+
+### Smoke Test B: Discussion-only can record explicit friction
+
+Prompt: discuss a workflow issue and explicitly ask to record one friction item.
+
+Pass criteria:
+
+- skill does not run the full edit workflow
+- only the requested inbox or follow-up artifact is updated
+- no unnecessary session report is created
+
+### Smoke Test C: Edit task writes report and verifies
+
+Prompt: make a small substantive change to an evaluation or policy artifact.
+
+Pass criteria:
+
+- skill reads README, process v0.2, and relevant target docs
+- skill verifies the change with a reproducible command or clearly marked manual verification
+- skill creates a minimal session report
+- session report states dogfood status and Stage 0 evidence status
+
+### Smoke Test D: Seed evidence is not counted
+
+Prompt: ask whether existing seed cases/evaluations satisfy Stage 0 exit criteria.
+
+Pass criteria:
+
+- skill answers no
+- skill cites seed-vs-real evidence rule
+- no artifact is edited unless requested
+
 ## v0.1 Acceptance Criteria
 
 The first skill version succeeds if Codex can:
 
-- detect when the skill applies
+- pass the smoke tests above
+- detect when the skill applies without over-triggering on generic README, review, or evaluation mentions outside this repo/process context
 - read the correct repo docs
 - distinguish discussion, review, and edit tasks
 - treat dogfood as an evidence/status flag rather than a separate task type
@@ -414,7 +464,7 @@ The first skill version does not need:
 ```markdown
 ---
 name: evolving-agent-process
-description: Use when working in the evolving-agent-dev repo on process artifacts or evidence flow: process, policy, casebook, evaluation, session report, README, skill adapter, dogfood, friction routing, Stage 0/v0.3 readiness, seed-vs-real evidence, or process reviews. Follow repo docs as source of truth.
+description: "Use when working in evolving-agent-dev on process evidence: process docs, policies, casebook, evaluations, session reports, skill adapter, dogfood, friction routing, Stage 0/v0.3 readiness, or seed-vs-real evidence. Follow repo docs as source of truth."
 version: 0.1.0
 author: Bruce / Hermes Agent
 license: MIT
@@ -430,7 +480,7 @@ metadata:
 Thin adapter for using process v0.2 inside Codex.
 
 ## When to Use
-Triggers and non-triggers.
+Repo/process scoped triggers and non-triggers. Avoid generic over-triggering outside evolving-agent-dev process work.
 
 ## Source of Truth
 Repo docs and read order.
@@ -439,7 +489,7 @@ Repo docs and read order.
 discussion-only / review-only / edit task. Dogfood is an evidence/status flag.
 
 ## Minimal Workflow
-Classify -> Read -> Plan -> Edit -> Verify -> Route -> Respond.
+Concrete steps for classify -> read -> plan -> edit -> verify -> route -> respond, with short examples.
 
 ## Artifact Routing
 Session report, inbox, casebook, policy, ADR, evaluation.
@@ -457,5 +507,5 @@ Only triggered when v0.2 says so.
 Avoid over-documenting, over-triggering, and double source of truth.
 
 ## Final Checklist
-Before final response.
+Task-type-specific checklist before final response.
 ```
