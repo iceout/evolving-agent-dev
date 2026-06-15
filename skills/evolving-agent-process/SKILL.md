@@ -67,6 +67,10 @@ Then classify evidence/status flags separately:
 
 Dogfood is not a task type. It is a status flag for edit tasks performed after the skill is installed and used by Codex.
 
+## Response Language
+
+Match the user's language in final responses unless the user explicitly requests another response language. If the user writes in Chinese, answer in Chinese unless they ask otherwise. Intermediate reasoning, terminal commands, file paths, code identifiers, commit messages, and existing English repository artifacts may remain English when appropriate. Do not translate existing repository docs by default.
+
 ## Minimal Workflow
 
 ### 1. Discussion-only

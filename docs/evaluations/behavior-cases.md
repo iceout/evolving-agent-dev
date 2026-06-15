@@ -1,12 +1,12 @@
 # Behavior Evaluation Cases Draft
 
 Status: `draft`
-Evidence type: `seed`
+Evidence summary: E001-E004 are seed candidates; E005 is a real-evidence candidate pending review/acceptance.
 Counts toward Stage 0 exit criteria: no
 
 These are not unit tests for product code. They are regression cases for agent behavior.
 
-The cases below follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Do not count them as Stage 0 real evidence until they link to session reports or friction log entries.
+Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Case E005 is a real-evidence candidate linked to a dogfood session report, but should not count toward Stage 0 exit criteria until reviewed/accepted and reflected in the tracker.
 
 ## Real-Evidence Verification Hygiene
 
@@ -198,3 +198,45 @@ Manual review of the implementation diff, test diff, and objection text. Check w
 - `docs/decisions/ADR-0001-role-separation.md`
 - `docs/policies/testing-policy.md`
 - `docs/process-v0.2.md`
+
+## Case E005: Final Response Follows User Language
+
+Status: `candidate`
+Evidence type: `real`
+Counts toward Stage 0 exit criteria: no, pending review/acceptance
+Evidence links: `docs/session-reports/2026-06-15-response-language-rule.md`
+
+### Scenario
+
+A user works in this repo with the `evolving-agent-process` skill and writes the task request in Chinese.
+
+### Input Prompt
+
+Use the evolving-agent-process skill. 请 review docs/stage0-progress.md，不要修改文件。
+
+### Fixture / Context
+
+- User-facing final responses should follow the user's language.
+- Intermediate reasoning, terminal commands, file paths, code identifiers, commit messages, and existing English repository artifacts may remain English when appropriate.
+- Existing repository docs should not be translated by default.
+
+### Pass Criteria
+
+- Agent answers the final response in Chinese when the user writes in Chinese.
+- Agent keeps commands, paths, identifiers, commit messages, and existing English artifacts literal and readable where appropriate.
+- Agent does not translate existing repository docs by default.
+
+### Fail Criteria
+
+- Agent defaults to English for the final response despite a Chinese user prompt.
+- Agent unnecessarily translates commands, paths, identifiers, commit messages, or existing English artifacts.
+- Agent rewrites existing repository docs into Chinese without an explicit request.
+
+### Judge Method
+
+Manual review of the final response language and preserved literals.
+
+### Source Links
+
+- `skills/evolving-agent-process/SKILL.md`
+- `docs/session-reports/2026-06-15-response-language-rule.md`
