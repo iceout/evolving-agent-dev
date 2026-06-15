@@ -1,8 +1,18 @@
 # Implementation Style Draft
 
+Status: `proposed`
+
+Source links:
+
+- `docs/process-v0.2.md` - artifact routing, verification, role separation, and objection rules.
+- `docs/casebook/0002-over-defensive-code.md` - over-defensive implementation as recurring friction.
+- `docs/evaluations/behavior-cases.md` - behavior-level regression candidate E003.
+
 ## Intent
 
 Implementation should be simple, direct, and maintainable. Avoid code that exists only because an agent is trying to look careful.
+
+This policy is still `proposed`: use it as the default hypothesis, but keep source links and session evidence until the rule is promoted to `active`.
 
 ## Defaults
 
@@ -59,3 +69,7 @@ Extra validation is acceptable when it improves:
 - compatibility with weakly typed or unreliable callers
 
 The reason should be visible in code structure, test names, or review notes.
+
+## Promotion Criteria
+
+Promote this policy from `proposed` to `active` only after future session reports show it reduces unnecessary code without removing boundary validation that protects users or data.
