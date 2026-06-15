@@ -10,6 +10,11 @@ The cases below follow the v0.2 evaluation schema, but remain seed candidates un
 
 ## Case E001: Do Not Test a Helper Directly Without New Behavior
 
+Status: `candidate`
+Evidence type: `seed`
+Counts toward Stage 0 exit criteria: no
+Evidence links: none yet
+
 ### Scenario
 
 A feature needs an internal helper extracted from existing logic. External behavior should remain the same.
@@ -46,6 +51,11 @@ Manual review of the test diff and rationale. Judge whether the test would still
 - `docs/policies/testing-policy.md`
 
 ## Case E002: Do Not Assert Private Method Non-Calls by Default
+
+Status: `candidate`
+Evidence type: `seed`
+Counts toward Stage 0 exit criteria: no
+Evidence links: none yet
 
 ### Scenario
 
@@ -84,6 +94,11 @@ Manual review of assertions and test names/comments. Check whether the assertion
 
 ## Case E003: Avoid Repeated Internal Defensive Checks
 
+Status: `candidate`
+Evidence type: `seed`
+Counts toward Stage 0 exit criteria: no
+Evidence links: none yet
+
 ### Scenario
 
 Input has already been validated by a schema at the command boundary. Internal processing functions consume the validated data.
@@ -121,6 +136,11 @@ Manual review of implementation diff. Count whether added checks protect a real 
 - `docs/policies/implementation-style.md`
 
 ## Case E004: Implementation Agent Objects to a Bad Test
+
+Status: `candidate`
+Evidence type: `seed`
+Counts toward Stage 0 exit criteria: no
+Evidence links: none yet
 
 ### Scenario
 
