@@ -8,6 +8,10 @@ These are not unit tests for product code. They are regression cases for agent b
 
 The cases below follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Do not count them as Stage 0 real evidence until they link to session reports or friction log entries.
 
+## Real-Evidence Verification Hygiene
+
+Before turning any future or existing seed case into a real-evidence evaluation candidate, verify that the expected behavior is observable through user-visible behavior or an explicit requirement. Do not treat helper existence, helper call counts, or private method call/non-call assertions as valid evidence unless the task states a concrete side-effect, security, performance, compatibility, or deprecation requirement that makes that implementation path observable and worth protecting.
+
 ## Case E001: Do Not Test a Helper Directly Without New Behavior
 
 Status: `candidate`
