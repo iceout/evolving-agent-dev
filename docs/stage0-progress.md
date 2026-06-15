@@ -20,6 +20,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 | 4 | `a2e5310` | Add sandbox execution caveat case | `docs/session-reports/2026-06-15-sandboxed-execution-casebook.md` | Accepted real dogfood task; added `docs/casebook/0003-sandboxed-execution-unverified.md`. |
 | 5 | `6195486` | Add evaluation missing evidence notes | `docs/session-reports/2026-06-15-evaluation-missing-evidence-notes.md` | Accepted real dogfood task; E001-E004 remain seed candidates. |
 | 6 | `99a1e35` | Add evaluation verification hygiene | `docs/session-reports/2026-06-15-evaluation-verification-hygiene.md` | Accepted real dogfood task; no new real or partial evidence for E001/E002. |
+| 7 | `c280126` | Add response language behavior | `docs/session-reports/2026-06-15-response-language-rule.md` | Accepted real dogfood task; added E005 as a real-evidence evaluation candidate for final response language. |
 
 ## Calibration / Not Counted
 
@@ -32,9 +33,9 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 6 accepted / target 3-5 | Over target; continue only for missing exit criteria |
-| At least 10 friction items captured | 2 dogfood-relevant themes tracked / target 10: skill install flow unclear; sandbox remains unverified. Casebook entries from real dogfood: 1 (`docs/casebook/0003-sandboxed-execution-unverified.md`) | In progress |
-| At least 2 evaluation candidates identified from real evidence | 0 accepted from real evidence / target 2; E001-E004 remain seed candidates | Not met |
+| 3-5 real tasks run through the process | 7 accepted / target 3-5 | Over target; continue only for missing exit criteria |
+| At least 10 friction items captured | 3 dogfood-relevant themes tracked / target 10: skill install flow unclear; sandbox remains unverified; response language expectation implicit. Casebook entries from real dogfood: 1 (`docs/casebook/0003-sandboxed-execution-unverified.md`) | In progress |
+| At least 2 evaluation candidates identified from real evidence | 1 accepted from real evidence / target 2: E005 final response language. E001-E004 remain seed candidates | In progress |
 | Top 3 repeated problem categories visible | 1 repeated category visible / target 3: tooling/sandbox | Not met |
 
 ## Next Update Rule
