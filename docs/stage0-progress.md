@@ -29,14 +29,48 @@ Known caveat: sandboxed execution remains unverified because this environment us
 - Bootstrap, installation, canonical-skill-draft, and skill-design-hardening reports are setup evidence, not real dogfood tasks.
 - Seed casebook entries and E001-E004 in `docs/evaluations/behavior-cases.md` remain seed artifacts unless later linked to accepted real sessions or friction entries.
 
+## Friction Accounting
+
+Friction item count, unique themes/categories, and repeated problem categories are tracked separately. Count only explicit friction from accepted dogfood session reports or accepted tracker evidence; do not count bootstrap, smoke, setup, seed artifacts, or pending dogfood tasks.
+
+Current accepted-evidence totals: 9 friction items; 3 unique themes/categories; 1 repeated problem category.
+
+### Friction Items Captured
+
+| # | Source | Item | Category | Count basis |
+|---|---|---|---|---|
+| 1 | `docs/casebook/inbox.md` / accepted task `f62c6b6` | Skill install flow unclear | `tooling` | Inbox friction tied to accepted dogfood task. |
+| 2 | `docs/session-reports/2026-06-15-skill-install-flow-clarification.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 3 | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 4 | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 5 | `docs/session-reports/2026-06-15-sandboxed-execution-casebook.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 6 | `docs/session-reports/2026-06-15-evaluation-missing-evidence-notes.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 7 | `docs/session-reports/2026-06-15-evaluation-verification-hygiene.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 8 | `docs/session-reports/2026-06-15-response-language-rule.md` | Response language expectation was implicit | `requirements` | Accepted session report friction. |
+| 9 | `docs/session-reports/2026-06-15-response-language-rule.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+
+### Themes / Categories
+
+| Theme/category | Item count | Repeated? | Notes |
+|---|---:|---|---|
+| `tooling` / skill install flow unclear | 1 | no | Installation path/copy-vs-symlink verification was unclear. |
+| `tooling` / sandbox remains unverified | 7 | yes | Repeated across accepted dogfood reports; captured in `docs/casebook/0003-sandboxed-execution-unverified.md`. |
+| `requirements` / response language expectation implicit | 1 | no | Produced accepted real-evidence candidate E005. |
+
+### Repeated Problem Categories
+
+| Category/theme | Evidence | Status |
+|---|---|---|
+| `tooling` / sandbox remains unverified | 7 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
+
 ## Stage 0 Exit Criteria Progress
 
 | Criterion | Current progress | Status |
 |---|---:|---|
 | 3-5 real tasks run through the process | 7 accepted / target 3-5 | Over target; continue only for missing exit criteria |
-| At least 10 friction items captured | 3 dogfood-relevant themes tracked / target 10: skill install flow unclear; sandbox remains unverified; response language expectation implicit. Casebook entries from real dogfood: 1 (`docs/casebook/0003-sandboxed-execution-unverified.md`) | In progress |
-| At least 2 evaluation candidates identified from real evidence | 1 accepted from real evidence / target 2: E005 final response language. E001-E004 remain seed candidates | In progress |
-| Top 3 repeated problem categories visible | 1 repeated category visible / target 3: tooling/sandbox | Not met |
+| At least 10 friction items captured | 9 accepted friction items / target 10; see Friction Accounting | In progress |
+| At least 2 evaluation candidates identified from real evidence | 1 accepted from real evidence / target 2: E005 final response language. E006 is pending review/acceptance and not counted yet. E001-E004 remain seed candidates | In progress |
+| Top 3 repeated problem categories visible | 1 repeated category visible / target 3: `tooling` / sandbox remains unverified. Unique themes/categories visible: 3 | Not met |
 
 ## Next Update Rule
 

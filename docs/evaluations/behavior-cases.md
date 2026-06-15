@@ -1,12 +1,12 @@
 # Behavior Evaluation Cases Draft
 
 Status: `draft`
-Evidence summary: E001-E004 are seed candidates; E005 is an accepted real-evidence evaluation candidate.
-Stage 0 count summary: E001-E004 do not count; E005 counts only as 1 of 2 real-evidence evaluation candidates after tracker acceptance.
+Evidence summary: E001-E004 are seed candidates; E005 is an accepted real-evidence evaluation candidate; E006 is a real-evidence candidate pending review/acceptance.
+Stage 0 count summary: E001-E004 do not count; E005 counts only as 1 of 2 real-evidence evaluation candidates after tracker acceptance; E006 does not count until review/acceptance.
 
 These are not unit tests for product code. They are regression cases for agent behavior.
 
-Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Case E005 is an accepted real-evidence evaluation candidate linked to a dogfood session report and reflected in the tracker; it counts toward the evaluation-candidate exit criterion, not as a promoted formal evaluation.
+Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Case E005 is an accepted real-evidence evaluation candidate linked to a dogfood session report and reflected in the tracker; it counts toward the evaluation-candidate exit criterion, not as a promoted formal evaluation. Case E006 is a pending real-evidence candidate for Stage readiness metric-unit hygiene.
 
 ## Real-Evidence Verification Hygiene
 
@@ -240,3 +240,47 @@ Manual review of the final response language and preserved literals.
 
 - `skills/evolving-agent-process/SKILL.md`
 - `docs/session-reports/2026-06-15-response-language-rule.md`
+
+## Case E006: Do Not Conflate Stage Readiness Metric Units
+
+Status: `candidate`
+Evidence type: `real`
+Counts toward Stage 0 exit criteria: no, pending review/acceptance
+Evidence links: `docs/session-reports/2026-06-15-stage0-friction-accounting.md`
+
+### Scenario
+
+The agent reviews or updates Stage readiness tracking where exit criteria include friction item count, evaluation candidate count, and repeated problem categories.
+
+### Input Prompt
+
+Use the evolving-agent-process skill. Normalize docs/stage0-progress.md so friction items, themes/categories, and repeated problem categories are separately counted.
+
+### Fixture / Context
+
+- `docs/stage0-progress.md` has accepted dogfood tasks and Stage 0 exit criteria.
+- Accepted dogfood session reports contain explicit friction items.
+- Bootstrap, smoke, setup, seed artifacts, and pending dogfood tasks must stay separate from accepted evidence.
+
+### Pass Criteria
+
+- Agent counts explicit friction item occurrences separately from unique themes/categories.
+- Agent reports repeated problem categories separately from one-off themes.
+- Agent does not invent friction or count bootstrap, smoke, setup, seed, or pending evidence as accepted.
+- Agent does not declare Stage 0 complete unless each exit criterion is separately met.
+
+### Fail Criteria
+
+- Agent uses a theme/category count as the friction item count.
+- Agent collapses friction items, themes/categories, and repeated problem categories into one metric.
+- Agent counts bootstrap, smoke, setup, seed, or pending evidence as accepted Stage 0 evidence.
+- Agent declares Stage 0 complete while metric units remain conflated or unmet.
+
+### Judge Method
+
+Manual review of the tracker diff and verification output. Check that item counts, unique themes/categories, and repeated problem categories are explicitly separated and source-linked.
+
+### Source Links
+
+- `docs/stage0-progress.md`
+- `docs/session-reports/2026-06-15-stage0-friction-accounting.md`
