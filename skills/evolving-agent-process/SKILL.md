@@ -154,12 +154,14 @@ Submit an objection only when the issue would lower acceptance criteria, violate
 
 This file is the repo-tracked canonical draft. The local Codex-installed copy is runtime state.
 
-For v0.1 installation:
+For v0.1 installation, use this order:
 
-- confirm the actual Codex skill directory before writing runtime files
-- prefer symlinking the tracked `skills/evolving-agent-process/` directory if Codex supports directory symlinks
-- if copying, copy the whole `skills/evolving-agent-process/` directory and record the source commit and destination path in the session report
-- do not add scripts, agents configuration, or automation for v0.1 unless explicitly requested
+- Confirm the runtime destination before writing files: use `$CODEX_HOME/skills/evolving-agent-process/` when `CODEX_HOME` is set; otherwise confirm the local Codex skill path, usually `$HOME/.codex/skills/evolving-agent-process/`.
+- Install the whole tracked `skills/evolving-agent-process/` directory, not only `SKILL.md`.
+- Prefer a directory symlink from the tracked directory to the runtime destination if Codex loads symlinked skills.
+- If symlinks are unavailable, copy the whole directory and record the source commit, destination path, and refresh expectation in the session report.
+- Verify the install by checking the runtime `SKILL.md` exists, contains `name: evolving-agent-process`, and either resolves to the tracked source for symlinks or matches the tracked source content for copies.
+- Do not add scripts, agents configuration, or automation for v0.1 unless explicitly requested.
 
 ## Common Pitfalls
 
