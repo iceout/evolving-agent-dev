@@ -52,3 +52,5 @@ Exit Stage 0 only after:
 - The top 3 repeated problem categories are visible.
 
 If evaluation candidates are weak, continue Stage 0 instead of forcing low-quality evaluations.
+
+Seed artifacts do not count toward these exit criteria. Initial casebook entries, draft policies, and draft evaluations are hypotheses until linked to real session reports or friction log entries from Stage 0 usage.

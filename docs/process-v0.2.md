@@ -499,3 +499,5 @@ v0.2 暂时不做：
 7. 再决定 Agent 架构和自动化范围。
 
 Stage 0 退出标准：完成 3-5 个真实任务、收集 10 条 friction、识别至少 2 个 evaluation candidates、识别前 3 类重复问题后，进入 v0.3；如果 candidates 信号不足，可以继续 Stage 0，而不是硬凑 evaluation。
+
+初始建档里的 seed case、seed policy 和 draft evaluation 不计入 Stage 0 退出标准。只有链接到真实 session report 或 friction log 的证据，才算 real evidence。

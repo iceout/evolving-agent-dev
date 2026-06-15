@@ -4,6 +4,10 @@
 
 Open
 
+## Evidence Type
+
+`seed` - initial hypothesis. Does not count toward Stage 0 exit criteria until linked to a real session report or friction log entry.
+
 ## Category
 
 - testing

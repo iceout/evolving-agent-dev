@@ -23,7 +23,7 @@ Use role separation as a default workflow:
 - Review Agent checks both test value and implementation simplicity.
 - Orchestrator decides whether a failing run indicates wrong tests or wrong implementation.
 
-Dev Agent must not directly edit tests. If it believes a test is wrong, it submits a Test Objection.
+Dev Agent must not silently weaken or rewrite tests to make progress. If it believes a test is wrong, it follows the v0.2 objection threshold: submit an objection only when the issue would lower acceptance criteria, violate role boundaries, expand scope, block real verification, reveal a substantive conflict, or require Orchestrator/user trade-off.
 
 ## Consequences
 
@@ -41,7 +41,7 @@ Costs:
 
 ## Escape Hatch
 
-For very small tasks, one agent may perform both roles if it records that role separation was skipped and why.
+For very small tasks, one agent may perform both roles if the v0.2 role separation triggers do not apply. If a trigger applies, record the minimal role separation sections instead of creating separate agents by default.
 
 ## Related Cases
 
@@ -49,4 +49,4 @@ For very small tasks, one agent may perform both roles if it records that role s
 
 ## Evaluation Plan
 
-Create evaluation cases where tests are flawed or implementation-specific. Expected behavior: Dev Agent reports a Test Objection instead of editing tests directly.
+Create evaluation cases where tests are flawed or implementation-specific. Expected behavior: Dev Agent does not edit tests directly, and reports a Test Objection only when the v0.2 objection trigger threshold is met.

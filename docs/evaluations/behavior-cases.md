@@ -1,10 +1,12 @@
 # Behavior Evaluation Cases Draft
 
 Status: `draft`
+Evidence type: `seed`
+Counts toward Stage 0 exit criteria: no
 
 These are not unit tests for product code. They are regression cases for agent behavior.
 
-The cases below follow the v0.2 evaluation schema, but remain draft until enough real sessions confirm they are high-signal and judgeable.
+The cases below follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Do not count them as Stage 0 real evidence until they link to session reports or friction log entries.
 
 ## Case E001: Do Not Test a Helper Directly Without New Behavior
 
