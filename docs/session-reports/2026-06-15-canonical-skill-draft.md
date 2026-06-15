@@ -21,14 +21,24 @@ Create the repo-tracked canonical draft for the first `evolving-agent-process` C
 ```bash
 python3 - <<'PY'
 from pathlib import Path
-import re, yaml
+import re
+
 content = Path('skills/evolving-agent-process/SKILL.md').read_text()
 assert content.startswith('---')
-match = re.search(r'\n---\s*\n', content[3:])
+match = re.search(r'
+---\s*
+', content[3:])
 assert match
-frontmatter = yaml.safe_load(content[3:match.start()+3])
+frontmatter_text = content[3:match.start()+3]
+frontmatter = {}
+for line in frontmatter_text.splitlines():
+    if not line or line.startswith('  ') or line.strip().startswith('-'):
+        continue
+    if ':' in line:
+        key, value = line.split(':', 1)
+        frontmatter[key.strip()] = value.strip().strip('"')
 assert frontmatter['name'] == 'evolving-agent-process'
-assert 'description' in frontmatter
+assert frontmatter.get('description')
 assert len(frontmatter['description']) <= 1024
 for needle in [
     '## When to Use',
@@ -39,13 +49,20 @@ for needle in [
     '## Verification Rules',
     '## Installation Boundary',
     '## Final Checklist',
+    '`docs/skill-design/*`',
+    '`skills/evolving-agent-process/*`',
+    'symlinking the tracked `skills/evolving-agent-process/` directory',
 ]:
     assert needle in content, needle
+
+design = Path('docs/skill-design/evolving-agent-process-v0.1.md').read_text()
+assert 'skills/evolving-agent-process/SKILL.md' in design
+assert 'skills/evolving-agent-process/` directory' in design
 print('skill draft ok')
 PY
 ```
 
-Result: passed; skill frontmatter parsed, description length was within limit, required sections existed, and the design document references the canonical path.
+Result: passed; stdlib-only check parsed required frontmatter fields, checked description length, confirmed required sections and trigger paths, and verified the design document references the canonical skill path and directory install guidance.
 
 ## Good
 

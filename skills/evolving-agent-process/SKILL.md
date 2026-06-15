@@ -29,6 +29,8 @@ Use this skill when working in `evolving-agent-dev` on:
 - `docs/policies/*`
 - `docs/decisions/*`
 - `docs/evaluations/*`
+- `docs/skill-design/*`
+- `skills/evolving-agent-process/*`
 - this skill or its installation notes
 
 Also use it when the user mentions dogfood, friction routing, Stage 0/v0.3 readiness, seed-vs-real evidence, session reports, casebook, policy notes, ADRs, evaluations, or the skill adapter in the context of this repo.
@@ -155,8 +157,8 @@ This file is the repo-tracked canonical draft. The local Codex-installed copy is
 For v0.1 installation:
 
 - confirm the actual Codex skill directory before writing runtime files
-- prefer symlinking this tracked `SKILL.md` if Codex supports symlinks
-- if copying, record the source commit and destination path in the session report
+- prefer symlinking the tracked `skills/evolving-agent-process/` directory if Codex supports directory symlinks
+- if copying, copy the whole `skills/evolving-agent-process/` directory and record the source commit and destination path in the session report
 - do not add scripts, agents configuration, or automation for v0.1 unless explicitly requested
 
 ## Common Pitfalls
