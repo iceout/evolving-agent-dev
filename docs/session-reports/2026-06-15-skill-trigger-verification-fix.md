@@ -53,11 +53,18 @@ assert 'skills/evolving-agent-process/` directory' in design
 report = Path('docs/session-reports/2026-06-15-canonical-skill-draft.md').read_text()
 assert 'import re' in report
 assert 'import re, yaml' not in report
+assert "match = re.search(r'\\n---\\s*\\n', content[3:])" in report
+
+# Extract and execute the canonical report's verification command to ensure it is copy-paste runnable.
+start = report.index("python3 - <<'PY'") + len("python3 - <<'PY'")
+end = report.index('PY', start)
+code = report[start:end].strip()
+exec(compile(code, 'canonical-skill-draft verification', 'exec'), {})
 print('trigger and verification fix ok')
 PY
 ```
 
-Result: passed; stdlib-only verification confirmed trigger paths, directory install guidance, design references, and the updated canonical report command.
+Result: passed; stdlib-only verification confirmed trigger paths, directory install guidance, design references, correct regex text, and executed the canonical report command extracted from the report.
 
 ## Good
 

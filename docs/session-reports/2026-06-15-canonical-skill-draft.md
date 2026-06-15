@@ -25,9 +25,7 @@ import re
 
 content = Path('skills/evolving-agent-process/SKILL.md').read_text()
 assert content.startswith('---')
-match = re.search(r'
----\s*
-', content[3:])
+match = re.search(r'\n---\s*\n', content[3:])
 assert match
 frontmatter_text = content[3:match.start()+3]
 frontmatter = {}
