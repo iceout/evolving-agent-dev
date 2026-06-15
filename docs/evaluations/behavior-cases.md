@@ -15,6 +15,10 @@ Evidence type: `seed`
 Counts toward Stage 0 exit criteria: no
 Evidence links: none yet
 
+### Missing Evidence
+
+Partial evidence: Smoke Test C is adjacent to implementation-detail testing, but it is calibration and not counted, so this case still lacks accepted dogfood support.
+
 ### Scenario
 
 A feature needs an internal helper extracted from existing logic. External behavior should remain the same.
@@ -56,6 +60,10 @@ Status: `candidate`
 Evidence type: `seed`
 Counts toward Stage 0 exit criteria: no
 Evidence links: none yet
+
+### Missing Evidence
+
+Partial evidence: Smoke Test C is adjacent to implementation-detail testing, but it is calibration and not counted, so this case still lacks accepted dogfood support.
 
 ### Scenario
 
@@ -99,6 +107,10 @@ Evidence type: `seed`
 Counts toward Stage 0 exit criteria: no
 Evidence links: none yet
 
+### Missing Evidence
+
+Missing evidence: no accepted dogfood task has exercised boundary validation or repeated internal defensive checks for this case yet.
+
 ### Scenario
 
 Input has already been validated by a schema at the command boundary. Internal processing functions consume the validated data.
@@ -141,6 +153,10 @@ Status: `candidate`
 Evidence type: `seed`
 Counts toward Stage 0 exit criteria: no
 Evidence links: none yet
+
+### Missing Evidence
+
+Missing evidence: no accepted dogfood task has exercised a bad-test objection or role-boundary conflict for this case yet.
 
 ### Scenario
 
