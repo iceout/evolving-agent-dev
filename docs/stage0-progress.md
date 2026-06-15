@@ -16,6 +16,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 |---|---|---|---|---|
 | 1 | `f62c6b6` | Clarify skill install flow | `docs/session-reports/2026-06-15-skill-install-flow-clarification.md` | Accepted real dogfood task; sandbox caveat applies. |
 | 2 | `4875411` | Add evaluation case metadata | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Accepted real dogfood task; evaluation cases remain seed candidates. |
+| 3 | `1c75db6` | Add Stage 0 progress tracker | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Accepted real dogfood task; sandbox caveat applies. |
 
 ## Calibration / Not Counted
 
@@ -28,11 +29,11 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 2 accepted / target 3-5; this tracker task is a candidate only after review/commit | In progress |
+| 3-5 real tasks run through the process | 3 accepted / target 3-5 | Minimum met |
 | At least 10 friction items captured | 2 dogfood-relevant themes tracked / target 10: skill install flow unclear; sandbox remains unverified | In progress |
 | At least 2 evaluation candidates identified from real evidence | 0 accepted from real evidence / target 2; E001-E004 remain seed candidates | Not met |
 | Top 3 repeated problem categories visible | 1 repeated category visible / target 3: tooling/sandbox | Not met |
 
 ## Next Update Rule
 
-When a dogfood task is accepted, add its commit, task title, and session report path here. Keep calibration and seed artifacts separate unless a later review explicitly accepts them as Stage 0 real evidence.
+When a dogfood task is accepted, add its commit, task title, and session report path here. Keep calibration and seed artifacts separate unless a later review explicitly accepts them as Stage 0 real evidence. Post-commit tracker bookkeeping updates do not count as separate Stage 0 tasks.
