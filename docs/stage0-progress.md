@@ -18,6 +18,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 | 2 | `4875411` | Add evaluation case metadata | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Accepted real dogfood task; evaluation cases remain seed candidates. |
 | 3 | `1c75db6` | Add Stage 0 progress tracker | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Accepted real dogfood task; sandbox caveat applies. |
 | 4 | `a2e5310` | Add sandbox execution caveat case | `docs/session-reports/2026-06-15-sandboxed-execution-casebook.md` | Accepted real dogfood task; added `docs/casebook/0003-sandboxed-execution-unverified.md`. |
+| 5 | `6195486` | Add evaluation missing evidence notes | `docs/session-reports/2026-06-15-evaluation-missing-evidence-notes.md` | Accepted real dogfood task; E001-E004 remain seed candidates. |
 
 ## Calibration / Not Counted
 
@@ -30,7 +31,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 4 accepted / target 3-5 | In range |
+| 3-5 real tasks run through the process | 5 accepted / target 3-5 | In range |
 | At least 10 friction items captured | 2 dogfood-relevant themes tracked / target 10: skill install flow unclear; sandbox remains unverified. Casebook entries from real dogfood: 1 (`docs/casebook/0003-sandboxed-execution-unverified.md`) | In progress |
 | At least 2 evaluation candidates identified from real evidence | 0 accepted from real evidence / target 2; E001-E004 remain seed candidates | Not met |
 | Top 3 repeated problem categories visible | 1 repeated category visible / target 3: tooling/sandbox | Not met |
