@@ -318,10 +318,10 @@ First implementation should be a personal dogfood install, not a repo-published 
 Suggested boundary:
 
 - Keep this design document in the repo under `docs/skill-design/`.
-- Keep a version-tracked canonical `SKILL.md` draft in the repo before installing it locally.
+- Keep a version-tracked canonical `SKILL.md` draft in the repo at `skills/evolving-agent-process/SKILL.md` before installing it locally.
 - Install by copying or symlinking that tracked draft into the local Codex skill location for personal dogfood.
 - Prefer a symlink if Codex supports it; otherwise record the source commit and destination path in the session report when copying.
-- Treat the repo-tracked draft as reviewable source; the local installed copy is runtime state.
+- Treat `skills/evolving-agent-process/SKILL.md` as reviewable source; the local installed copy is runtime state.
 - Do not add scripts, agents configuration, or automation in v0.1.
 - Do not require `agents/openai.yaml` for v0.1 unless Codex itself needs it in the local environment.
 - After dogfood data shows the skill is useful, decide whether to publish it in-repo, package it as a plugin, or keep it personal.
@@ -458,6 +458,16 @@ The first skill version does not need:
 - automatic evaluation creation
 - v0.3 readiness decisions
 - multi-agent orchestration
+
+## Canonical Draft Path
+
+The repo-tracked canonical draft for v0.1 is:
+
+```text
+skills/evolving-agent-process/SKILL.md
+```
+
+Install this draft into Codex only after reviewing and validating it. Prefer a symlink if Codex supports symlinked skills; otherwise copy it and record the source commit plus destination path.
 
 ## Proposed SKILL.md Outline
 
