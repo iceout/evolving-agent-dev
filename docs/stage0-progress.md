@@ -22,6 +22,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 | 6 | `99a1e35` | Add evaluation verification hygiene | `docs/session-reports/2026-06-15-evaluation-verification-hygiene.md` | Accepted real dogfood task; no new real or partial evidence for E001/E002. |
 | 7 | `c280126` | Add response language behavior | `docs/session-reports/2026-06-15-response-language-rule.md` | Accepted real dogfood task; added E005 as a real-evidence evaluation candidate for final response language. |
 | 8 | `555a9ee` | Normalize Stage 0 friction accounting | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Accepted real dogfood task; added E006 as a real-evidence evaluation candidate for Stage readiness metric-unit hygiene. |
+| 9 | `38d7bf6` | Add Stage 0 exit blocker summary | `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` | Accepted real dogfood task; clarified Stage 0 cannot exit while repeated problem categories remain 1 / 3. |
 
 ## Calibration / Not Counted
 
@@ -34,7 +35,7 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 Friction item count, unique themes/categories, and repeated problem categories are tracked separately. Count only explicit friction from accepted dogfood session reports or accepted tracker evidence; do not count bootstrap, smoke, setup, seed artifacts, or pending dogfood tasks.
 
-Current accepted-evidence totals: 11 friction items; 4 unique themes/categories; 1 repeated problem category.
+Current accepted-evidence totals: 12 friction items; 4 unique themes/categories; 1 repeated problem category.
 
 ### Friction Items Captured
 
@@ -51,13 +52,14 @@ Current accepted-evidence totals: 11 friction items; 4 unique themes/categories;
 | 9 | `docs/session-reports/2026-06-15-response-language-rule.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
 | 10 | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Stage readiness metric units were conflated | `process` | Accepted session report friction. |
 | 11 | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
+| 12 | `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
 
 ### Themes / Categories
 
 | Theme/category | Item count | Repeated? | Notes |
 |---|---:|---|---|
 | `tooling` / skill install flow unclear | 1 | no | Installation path/copy-vs-symlink verification was unclear. |
-| `tooling` / sandbox remains unverified | 8 | yes | Repeated across accepted dogfood reports; captured in `docs/casebook/0003-sandboxed-execution-unverified.md`. |
+| `tooling` / sandbox remains unverified | 9 | yes | Repeated across accepted dogfood reports; captured in `docs/casebook/0003-sandboxed-execution-unverified.md`. |
 | `requirements` / response language expectation implicit | 1 | no | Produced accepted real-evidence candidate E005. |
 | `process` / stage readiness metric units conflated | 1 | no | Produced accepted real-evidence candidate E006. |
 
@@ -65,18 +67,18 @@ Current accepted-evidence totals: 11 friction items; 4 unique themes/categories;
 
 | Category/theme | Evidence | Status |
 |---|---|---|
-| `tooling` / sandbox remains unverified | 8 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
+| `tooling` / sandbox remains unverified | 9 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
 
 ## Stage 0 Exit Blocker Summary
 
-Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 1 / 3. Keep these units separate: 11 friction items and 4 unique themes/categories do not imply 3 repeated problem categories.
+Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 1 / 3. Keep these units separate: 12 friction items and 4 unique themes/categories do not imply 3 repeated problem categories.
 
 ## Stage 0 Exit Criteria Progress
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 8 accepted / target 3-5 | Over target; continue only for missing exit criteria |
-| At least 10 friction items captured | 11 accepted friction items / target 10; see Friction Accounting | Met |
+| 3-5 real tasks run through the process | 9 accepted / target 3-5 | Over target; continue only for missing exit criteria |
+| At least 10 friction items captured | 12 accepted friction items / target 10; see Friction Accounting | Met |
 | At least 2 evaluation candidates identified from real evidence | 2 accepted from real evidence / target 2: E005 final response language; E006 Stage readiness metric-unit hygiene. E001-E004 remain seed candidates | Met |
 | Top 3 repeated problem categories visible | 1 repeated category visible / target 3: `tooling` / sandbox remains unverified. Unique themes/categories visible: 4 | Not met |
 
