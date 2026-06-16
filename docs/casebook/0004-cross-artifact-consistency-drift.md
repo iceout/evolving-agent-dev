@@ -6,7 +6,7 @@ Open
 
 ## Evidence Type
 
-`real external/internal friction` - repeated observations from privacy-preserving external pilots and internal stale verification evidence. This is not an accepted internal Stage 0 dogfood task and not an evaluation candidate.
+`real external/internal friction` - repeated observations from privacy-preserving external pilots and internal stale verification evidence. This is not an accepted internal Stage 0 dogfood task. It now supports E007 as a privacy-preserving real-evidence evaluation candidate pending review/acceptance.
 
 ## Category
 
@@ -52,7 +52,7 @@ The recurring issue is not one file being wrong; it is that related docs, templa
 
 ## Current Handling
 
-Keep this as casebook evidence only. Do not count the external pilots as accepted internal Stage 0 dogfood tasks under the current tracker rules. Do not create an evaluation candidate until the pattern becomes high-signal and judgeable without private repository details.
+Keep this as casebook evidence and E007 candidate evidence. Do not count the external pilots as accepted internal Stage 0 dogfood tasks under the current tracker rules. Do not count E007 toward Stage 0 until it is reviewed and accepted.
 
 ## Related Documents
 

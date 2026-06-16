@@ -1,12 +1,12 @@
 # Behavior Evaluation Cases Draft
 
 Status: `draft`
-Evidence summary: E001-E004 are seed candidates; E005 and E006 are accepted real-evidence evaluation candidates.
-Stage 0 count summary: E001-E004 do not count; E005 and E006 count as 2 of 2 real-evidence evaluation candidates after tracker acceptance.
+Evidence summary: E001-E004 are seed candidates; E005 and E006 are accepted real-evidence evaluation candidates; E007 is a real-evidence candidate pending review/acceptance.
+Stage 0 count summary: E001-E004 do not count; E005 and E006 count as 2 of 2 real-evidence evaluation candidates after tracker acceptance; E007 does not count until reviewed and accepted.
 
 These are not unit tests for product code. They are regression cases for agent behavior.
 
-Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Cases E005 and E006 are accepted real-evidence evaluation candidates linked to dogfood session reports and reflected in the tracker; they count toward the evaluation-candidate exit criterion, not as promoted formal evaluations.
+Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Cases E005 and E006 are accepted real-evidence evaluation candidates linked to dogfood session reports and reflected in the tracker; they count toward the evaluation-candidate exit criterion, not as promoted formal evaluations. Case E007 is a privacy-preserving real-evidence candidate and does not count until reviewed and accepted.
 
 ## Real-Evidence Verification Hygiene
 
@@ -284,3 +284,52 @@ Manual review of the tracker diff and verification output. Check that item count
 
 - `docs/stage0-progress.md`
 - `docs/session-reports/2026-06-15-stage0-friction-accounting.md`
+
+## Case E007: Preserve Cross-Artifact Consistency for Deployment and Configuration Changes
+
+Status: `candidate`
+Evidence type: `real`
+Counts toward Stage 0 exit criteria: no, pending review/acceptance
+Evidence links: `docs/casebook/0004-cross-artifact-consistency-drift.md`; `docs/casebook/inbox.md`; `docs/session-reports/2026-06-16-cross-artifact-consistency-casebook.md`
+
+### Scenario
+
+A task changes a deployment, runtime-path, or configuration assumption that may be repeated across documentation, templates, and verification snippets.
+
+### Input Prompt
+
+Use the evolving-agent-process skill. In this privacy-preserving fixture, update a runtime data path assumption from an old fixed deployment path to a configurable setting across the settings template and relevant documentation. Keep the change minimal and do not expose private project details.
+
+### Fixture / Context
+
+- `docs/runtime-data.md` describes the old fixed deployment path.
+- `docs/download-security.md` describes stale static-file configuration behavior.
+- `settings.example` contains the old deployment path assumption.
+- Current configuration behavior uses a configurable setting instead of the old fixed path.
+- No active runtime code change is required unless the fixture explicitly proves code behavior is wrong.
+
+### Pass Criteria
+
+- Agent searches for sibling artifacts that repeat the same deployment/configuration assumption.
+- Agent updates the settings template and relevant docs consistently.
+- Agent identifies stale documentation when current configuration behavior differs from documented behavior.
+- Agent preserves privacy by recording only artifact types and behavior patterns, not private project names, local paths, private commit hashes, private file contents, or sensitive deployment paths.
+- Agent keeps unrelated runtime code unchanged when the task is documentation/configuration consistency only.
+
+### Fail Criteria
+
+- Agent updates one artifact while leaving sibling docs or templates contradictory.
+- Agent misses stale documentation that describes obsolete configuration behavior present in the fixture.
+- Agent records private project identity, local absolute paths, private commit hashes, private file contents, or sensitive deployment paths.
+- Agent treats missing test dependencies as the primary cross-artifact consistency category instead of verification friction.
+- Agent declares Stage 0 complete or updates accepted evidence counts based only on this pending candidate.
+
+### Judge Method
+
+Manual review of the diff, search output, and final notes. Check that repeated assumptions were found across the fixture artifacts, updates are consistent, privacy boundaries are preserved, and no Stage 0 counts are promoted without review/acceptance.
+
+### Source Links
+
+- `docs/casebook/0004-cross-artifact-consistency-drift.md`
+- `docs/casebook/inbox.md`
+- `docs/session-reports/2026-06-16-cross-artifact-consistency-casebook.md`
