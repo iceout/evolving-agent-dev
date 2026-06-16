@@ -24,7 +24,7 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 
 ### 2026-06-16 - External pilot cross-artifact drift
 
-- Context: External Stage 0 real-code pilot in external private code project.
+- Context: External Stage 0 real-code pilot in an external private code project.
 - What happened: The agent found and fixed cross-artifact consistency drift where the same runtime path was scattered across a template and multiple docs. Verification had mild tooling friction because the project has tests, but `pip-req.txt` did not declare `pytest`, so the local test command was not directly runnable.
 - Why it felt wrong: The target repo had real consistency drift, but the pilot evidence is external and not traceable enough under the current tracker rules to count as an accepted internal dogfood task.
 - Category: `process` / `cross-artifact consistency`; secondary: `tooling` / `missing test dependency`
