@@ -1,6 +1,6 @@
 # Stage 0 Progress Tracker
 
-Last updated: 2026-06-15
+Last updated: 2026-06-16
 
 This is a manually maintained tracker for Stage 0 progress. It distinguishes accepted real dogfood evidence from bootstrap work, smoke tests, and seed artifacts. It is not an automation or metrics source.
 
@@ -66,6 +66,10 @@ Current accepted-evidence totals: 11 friction items; 4 unique themes/categories;
 | Category/theme | Evidence | Status |
 |---|---|---|
 | `tooling` / sandbox remains unverified | 8 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
+
+## Stage 0 Exit Blocker Summary
+
+Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 1 / 3. Keep these units separate: 11 friction items and 4 unique themes/categories do not imply 3 repeated problem categories.
 
 ## Stage 0 Exit Criteria Progress
 
