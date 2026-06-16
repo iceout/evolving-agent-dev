@@ -29,6 +29,8 @@ Two external real-code pilots exposed cross-artifact consistency drift:
 
 The private pilot also found stale documentation: a download/security doc described old static-file configuration behavior while current code used a different configuration approach.
 
+A later privacy-preserving README/onboarding review found a related config-template semantics gap: the README told users to copy and edit the settings file, but documented only runtime path settings while the template also contained operational/deployment-specific values such as instance identity, notification endpoint, and external config path. The same review found clean points too: no fixed deployment path issue remained in README, the run command matched current server behavior, the test command matched declared dependencies, and the README documented copying a local settings file before tests.
+
 Internal stale-verification evidence showed a related maintenance pattern: `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` contained a verification command that became stale after tracker bookkeeping changed the current friction count, requiring a follow-up correction to keep the report reproducible at HEAD.
 
 ## Verification Friction Observed
