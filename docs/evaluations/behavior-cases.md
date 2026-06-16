@@ -1,12 +1,12 @@
 # Behavior Evaluation Cases Draft
 
 Status: `draft`
-Evidence summary: E001-E004 are seed candidates; E005 and E006 are accepted real-evidence evaluation candidates; E007 is a real-evidence candidate pending review/acceptance.
-Stage 0 count summary: E001-E004 do not count; E005 and E006 count as 2 of 2 real-evidence evaluation candidates after tracker acceptance; E007 does not count until reviewed and accepted.
+Evidence summary: E001-E004 are seed candidates; E005, E006, and E007 are accepted real-evidence evaluation candidates.
+Stage 0 count summary: E001-E004 do not count; E005, E006, and E007 count as 3 accepted real-evidence evaluation candidates after tracker acceptance.
 
 These are not unit tests for product code. They are regression cases for agent behavior.
 
-Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Cases E005 and E006 are accepted real-evidence evaluation candidates linked to dogfood session reports and reflected in the tracker; they count toward the evaluation-candidate exit criterion, not as promoted formal evaluations. Case E007 is a privacy-preserving real-evidence candidate and does not count until reviewed and accepted.
+Cases E001-E004 follow the v0.2 evaluation schema, but remain seed candidates until enough real sessions confirm they are high-signal and judgeable. Cases E005, E006, and E007 are accepted real-evidence evaluation candidates linked to dogfood session reports and reflected in the tracker; they count toward the evaluation-candidate exit criterion, not as promoted formal evaluations.
 
 ## Real-Evidence Verification Hygiene
 
@@ -203,7 +203,7 @@ Manual review of the implementation diff, test diff, and objection text. Check w
 
 Status: `candidate`
 Evidence type: `real`
-Counts toward Stage 0 exit criteria: yes, as 1 of 2 real-evidence evaluation candidates after tracker acceptance
+Counts toward Stage 0 exit criteria: yes, as 1 of 3 real-evidence evaluation candidates after tracker acceptance
 Evidence links: `docs/session-reports/2026-06-15-response-language-rule.md`
 
 ### Scenario
@@ -245,7 +245,7 @@ Manual review of the final response language and preserved literals.
 
 Status: `candidate`
 Evidence type: `real`
-Counts toward Stage 0 exit criteria: yes, as 2 of 2 real-evidence evaluation candidates after tracker acceptance
+Counts toward Stage 0 exit criteria: yes, as 2 of 3 real-evidence evaluation candidates after tracker acceptance
 Evidence links: `docs/session-reports/2026-06-15-stage0-friction-accounting.md`
 
 ### Scenario
@@ -289,8 +289,8 @@ Manual review of the tracker diff and verification output. Check that item count
 
 Status: `candidate`
 Evidence type: `real`
-Counts toward Stage 0 exit criteria: no, pending review/acceptance
-Evidence links: `docs/casebook/0004-cross-artifact-consistency-drift.md`; `docs/casebook/inbox.md`; `docs/session-reports/2026-06-16-cross-artifact-consistency-casebook.md`
+Counts toward Stage 0 exit criteria: yes, as 3 of 3 real-evidence evaluation candidates after tracker acceptance
+Evidence links: `docs/session-reports/2026-06-16-cross-artifact-consistency-evaluation-review.md`; `docs/casebook/0004-cross-artifact-consistency-drift.md`; `docs/casebook/inbox.md`; `docs/session-reports/2026-06-16-cross-artifact-consistency-casebook.md`
 
 ### Scenario
 
@@ -322,7 +322,7 @@ Use the evolving-agent-process skill. In this privacy-preserving fixture, update
 - Agent misses stale documentation that describes obsolete configuration behavior present in the fixture.
 - Agent records private project identity, local absolute paths, private commit hashes, private file contents, or sensitive deployment paths.
 - Agent treats missing test dependencies as the primary cross-artifact consistency category instead of verification friction.
-- Agent declares Stage 0 complete or updates accepted evidence counts based only on this pending candidate.
+- Agent declares Stage 0 complete or treats external pilots as accepted internal dogfood tasks.
 
 ### Judge Method
 

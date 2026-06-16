@@ -23,19 +23,24 @@ Known caveat: sandboxed execution remains unverified because this environment us
 | 7 | `717ef1c` | Add response language behavior | `docs/session-reports/2026-06-15-response-language-rule.md` | Accepted real dogfood task; added E005 as a real-evidence evaluation candidate for final response language. |
 | 8 | `b4a73e1` | Normalize Stage 0 friction accounting | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Accepted real dogfood task; added E006 as a real-evidence evaluation candidate for Stage readiness metric-unit hygiene. |
 | 9 | `b07ef63` | Add Stage 0 exit blocker summary | `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` | Accepted real dogfood task; clarified Stage 0 cannot exit while repeated problem categories remain 1 / 3. |
+| 10 | `f1292c2` | Add cross-artifact consistency evaluation candidate | `docs/session-reports/2026-06-16-cross-artifact-consistency-evaluation-review.md` | Accepted real dogfood task; added E007 as a real-evidence evaluation candidate for cross-artifact consistency. |
 
 ## Calibration / Not Counted
 
 - Smoke Test C (`96039a9`, `docs/session-reports/2026-06-15-smoke-test-c-testing-policy.md`) is a calibration candidate, not currently counted as an accepted real dogfood task.
 - `docs/session-reports/2026-06-15-codex-skill-smoke-tests.md` is smoke-test harness evidence, not an additional real task.
 - Bootstrap, installation, canonical-skill-draft, and skill-design-hardening reports are setup evidence, not real dogfood tasks.
+- Public hygiene pass (`4d35e24`, `docs/session-reports/2026-06-16-public-hygiene-pass.md`) is publication bookkeeping, not a real dogfood task.
+- External pilots are cross-artifact consistency evidence, but they are not accepted internal Stage 0 dogfood tasks.
 - Seed casebook entries and E001-E004 in `docs/evaluations/behavior-cases.md` remain seed artifacts unless later linked to accepted real sessions or friction entries.
 
 ## Friction Accounting
 
 Friction item count, unique themes/categories, and repeated problem categories are tracked separately. Count only explicit friction from accepted dogfood session reports or accepted tracker evidence; do not count bootstrap, smoke, setup, seed artifacts, or pending dogfood tasks.
 
-Current accepted-evidence totals: 12 friction items; 4 unique themes/categories; 1 repeated problem category.
+Current tracker totals: 12 accepted dogfood friction items; 5 evidence-backed themes/categories; 2 repeated problem categories.
+
+Cross-artifact consistency is counted as a repeated problem category based on privacy-preserving external pilots plus internal stale-verification evidence. It is not counted as accepted internal dogfood friction items.
 
 ### Friction Items Captured
 
@@ -56,31 +61,33 @@ Current accepted-evidence totals: 12 friction items; 4 unique themes/categories;
 
 ### Themes / Categories
 
-| Theme/category | Item count | Repeated? | Notes |
+| Theme/category | Evidence basis | Repeated? | Notes |
 |---|---:|---|---|
-| `tooling` / skill install flow unclear | 1 | no | Installation path/copy-vs-symlink verification was unclear. |
-| `tooling` / sandbox remains unverified | 9 | yes | Repeated across accepted dogfood reports; captured in `docs/casebook/0003-sandboxed-execution-unverified.md`. |
-| `requirements` / response language expectation implicit | 1 | no | Produced accepted real-evidence candidate E005. |
-| `process` / stage readiness metric units conflated | 1 | no | Produced accepted real-evidence candidate E006. |
+| `tooling` / skill install flow unclear | 1 accepted dogfood friction item | no | Installation path/copy-vs-symlink verification was unclear. |
+| `tooling` / sandbox remains unverified | 9 accepted dogfood friction items | yes | Repeated across accepted dogfood reports; captured in `docs/casebook/0003-sandboxed-execution-unverified.md`. |
+| `requirements` / response language expectation implicit | 1 accepted dogfood friction item | no | Produced accepted real-evidence candidate E005. |
+| `process` / stage readiness metric units conflated | 1 accepted dogfood friction item | no | Produced accepted real-evidence candidate E006. |
+| `process` / cross-artifact consistency drift | External/internal evidence only; not accepted dogfood friction items | yes | Evidence basis is privacy-preserving external pilots plus internal stale-verification evidence; produced accepted real-evidence candidate E007. |
 
 ### Repeated Problem Categories
 
 | Category/theme | Evidence | Status |
 |---|---|---|
 | `tooling` / sandbox remains unverified | 9 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
+| `process` / cross-artifact consistency drift | Privacy-preserving external pilots plus internal stale-verification evidence in `docs/casebook/0004-cross-artifact-consistency-drift.md`; external pilots are not accepted internal dogfood tasks. | Repeated problem category visible. |
 
 ## Stage 0 Exit Blocker Summary
 
-Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 1 / 3. Keep these units separate: 12 friction items and 4 unique themes/categories do not imply 3 repeated problem categories.
+Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 2 / 3. Keep these units separate: 12 accepted dogfood friction items and 5 evidence-backed themes/categories do not imply 3 repeated problem categories.
 
 ## Stage 0 Exit Criteria Progress
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 9 accepted / target 3-5 | Over target; continue only for missing exit criteria |
+| 3-5 real tasks run through the process | 10 accepted / target 3-5 | Over target; continue only for missing exit criteria |
 | At least 10 friction items captured | 12 accepted friction items / target 10; see Friction Accounting | Met |
-| At least 2 evaluation candidates identified from real evidence | 2 accepted from real evidence / target 2: E005 final response language; E006 Stage readiness metric-unit hygiene. E001-E004 remain seed candidates | Met |
-| Top 3 repeated problem categories visible | 1 repeated category visible / target 3: `tooling` / sandbox remains unverified. Unique themes/categories visible: 4 | Not met |
+| At least 2 evaluation candidates identified from real evidence | 3 accepted from real evidence / target 2: E005 final response language; E006 Stage readiness metric-unit hygiene; E007 cross-artifact consistency. E001-E004 remain seed candidates | Met |
+| Top 3 repeated problem categories visible | 2 repeated categories visible / target 3: `tooling` / sandbox remains unverified; `process` / cross-artifact consistency drift. Evidence-backed themes/categories visible: 5 | Not met |
 
 ## Next Update Rule
 
