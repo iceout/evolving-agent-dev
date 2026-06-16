@@ -34,13 +34,13 @@ for required in (
     "Stage 0 cannot exit yet.",
     "Real dogfood tasks, friction items, and real-evidence evaluation candidates are met",
     "repeated problem categories remain 1 / 3",
-    "11 friction items and 4 unique themes/categories do not imply 3 repeated problem categories",
+    "12 friction items and 4 unique themes/categories do not imply 3 repeated problem categories",
 ):
     assert required in summary, required
 
 assert "Stage 0 complete" not in summary
 assert "Stage 0 can exit" not in summary
-assert "11 friction items / 3 repeated problem categories" not in summary
+assert "12 friction items / 3 repeated problem categories" not in summary
 
 cases = Path("docs/evaluations/behavior-cases.md").read_text()
 case_matches = list(re.finditer(r"^## Case (E\d{3}):", cases, re.M))
