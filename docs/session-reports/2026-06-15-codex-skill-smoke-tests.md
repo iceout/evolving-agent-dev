@@ -29,13 +29,13 @@ Result: passed. Codex loaded the skill, reviewed `docs/process-v0.2.md`, returne
 <codex-binary> exec --dangerously-bypass-approvals-and-sandbox -C <repo> -o /tmp/... "Use the evolving-agent-process skill. Discussion only: the skill install flow feels unclear. Record this as one micro friction item in docs/casebook/inbox.md only; do not create a session report."
 ```
 
-Result: passed. Codex updated only `docs/casebook/inbox.md`; no session report was created. The change was committed as `eba508e`.
+Result: passed. Codex updated only `docs/casebook/inbox.md`; no session report was created. The change was committed as `0087a20`.
 
 ```bash
 <codex-binary> exec --dangerously-bypass-approvals-and-sandbox -C <repo> -o /tmp/... "Use the evolving-agent-process skill. Smoke Test C edit task: make a small substantive docs change in docs/policies/testing-policy.md by adding one sentence clarifying that implementation-detail tests require a stated requirement. Verify the change and write a minimal session report. The report must state dogfood status and Stage 0 evidence status."
 ```
 
-Result: passed. Codex updated `docs/policies/testing-policy.md`, created `docs/session-reports/2026-06-15-smoke-test-c-testing-policy.md`, recorded dogfood and Stage 0 evidence status, and verified with `rg`, `git diff --check`, `git diff`, and `sed`. The change was committed as `b75d5dd`.
+Result: passed. Codex updated `docs/policies/testing-policy.md`, created `docs/session-reports/2026-06-15-smoke-test-c-testing-policy.md`, recorded dogfood and Stage 0 evidence status, and verified with `rg`, `git diff --check`, `git diff`, and `sed`. The change was committed as `96039a9`.
 
 ```bash
 <codex-binary> exec --dangerously-bypass-approvals-and-sandbox -C <repo> -o /tmp/... "Use the evolving-agent-process skill. Smoke Test D: Do existing seed casebook entries and draft evaluations satisfy Stage 0 exit criteria? Answer only; do not edit files."

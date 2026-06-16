@@ -14,19 +14,19 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 | # | Commit | Task | Evidence | Notes |
 |---|---|---|---|---|
-| 1 | `a1ba604` | Clarify skill install flow | `docs/session-reports/2026-06-15-skill-install-flow-clarification.md` | Accepted real dogfood task; sandbox caveat applies. |
-| 2 | `a0aa105` | Add evaluation case metadata | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Accepted real dogfood task; evaluation cases remain seed candidates. |
-| 3 | `2154dee` | Add Stage 0 progress tracker | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Accepted real dogfood task; sandbox caveat applies. |
-| 4 | `7326fd3` | Add sandbox execution caveat case | `docs/session-reports/2026-06-15-sandboxed-execution-casebook.md` | Accepted real dogfood task; added `docs/casebook/0003-sandboxed-execution-unverified.md`. |
-| 5 | `65b5389` | Add evaluation missing evidence notes | `docs/session-reports/2026-06-15-evaluation-missing-evidence-notes.md` | Accepted real dogfood task; E001-E004 remain seed candidates. |
-| 6 | `df269c1` | Add evaluation verification hygiene | `docs/session-reports/2026-06-15-evaluation-verification-hygiene.md` | Accepted real dogfood task; no new real or partial evidence for E001/E002. |
-| 7 | `916a83a` | Add response language behavior | `docs/session-reports/2026-06-15-response-language-rule.md` | Accepted real dogfood task; added E005 as a real-evidence evaluation candidate for final response language. |
-| 8 | `3091863` | Normalize Stage 0 friction accounting | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Accepted real dogfood task; added E006 as a real-evidence evaluation candidate for Stage readiness metric-unit hygiene. |
-| 9 | `5f3d1d2` | Add Stage 0 exit blocker summary | `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` | Accepted real dogfood task; clarified Stage 0 cannot exit while repeated problem categories remain 1 / 3. |
+| 1 | `821d50c` | Clarify skill install flow | `docs/session-reports/2026-06-15-skill-install-flow-clarification.md` | Accepted real dogfood task; sandbox caveat applies. |
+| 2 | `c946d5f` | Add evaluation case metadata | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Accepted real dogfood task; evaluation cases remain seed candidates. |
+| 3 | `52afa4a` | Add Stage 0 progress tracker | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Accepted real dogfood task; sandbox caveat applies. |
+| 4 | `9f88c67` | Add sandbox execution caveat case | `docs/session-reports/2026-06-15-sandboxed-execution-casebook.md` | Accepted real dogfood task; added `docs/casebook/0003-sandboxed-execution-unverified.md`. |
+| 5 | `c7bf810` | Add evaluation missing evidence notes | `docs/session-reports/2026-06-15-evaluation-missing-evidence-notes.md` | Accepted real dogfood task; E001-E004 remain seed candidates. |
+| 6 | `b225ca9` | Add evaluation verification hygiene | `docs/session-reports/2026-06-15-evaluation-verification-hygiene.md` | Accepted real dogfood task; no new real or partial evidence for E001/E002. |
+| 7 | `717ef1c` | Add response language behavior | `docs/session-reports/2026-06-15-response-language-rule.md` | Accepted real dogfood task; added E005 as a real-evidence evaluation candidate for final response language. |
+| 8 | `b4a73e1` | Normalize Stage 0 friction accounting | `docs/session-reports/2026-06-15-stage0-friction-accounting.md` | Accepted real dogfood task; added E006 as a real-evidence evaluation candidate for Stage readiness metric-unit hygiene. |
+| 9 | `b07ef63` | Add Stage 0 exit blocker summary | `docs/session-reports/2026-06-16-stage0-exit-blocker-summary.md` | Accepted real dogfood task; clarified Stage 0 cannot exit while repeated problem categories remain 1 / 3. |
 
 ## Calibration / Not Counted
 
-- Smoke Test C (`b75d5dd`, `docs/session-reports/2026-06-15-smoke-test-c-testing-policy.md`) is a calibration candidate, not currently counted as an accepted real dogfood task.
+- Smoke Test C (`96039a9`, `docs/session-reports/2026-06-15-smoke-test-c-testing-policy.md`) is a calibration candidate, not currently counted as an accepted real dogfood task.
 - `docs/session-reports/2026-06-15-codex-skill-smoke-tests.md` is smoke-test harness evidence, not an additional real task.
 - Bootstrap, installation, canonical-skill-draft, and skill-design-hardening reports are setup evidence, not real dogfood tasks.
 - Seed casebook entries and E001-E004 in `docs/evaluations/behavior-cases.md` remain seed artifacts unless later linked to accepted real sessions or friction entries.
@@ -41,7 +41,7 @@ Current accepted-evidence totals: 12 friction items; 4 unique themes/categories;
 
 | # | Source | Item | Category | Count basis |
 |---|---|---|---|---|
-| 1 | `docs/casebook/inbox.md` / accepted task `a1ba604` | Skill install flow unclear | `tooling` | Inbox friction tied to accepted dogfood task. |
+| 1 | `docs/casebook/inbox.md` / accepted task `821d50c` | Skill install flow unclear | `tooling` | Inbox friction tied to accepted dogfood task. |
 | 2 | `docs/session-reports/2026-06-15-skill-install-flow-clarification.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
 | 3 | `docs/session-reports/2026-06-15-evaluation-case-metadata.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
 | 4 | `docs/session-reports/2026-06-15-stage0-progress-tracker.md` | Sandbox remains unverified | `tooling` | Accepted session report friction. |
