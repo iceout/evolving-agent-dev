@@ -38,3 +38,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Verified clean points: No hard-coded fixed deployment path issue remained in README; the run command matched current server entrypoint/host/port behavior; the test command matched declared dependencies; tests require a local settings file and README documents copying it before running tests.
 - Category: `setup` / `runtime prerequisite`; secondary: `process` / `cross-artifact consistency` / `config-template semantics`
 - Follow-up: Privacy-preserving external friction evidence only. Do not count as an accepted internal Stage 0 dogfood task or create E008 unless the setup/runtime prerequisite gap repeats with enough judgeable evidence.
+
+### 2026-06-16 - External planning review missed impact analysis
+
+- Context: External private code project planning task for improving two slow API paths; Codex discussed and wrote a plan before implementation.
+- What happened: Codex's own plan notes said requirements clarification felt fine, real profiling was still needed, index status was not fully confirmed, scope creep was not obvious, and verification lacked a current production timing baseline. Later human review found the plan pointed to the wrong index setup location, missed that targeted querying changes visible debug/metadata count semantics, understated downstream impact on batch/scoring callers, risked duplicating existing aggregation logic instead of reusing shared builders, and proposed a fake-collection performance test that could pass without proving real indexed query behavior.
+- Why it felt wrong: The plan surfaced some uncertainty, but still missed source-location accuracy, user-visible metadata semantics, downstream callers, reuse of existing shared logic, and the need for explain/index verification before making performance claims.
+- Category: `process` / `planning impact analysis`; secondary: `context` / `missed linked callers`; `process` / `performance evidence planning`
+- Follow-up: Privacy-preserving external planning friction evidence only. Do not count as an accepted internal Stage 0 dogfood task or create a new evaluation candidate until similar planning failures repeat with enough judgeable evidence.
