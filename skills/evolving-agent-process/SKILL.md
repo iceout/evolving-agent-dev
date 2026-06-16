@@ -143,6 +143,18 @@ Before finalizing an edit task, perform real verification. Acceptable verificati
 
 If verification cannot complete, record the attempted verification, failure reason, alternative verification, remaining risk, and whether completion can be claimed. Do not use completion language when there was no real verification.
 
+## Cross-Artifact Consistency Guard
+
+When a task changes status, counts, paths, config behavior, or verification semantics, search linked or sibling artifacts for stale references before finalizing.
+
+Examples to check:
+
+- tracker + evaluation + casebook + session report
+- config docs + templates + README
+- verification command + report summary
+
+Verification must include at least one stale-language negative check when a status, count, path, config, or verification meaning changes.
+
 ## Role Separation and Objections
 
 Do not launch multiple agents by default. When v0.2 role separation triggers apply, explicitly separate:
