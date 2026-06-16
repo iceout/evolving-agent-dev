@@ -14,8 +14,8 @@ Create a lightweight Stage 0 progress tracker so accepted real dogfood evidence 
 
 - Added `docs/stage0-progress.md` as a manually maintained tracker.
 - Recorded accepted real dogfood tasks so far:
-  - `f62c6b6` Clarify skill install flow.
-  - `4875411` Add evaluation case metadata.
+  - `a1ba604` Clarify skill install flow.
+  - `a0aa105` Add evaluation case metadata.
 - Recorded Smoke Test C as a calibration candidate that is not currently counted.
 - Recorded the sandbox caveat and current progress toward Stage 0 exit criteria.
 - Did not update `docs/process-v0.2.md`, add automation/metrics scripts, promote seed artifacts, create ADRs, or create policy notes.
@@ -31,9 +31,9 @@ accepted = tracker.split("## Accepted Real Dogfood Tasks", 1)[1].split("## Calib
 not_counted = tracker.split("## Calibration / Not Counted", 1)[1].split("## Stage 0 Exit Criteria Progress", 1)[0]
 progress = tracker.split("## Stage 0 Exit Criteria Progress", 1)[1]
 
-for commit in ("f62c6b6", "4875411"):
+for commit in ("a1ba604", "a0aa105"):
     assert commit in accepted, f"accepted task missing {commit}"
-for commit in ("a391c7d", "3ab49a0", "683b486", "bd4d781"):
+for commit in ("b75d5dd", "7c83262", "4fbc15f", "4a9e083"):
     assert commit not in accepted, f"non-counted artifact appears accepted: {commit}"
 assert "Smoke Test C" in not_counted and "not currently counted" in not_counted
 assert "Bootstrap" in not_counted or "bootstrap" in not_counted

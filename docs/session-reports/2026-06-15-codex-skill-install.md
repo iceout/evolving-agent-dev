@@ -19,7 +19,7 @@ Install the repo-tracked `evolving-agent-process` skill into the local Codex ski
   - Source: `<repo>/skills/evolving-agent-process/`
   - Destination: `$HOME/.codex/skills/evolving-agent-process`
   - Strategy: directory symlink
-  - Source commit: `bd4d781`
+  - Source commit: `4a9e083`
 
 ## Verification
 
