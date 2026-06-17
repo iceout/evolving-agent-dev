@@ -14,9 +14,9 @@ real usage -> friction captured -> root cause analyzed -> policy updated -> eval
 
 ## Current Process
 
-`docs/process-v0.2.md` is the active Stage 0 process draft. Other artifacts should follow its routing and lifecycle rules.
+`docs/process-v0.2.md` is the completed Stage 0 process record and current reference until v0.3 scope starts. Existing artifacts should follow its routing and lifecycle rules unless later superseded.
 
-Stage 0 is intentionally lightweight:
+Stage 0 was intentionally lightweight:
 
 - Micro tasks do not need a session report, but useful friction must be captured in `docs/casebook/inbox.md`.
 - Tasks with substantive code or document changes need a minimal session report.
@@ -29,7 +29,7 @@ Stage 0 is intentionally lightweight:
 ## Working Artifacts
 
 - `docs/principles.md` - stable beliefs that guide the system.
-- `docs/process-v0.2.md` - active draft of the development workflow.
+- `docs/process-v0.2.md` - completed Stage 0 process record and current reference until v0.3 scope starts.
 - `docs/process-v0.1.md` - earlier process draft kept for history.
 - `docs/session-reports/` - raw records for tasks with substantive changes.
 - `docs/casebook/inbox.md` - append-only inbox for lightweight friction from micro tasks or scattered observations.
@@ -40,17 +40,8 @@ Stage 0 is intentionally lightweight:
 
 ## Current Stage
 
-Stage 0: capture real discomfort and draft the process.
+Stage 0: exited with caveats on 2026-06-17.
 
-Do not rush into implementation. The first goal is to collect enough real cases to know what kind of agent should be built.
+The Stage 0 exit decision is `EXIT_WITH_CAVEATS`, not a clean exit. Numeric exit criteria are met, but v0.3 should carry forward the sandbox/tooling caveat, privacy-preserving external evidence caveats, and the accepted evaluation-candidate boundaries recorded in `docs/stage0-progress.md`.
 
-Exit Stage 0 only after:
-
-- 3-5 real tasks have been run through the process.
-- At least 10 friction items have been captured.
-- At least 2 evaluation candidates have been identified.
-- The top 3 repeated problem categories are visible.
-
-If evaluation candidates are weak, continue Stage 0 instead of forcing low-quality evaluations.
-
-Seed artifacts do not count toward these exit criteria. Initial casebook entries, draft policies, and draft evaluations are hypotheses until linked to real session reports or friction log entries from Stage 0 usage.
+Do not create v0.3 process docs, promote evaluation candidates, or add automation until the v0.3 scope is explicitly started.

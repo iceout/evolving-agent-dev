@@ -80,19 +80,43 @@ Planning impact analysis is counted as a repeated problem category based on thre
 | `process` / cross-artifact consistency drift | Privacy-preserving external pilots plus internal stale-verification evidence in `docs/casebook/0004-cross-artifact-consistency-drift.md`; external pilots are not accepted internal dogfood tasks. | Repeated problem category visible. |
 | `process` / planning impact analysis | Three privacy-preserving external planning reviews captured in `docs/casebook/0005-planning-impact-analysis-gaps.md` and `docs/casebook/inbox.md`; external observations are not accepted internal dogfood tasks. | Repeated problem category visible. |
 
-## Stage 0 Exit Review Status
+## Stage 0 Exit Decision
 
-Stage 0 is not declared complete in this tracker update. Real dogfood tasks, friction items, real-evidence evaluation candidates, and repeated problem categories now appear to meet the numeric exit criteria, but a separate Stage 0 exit review is required before any exit decision. Keep these units separate: 12 accepted dogfood friction items, 6 evidence-backed themes/categories, and 3 repeated problem categories are different measures.
+Stage 0 exits with caveats: `EXIT_WITH_CAVEATS`. This is not a clean exit. The decision is based on the completed review-only Stage 0 exit review and the current tracker totals.
+
+Numeric Stage 0 exit criteria are met:
+
+- 10 accepted internal dogfood tasks / target 3-5.
+- 12 accepted dogfood friction items / target 10.
+- 3 accepted real-evidence evaluation candidates / target 2.
+- 3 repeated problem categories / target 3.
+
+This exit-decision bookkeeping does not count as a new accepted internal Stage 0 dogfood task.
+
+### Exit Caveats
+
+- Sandboxed execution remains unverified.
+- Cross-artifact consistency and planning impact repeated-category support includes privacy-preserving external evidence.
+- E005-E007 are accepted real-evidence evaluation candidates, not formal promoted evaluations.
+- E001-E004 remain seed.
+- Case 0005 does not create E008 yet.
+
+### v0.3 Carryover
+
+- Keep the sandbox/tooling caveat explicit and try one sandboxed smoke/dogfood check if the environment supports it.
+- Turn E005-E007 into sharper manual judge checklists or fixtures before automation.
+- Use the three repeated categories as the first v0.3 improvement backlog: sandbox/tooling caveat handling, cross-artifact stale-reference checks, and planning impact analysis before implementation.
+- Preserve Stage 0 evidence boundaries in v0.3.
 
 ## Stage 0 Exit Criteria Progress
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 10 accepted / target 3-5 | Over target; numeric criteria appear met, but separate Stage 0 exit review is required |
+| 3-5 real tasks run through the process | 10 accepted / target 3-5 | Met; over target, and exit-decision bookkeeping is not a new accepted task |
 | At least 10 friction items captured | 12 accepted friction items / target 10; see Friction Accounting | Met |
 | At least 2 evaluation candidates identified from real evidence | 3 accepted from real evidence / target 2: E005 final response language; E006 Stage readiness metric-unit hygiene; E007 cross-artifact consistency. E001-E004 remain seed candidates | Met |
-| Top 3 repeated problem categories visible | 3 repeated categories visible / target 3: `tooling` / sandbox remains unverified; `process` / cross-artifact consistency drift; `process` / planning impact analysis. Evidence-backed themes/categories visible: 6 | Met; separate Stage 0 exit review required |
+| Top 3 repeated problem categories visible | 3 repeated categories visible / target 3: `tooling` / sandbox remains unverified; `process` / cross-artifact consistency drift; `process` / planning impact analysis. Evidence-backed themes/categories visible: 6 | Met; Stage 0 exits with caveats |
 
 ## Next Update Rule
 
-When a dogfood task is accepted, add its commit, task title, and session report path here. Keep calibration and seed artifacts separate unless a later review explicitly accepts them as Stage 0 real evidence. Post-commit tracker bookkeeping updates do not count as separate Stage 0 tasks.
+Stage 0 counts are frozen after the `EXIT_WITH_CAVEATS` decision. Future dogfood or evidence should belong to v0.3 artifacts once v0.3 starts. Only correction or bookkeeping updates should modify this Stage 0 tracker.
