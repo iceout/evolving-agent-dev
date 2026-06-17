@@ -1,6 +1,6 @@
 # Stage 0 Progress Tracker
 
-Last updated: 2026-06-16
+Last updated: 2026-06-17
 
 This is a manually maintained tracker for Stage 0 progress. It distinguishes accepted real dogfood evidence from bootstrap work, smoke tests, and seed artifacts. It is not an automation or metrics source.
 
@@ -38,9 +38,11 @@ Known caveat: sandboxed execution remains unverified because this environment us
 
 Friction item count, unique themes/categories, and repeated problem categories are tracked separately. Count only explicit friction from accepted dogfood session reports or accepted tracker evidence; do not count bootstrap, smoke, setup, seed artifacts, or pending dogfood tasks.
 
-Current tracker totals: 12 accepted dogfood friction items; 5 evidence-backed themes/categories; 2 repeated problem categories.
+Current tracker totals: 12 accepted dogfood friction items; 6 evidence-backed themes/categories; 3 repeated problem categories.
 
 Cross-artifact consistency is counted as a repeated problem category based on privacy-preserving external pilots plus internal stale-verification evidence. It is not counted as accepted internal dogfood friction items.
+
+Planning impact analysis is counted as a repeated problem category based on three privacy-preserving external planning reviews captured in `docs/casebook/0005-planning-impact-analysis-gaps.md` and `docs/casebook/inbox.md`. Those external observations are not counted as accepted internal dogfood tasks or accepted dogfood friction items.
 
 ### Friction Items Captured
 
@@ -68,6 +70,7 @@ Cross-artifact consistency is counted as a repeated problem category based on pr
 | `requirements` / response language expectation implicit | 1 accepted dogfood friction item | no | Produced accepted real-evidence candidate E005. |
 | `process` / stage readiness metric units conflated | 1 accepted dogfood friction item | no | Produced accepted real-evidence candidate E006. |
 | `process` / cross-artifact consistency drift | External/internal evidence only; not accepted dogfood friction items | yes | Evidence basis is privacy-preserving external pilots plus internal stale-verification evidence; produced accepted real-evidence candidate E007. |
+| `process` / planning impact analysis | Privacy-preserving external evidence only; not accepted dogfood friction items | yes | Evidence basis is three external planning reviews captured in `docs/casebook/0005-planning-impact-analysis-gaps.md`; external observations are not accepted internal dogfood tasks. |
 
 ### Repeated Problem Categories
 
@@ -75,19 +78,20 @@ Cross-artifact consistency is counted as a repeated problem category based on pr
 |---|---|---|
 | `tooling` / sandbox remains unverified | 9 accepted dogfood friction items, plus casebook entry `docs/casebook/0003-sandboxed-execution-unverified.md` | Repeated problem category visible. |
 | `process` / cross-artifact consistency drift | Privacy-preserving external pilots plus internal stale-verification evidence in `docs/casebook/0004-cross-artifact-consistency-drift.md`; external pilots are not accepted internal dogfood tasks. | Repeated problem category visible. |
+| `process` / planning impact analysis | Three privacy-preserving external planning reviews captured in `docs/casebook/0005-planning-impact-analysis-gaps.md` and `docs/casebook/inbox.md`; external observations are not accepted internal dogfood tasks. | Repeated problem category visible. |
 
-## Stage 0 Exit Blocker Summary
+## Stage 0 Exit Review Status
 
-Stage 0 cannot exit yet. Real dogfood tasks, friction items, and real-evidence evaluation candidates are met, but repeated problem categories remain 2 / 3. Keep these units separate: 12 accepted dogfood friction items and 5 evidence-backed themes/categories do not imply 3 repeated problem categories.
+Stage 0 is not declared complete in this tracker update. Real dogfood tasks, friction items, real-evidence evaluation candidates, and repeated problem categories now appear to meet the numeric exit criteria, but a separate Stage 0 exit review is required before any exit decision. Keep these units separate: 12 accepted dogfood friction items, 6 evidence-backed themes/categories, and 3 repeated problem categories are different measures.
 
 ## Stage 0 Exit Criteria Progress
 
 | Criterion | Current progress | Status |
 |---|---:|---|
-| 3-5 real tasks run through the process | 10 accepted / target 3-5 | Over target; continue only for missing exit criteria |
+| 3-5 real tasks run through the process | 10 accepted / target 3-5 | Over target; numeric criteria appear met, but separate Stage 0 exit review is required |
 | At least 10 friction items captured | 12 accepted friction items / target 10; see Friction Accounting | Met |
 | At least 2 evaluation candidates identified from real evidence | 3 accepted from real evidence / target 2: E005 final response language; E006 Stage readiness metric-unit hygiene; E007 cross-artifact consistency. E001-E004 remain seed candidates | Met |
-| Top 3 repeated problem categories visible | 2 repeated categories visible / target 3: `tooling` / sandbox remains unverified; `process` / cross-artifact consistency drift. Evidence-backed themes/categories visible: 5 | Not met |
+| Top 3 repeated problem categories visible | 3 repeated categories visible / target 3: `tooling` / sandbox remains unverified; `process` / cross-artifact consistency drift; `process` / planning impact analysis. Evidence-backed themes/categories visible: 6 | Met; separate Stage 0 exit review required |
 
 ## Next Update Rule
 
