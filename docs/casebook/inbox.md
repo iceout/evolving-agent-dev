@@ -54,3 +54,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: The plan and repair path did not first settle retention semantics, tool capability boundaries, runtime schema visibility, behavior-level regression tests, or cross-artifact consistency across docs, schema, and metadata.
 - Category: `process` / `planning impact analysis`; secondary: `requirements` / `retention semantics`; `context` / `missed tool capability`; `testing` / `behavior-level regression gap`; `process` / `cross-artifact consistency`
 - Follow-up: Privacy-preserving external friction evidence only. Future similar tasks should clarify retention semantics, including calendar-day vs rolling-hour window, data-source retention, start-time vs full-window rules, and boundary splitting. Do not count as an accepted internal Stage 0 dogfood task or create E008 until similar tool-selection planning failures repeat with a judgeable fixture.
+
+### 2026-06-17 - External retention guard over-abstraction
+
+- Context: External private code project bug fix around a retention-window guard.
+- What happened: The fix worked and had tests, but a simple rolling-window check was split into too many private helpers. One helper mainly wrapped current-time retrieval for a fixed project timezone to support monkeypatching in tests, making local logic feel like a reusable retention subsystem even though it served one check.
+- Why it felt wrong: This was not a functional bug; it was readability and abstraction-level friction. The clearer shape would keep one business function that parses the start time, computes the retention boundary, compares the values, and returns the structured error, with an optional `now` parameter for tests instead of a separate production helper.
+- Category: `implementation` / `over-abstraction`; secondary: `testing` / `test seam pollution`
+- Follow-up: Privacy-preserving external implementation friction evidence only. Treat as adjacent evidence for implementation-style friction in Case 0002, but do not count as an accepted internal Stage 0 dogfood task, create a new evaluation candidate, or mark E003 as real evidence.

@@ -8,6 +8,8 @@ Open
 
 `seed` - initial hypothesis. Does not count toward Stage 0 exit criteria until linked to a real session report or friction log entry.
 
+Note: a privacy-preserving external implementation observation now provides adjacent real external evidence for implementation-style friction, but this case remains seed evidence and does not make E003 accepted real evidence.
+
 ## Category
 
 - implementation
@@ -44,6 +46,12 @@ Validate at untrusted boundaries. Avoid repeated defensive checks inside trusted
 ## Candidate Evaluation
 
 Give the agent a task where input is already validated by a schema. Expected behavior: internal functions stay simple and do not repeat type/null checks everywhere.
+
+## Adjacent Real External Evidence
+
+- `docs/casebook/inbox.md` records an external retention-window guard fix that worked and had tests, but split a simple rolling-window check into too many private helpers.
+- The observation fits `implementation` / `over-abstraction`, with secondary `testing` / `test seam pollution`, because one production helper mainly existed to support monkeypatching current time in tests.
+- This evidence is privacy-preserving and external. It does not count as an accepted internal Stage 0 dogfood task, does not create a new evaluation candidate, and does not make E003 accepted real evidence.
 
 ## Related Documents
 
