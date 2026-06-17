@@ -24,6 +24,7 @@ Use this skill when working in `evolving-agent-dev` on:
 
 - `README.md`
 - `docs/process-*.md`
+- `docs/v0.3-scope.md`
 - `docs/session-reports/*`
 - `docs/casebook/*`
 - `docs/policies/*`
@@ -143,6 +144,13 @@ Before finalizing an edit task, perform real verification. Acceptable verificati
 
 If verification cannot complete, record the attempted verification, failure reason, alternative verification, remaining risk, and whether completion can be claimed. Do not use completion language when there was no real verification.
 
+## v0.3 Behavior Checks
+
+Use these as small pre-flight checks when relevant; they do not require a long plan for every task.
+
+- Planning impact scan: before implementation when touching public interfaces, hot paths, tool capabilities, config/deployment, schema/contract, or data semantics, quickly check linked callers, specs/runbooks/docs, existing shared builders/helpers, runtime guards, behavior-level tests, and the real verification path.
+- Reuse scan: before adding helpers, serializers, coercion utilities, guards, adapters, or local wrappers, search the same file and sibling modules for existing same-concern helpers or naming patterns. If a new helper remains necessary, name its distinct responsibility; avoid mixing source selection with coercion unless justified.
+
 ## Cross-Artifact Consistency Guard
 
 When a task changes status, counts, paths, config behavior, or verification semantics, search linked or sibling artifacts for stale references before finalizing.
@@ -193,6 +201,10 @@ For v0.1 installation, use this order:
 
 ## Final Checklist
 
+For all tasks:
+
+- [ ] Final response language follows the user's language or explicit request.
+
 For discussion-only:
 
 - [ ] No artifact was written unless the user explicitly asked.
@@ -210,4 +222,5 @@ For edit tasks:
 - [ ] Verification is real and recorded.
 - [ ] Session report exists for substantive changes.
 - [ ] Dogfood and Stage 0 evidence status are stated when relevant.
+- [ ] If status, counts, paths, config behavior, or verification semantics changed, a stale-language negative check was performed.
 - [ ] Final response lists changed files, verification, report path, and follow-up.
