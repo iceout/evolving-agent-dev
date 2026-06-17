@@ -70,3 +70,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: The plan treated interface simplification as mostly local output-schema cleanup. A safer plan would separate internal contract migration from public presentation cleanup, search internal consumers before changing rich facts, and update or supersede the documented contract so implementation and docs do not drift.
 - Category: `process` / `planning impact analysis`; secondary: `requirements` / `contract boundary`; `context` / `internal consumer impact`; `process` / `cross-artifact consistency` / `spec-runbook drift`; `testing` / `contract regression coverage`
 - Follow-up: Privacy-preserving external planning friction evidence only. Add as supporting evidence for Case 0005. Do not count as an accepted internal Stage 0 dogfood task or create E008 unless a judgeable fixture emerges.
+
+### 2026-06-17 - Stage 0 exit review response language miss
+
+- Context: Review-only Stage 0 exit review requested a final response in Chinese.
+- What happened: The review output was substantively useful and recommended `EXIT_WITH_CAVEATS`, but the final response was in English despite the explicit language requirement and the existing Response Language rule.
+- Why it felt wrong: The agent followed the review task but missed a user-visible instruction that is already covered by accepted real-evidence candidate E005.
+- Category: `requirements` / `response language expectation`; secondary: `process` / `instruction adherence`
+- Follow-up: Supporting evidence for E005 only. This does not change E005 status, Stage 0 counts, or the `EXIT_WITH_CAVEATS` gate recommendation. v0.3 should keep final-response language as a checklist item or fixture candidate.
