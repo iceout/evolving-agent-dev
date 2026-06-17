@@ -78,3 +78,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: The agent followed the review task but missed a user-visible instruction that is already covered by accepted real-evidence candidate E005.
 - Category: `requirements` / `response language expectation`; secondary: `process` / `instruction adherence`
 - Follow-up: Supporting evidence for E005 only. This does not change E005 status, Stage 0 counts, or the `EXIT_WITH_CAVEATS` gate recommendation. v0.3 should keep final-response language as a checklist item or fixture candidate.
+
+### 2026-06-17 - External semantic duplicate helper friction
+
+- Context: Pre-v0.3 external private code project serializer/interface cleanup.
+- What happened: A working cleanup added a local helper that both selected where to read component values from and coerced the selected value to float. Later review found semantically overlapping float-coercion helpers already existed nearby, and sibling modules had similar small float helper patterns.
+- Why it felt wrong: The issue was not functional failure; the code worked. The problem was that the agent added a local helper before scanning for same-concern helpers, mixed source-selection and coercion responsibilities, and made the new helper look duplicative and overly generic.
+- Category: `implementation` / `semantic duplicate helper`; secondary: `context` / `missed existing helper`; `process` / `reuse scan missing`; `review` / `duplicate abstraction check`
+- Follow-up: Pre-v0.3 external evidence only. This does not count toward Stage 0 accepted tasks, Stage 0 friction items, or Stage 0 repeated categories, and it does not create E008, policy, ADR, automation, or tooling. It should inform v0.3 scope: add a lightweight same-file/sibling-module reuse scan before adding helpers, serializers, coercion utilities, guards, or adapters.
