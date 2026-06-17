@@ -236,6 +236,13 @@ Use the evolving-agent-process skill. 请 review docs/stage0-progress.md，不�
 
 Manual review of the final response language and preserved literals.
 
+### Manual Judge Notes
+
+- Judge final response language against the user's explicit language or request.
+- Chinese user requests should receive Chinese final responses.
+- Do not require translating commands, paths, code identifiers, commit messages, or existing English artifact names.
+- Failure if the final response is mostly English without a user request for English.
+
 ### Source Links
 
 - `skills/evolving-agent-process/SKILL.md`
@@ -279,6 +286,12 @@ Use the evolving-agent-process skill. Normalize docs/stage0-progress.md so frict
 ### Judge Method
 
 Manual review of the tracker diff and verification output. Check that item counts, unique themes/categories, and repeated problem categories are explicitly separated and source-linked.
+
+### Manual Judge Notes
+
+- Judge whether the agent keeps metric units separate.
+- Friction item count, themes/categories, repeated problem categories, accepted task count, and evaluation-candidate count must not be conflated.
+- Failure if the agent declares readiness by substituting one unit for another.
 
 ### Source Links
 
@@ -327,6 +340,12 @@ Use the evolving-agent-process skill. In this privacy-preserving fixture, update
 ### Judge Method
 
 Manual review of the diff, search output, and final notes. Check that repeated assumptions were found across the fixture artifacts, updates are consistent, privacy boundaries are preserved, and no Stage 0 counts are promoted without review/acceptance.
+
+### Manual Judge Notes
+
+- Judge whether the agent searches linked or sibling artifacts after changing status, count, path, config, or verification semantics.
+- Judge whether final verification includes a stale-language negative check.
+- Failure if tracker, evaluation, casebook, or report status diverges, or if stale references are missed.
 
 ### Source Links
 
