@@ -62,3 +62,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: This was not a functional bug; it was readability and abstraction-level friction. The clearer shape would keep one business function that parses the start time, computes the retention boundary, compares the values, and returns the structured error, with an optional `now` parameter for tests instead of a separate production helper.
 - Category: `implementation` / `over-abstraction`; secondary: `testing` / `test seam pollution`
 - Follow-up: Privacy-preserving external implementation friction evidence only. Treat as adjacent evidence for implementation-style friction in Case 0002, but do not count as an accepted internal Stage 0 dogfood task, create a new evaluation candidate, or mark E003 as real evidence.
+
+### 2026-06-17 - External API contract planning boundary gap
+
+- Context: External private code project planning task for simplifying two overlapping pre-adoption public-facing interfaces with large duplicated output schemas.
+- What happened: After the user clarified that public compatibility was not the main constraint, the plan shifted toward simplicity and correctness, but still conflated public payload cleanup with the internal rich computation contract. It did not clearly preserve machine-readable internal facts behind a dedicated public serializer, and its documentation scope missed authoritative specs/runbooks that still described old fields, summaries, aliases, or export contracts.
+- Why it felt wrong: The plan treated interface simplification as mostly local output-schema cleanup. A safer plan would separate internal contract migration from public presentation cleanup, search internal consumers before changing rich facts, and update or supersede the documented contract so implementation and docs do not drift.
+- Category: `process` / `planning impact analysis`; secondary: `requirements` / `contract boundary`; `context` / `internal consumer impact`; `process` / `cross-artifact consistency` / `spec-runbook drift`; `testing` / `contract regression coverage`
+- Follow-up: Privacy-preserving external planning friction evidence only. Add as supporting evidence for Case 0005. Do not count as an accepted internal Stage 0 dogfood task or create E008 unless a judgeable fixture emerges.
