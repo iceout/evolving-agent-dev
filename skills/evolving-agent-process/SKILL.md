@@ -151,6 +151,16 @@ Use these as small pre-flight checks when relevant; they do not require a long p
 - Planning impact scan: before implementation when touching public interfaces, hot paths, tool capabilities, config/deployment, schema/contract, or data semantics, quickly check linked callers, specs/runbooks/docs, existing shared builders/helpers, runtime guards, behavior-level tests, and the real verification path.
 - Reuse scan: before adding helpers, serializers, coercion utilities, guards, adapters, or local wrappers, search the same file and sibling modules for existing same-concern helpers or naming patterns. If a new helper remains necessary, name its distinct responsibility; avoid mixing source selection with coercion unless justified.
 
+## v0.3 Plan Artifact Rule
+
+Keep plan artifacts lightweight and trigger-based; do not force documentation for trivial tasks.
+
+- Small tasks may keep the plan in the final response.
+- Create a repo-local plan/review packet artifact for medium-complexity tasks that need independent review, multi-round review, cross-agent handoff, or later implementation. Triggers include public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, time/window, config/deployment, multi-module docs/tests changes, or an explicit user request to plan first or review before implementation.
+- High-risk tasks should have the plan artifact reviewed before implementation; if useful, commit the plan separately before code.
+- If adding a plan artifact in a real project, it may be temporary and repo-local. The final response should summarize the path and review focus, not contain the only copy of the plan.
+- Future subagent or automation review should consume packet artifacts, not raw chat context.
+
 ## Cross-Artifact Consistency Guard
 
 When a task changes status, counts, paths, config behavior, or verification semantics, search linked or sibling artifacts for stale references before finalizing.
