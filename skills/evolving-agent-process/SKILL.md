@@ -24,7 +24,7 @@ Use this skill when working in `evolving-agent-dev` on:
 
 - `README.md`
 - `docs/process-*.md`
-- `docs/v0.3-scope.md`
+- `docs/v0.3-*.md`
 - `docs/session-reports/*`
 - `docs/casebook/*`
 - `docs/policies/*`
@@ -157,7 +157,7 @@ Use these as small pre-flight checks when relevant; they do not require a long p
 Keep plan artifacts lightweight and trigger-based; do not force documentation for trivial tasks.
 
 - Small tasks may keep the plan in the final response.
-- Create a repo-local plan/review packet artifact for medium-complexity tasks that need independent review, multi-round review, cross-agent handoff, or later implementation. Triggers include public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, time/window, config/deployment, multi-module docs/tests changes, or an explicit user request to plan first or review before implementation.
+- Create a repo-local plan/review packet artifact for medium-complexity tasks that need independent review, multi-round review, cross-agent handoff, or later implementation. Triggers include public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, time/window, config/deployment, multi-module docs/tests changes, or an explicit user request to plan first or review before implementation. Use `docs/v0.3-review-packet-shape.md` as the lightweight shape when a packet is needed.
 - High-risk tasks should have the plan artifact reviewed before implementation; if useful, commit the plan separately before code.
 - If adding a plan artifact in a real project, it may be temporary and repo-local. The final response should summarize the path and review focus, not contain the only copy of the plan.
 - Future subagent or automation review should consume packet artifacts, not raw chat context.
