@@ -150,6 +150,7 @@ Use these as small pre-flight checks when relevant; they do not require a long p
 
 - Planning impact scan: before implementation when touching public interfaces, hot paths, tool capabilities, config/deployment, schema/contract, or data semantics, quickly check linked callers, specs/runbooks/docs, existing shared builders/helpers, runtime guards, behavior-level tests, and the real verification path.
 - Reuse scan: before adding helpers, serializers, coercion utilities, guards, adapters, or local wrappers, search the same file and sibling modules for existing same-concern helpers or naming patterns. If a new helper remains necessary, name its distinct responsibility; avoid mixing source selection with coercion unless justified.
+- Debug / bad-case root-cause gate: when a high-risk path has a bad case, missed detection, wrong score/selection, surprising output, or similar debug example, do not jump straight to a local patch. First establish the evidence chain: observed symptom, expected behavior, affected contract, candidate failure points, source-of-truth data, blockers/filters, and real verification path. If a quick patch is proposed before root cause is proven, label it interim mitigation and keep it separate from final redesign; avoid feature-specific heuristic patches unless explicitly justified and reviewed.
 
 ## v0.3 Plan Artifact Rule
 
