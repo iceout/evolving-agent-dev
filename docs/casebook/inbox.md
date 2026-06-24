@@ -136,3 +136,12 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Verification boundary: Local behavior-level tests can validate implementation behavior, but production-like distribution review, manual baseline checks, and rollout observation remain rollout verification, not proof that the strategy is fully calibrated.
 - Category: `implementation` / `reviewable constraints helped`; secondary: `review` / `review packet useful`; `process` / `derived proxy and fallback semantics`; `testing` / `rollout verification boundary`; `context` / `source-of-truth decision`
 - Follow-up: This does not change Stage 0 counts and does not create E008, casebook entry, policy, ADR, automation, tooling, metrics, subagent framework, or docs/process-v0.3.md. It supports future v0.3 work on minimal plan/review packets that include explicit source-of-truth, derived proxy, fallback, and rollout-verification boundaries.
+
+### 2026-06-24 - External coding skill trigger boundary
+
+- Context: v0.3 external evidence only from real code projects using reusable plan/review packet behavior.
+- What happened: In external real code projects, plan artifacts sometimes still stayed only in chat. The likely cause is that `evolving-agent-process` is scoped to evolving-agent-dev process work, so it does not reliably trigger in external repos.
+- Why it matters: The reusable behavior now needed outside evolving-agent-dev is generic coding behavior: repo-local plan/review packets, debug bad-case root-cause gate, implementation trace, and cross-agent review handoff.
+- Process lesson: This suggests a skill packaging / trigger-boundary issue: meta-process skill and real-project coding skill should be separated.
+- Category: `process` / `skill trigger boundary`; secondary: `review` / `review packet reuse`; `context` / `external repo applicability`
+- Follow-up: This does not change Stage 0 counts and does not create E008, policy, ADR, automation, tooling, metrics, subagent framework, or docs/process-v0.3.md. It supports extracting a generic external coding skill for reviewable plans, root-cause gates, implementation traces, and independent review handoff.
