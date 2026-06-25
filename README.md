@@ -37,6 +37,37 @@ Stage 0 was intentionally lightweight:
 - `docs/policies/` - policy notes and active policies, each with explicit status and source links.
 - `docs/decisions/` - Agent Decision Records explaining trade-offs and durable process decisions.
 - `docs/evaluations/` - behavior-level regression cases or candidates for future agents.
+- `skills/` - repo-tracked Codex skill drafts and related references.
+
+## Installing Skills Locally
+
+The `skills/` directory is the reviewable source for local Codex skills. The runtime install under Codex's skill directory is local state.
+
+Install a skill by linking or copying the whole skill directory, not only `SKILL.md`.
+
+```sh
+skill_name=evolving-agent-process
+skill_source="$(pwd)/skills/$skill_name"
+skill_dest="${CODEX_HOME:-$HOME/.codex}/skills/$skill_name"
+
+mkdir -p "$(dirname "$skill_dest")"
+ln -s "$skill_source" "$skill_dest"
+```
+
+If symlinks are not available or Codex does not load symlinked skills, copy the whole directory instead and refresh the copy after changing the repo-tracked source:
+
+```sh
+cp -R "$skill_source" "$skill_dest"
+```
+
+Verify the install before relying on it:
+
+```sh
+test -f "$skill_dest/SKILL.md"
+grep -q "name: $skill_name" "$skill_dest/SKILL.md"
+```
+
+When `CODEX_HOME` is set, use `$CODEX_HOME/skills/<skill-name>/`. Otherwise the usual local path is `$HOME/.codex/skills/<skill-name>/`. If a destination already exists, inspect it before replacing it.
 
 ## Current Stage
 
