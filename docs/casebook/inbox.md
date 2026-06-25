@@ -145,3 +145,24 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Process lesson: This suggests a skill packaging / trigger-boundary issue: meta-process skill and real-project coding skill should be separated.
 - Category: `process` / `skill trigger boundary`; secondary: `review` / `review packet reuse`; `context` / `external repo applicability`
 - Follow-up: This does not change Stage 0 counts and does not create E008, policy, ADR, automation, tooling, metrics, subagent framework, or docs/process-v0.3.md. It supports extracting a generic external coding skill for reviewable plans, root-cause gates, implementation traces, and independent review handoff.
+
+### v0.3 external review-packet calibration observation
+
+- Context: v0.3 external evidence only from a privacy-preserving plan review in an external real code project.
+- What happened: The review packet was mostly sufficient for review, but the reviewer still inspected code to validate code-derived facts and discover risks.
+- Calibration: This was not necessarily a packet failure. Deep review should inspect code-derived facts such as real dataflow, loader behavior, blocker/action logic, activation behavior, cutoff behavior, fallback behavior, and downstream effects.
+- Actual packet gap: Acceptance-critical intent was missing or unclear, including activation/default switch behavior, partial-data quality, mixed-window aggregation semantics, mismatch/blocking policy, cleanup/rerun behavior, denominator semantics, cutoff boundary semantics, and rollout behavior.
+- Key lesson: Review packets should carry intent and acceptance contracts; reviewers should verify implementation reality. The goal is to reduce intent reconstruction from chat, history, and scattered code, not to eliminate code reading.
+- Category: `review` / `review packet calibration`; secondary: `requirements` / `acceptance-critical intent`; `process` / `v0.3 packet shape`
+- Follow-up: Stage 0 counts are unchanged. This supports future refinement of review packet shape, but does not require immediate skill changes or create a new evaluation candidate, casebook entry, policy, decision record, automation, tooling, metrics, subagent framework, or process document.
+
+### v0.3 external derived-data packet calibration
+
+- Context: v0.3 external evidence only from a privacy-preserving plan review in an external real code project.
+- What happened: A plan packet was mostly sufficient as a review target, but review still found missing acceptance-critical intent around derived data, cleaned data, and realtime scoring behavior.
+- Calibration: The reviewer legitimately inspected code-derived facts to verify actual behavior. That was normal deep review, not a packet failure.
+- Actual packet gap: The plan did not clearly state whether a new derived or cleaned data mode should preserve legacy default behavior or apply safe fallback behavior when the new data is incomplete or untrusted.
+- Gate compatibility gap: The packet also did not clearly prove compatibility with existing eligibility gate, freshness gate, actionability gate, and blocking gate behavior, so the reviewer had to reason from code whether the proposed policy could satisfy those gates or accidentally disable an existing protective behavior.
+- Key lesson: Review packets should carry acceptance-critical intent while reviewers verify implementation reality. For plans that introduce derived, cleaned, backfilled, or post-processed data into realtime scoring or decision paths, packets should include existing gate compatibility checks, a legacy default vs safe fallback behavior matrix, explicit activation behavior, partial-data quality semantics, mixed-window aggregation semantics, and rollout verification boundary.
+- Category: `review` / `review packet calibration`; secondary: `requirements` / `acceptance-critical intent`; `process` / `v0.3 packet shape`
+- Follow-up: Stage 0 counts are unchanged. This supports future refinement of review packet shape, but does not require immediate skill changes or create a new evaluation candidate, casebook entry, policy, decision record, automation, tooling, metrics, subagent framework, or process document.
