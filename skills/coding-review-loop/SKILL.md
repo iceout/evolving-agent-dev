@@ -51,6 +51,19 @@ Distinguish local verification from production-like, rollout, or manual baseline
 
 When reviewing, put findings first.
 
+For medium/high-risk coding tasks, subagent or automation review must use independent adversarial review semantics. Do not frame the review as confirmation that the main session's listed constraints are covered. Ask the reviewer to find concrete failure modes, contract violations, test gaps, scope drift, unsafe output, compatibility breaks, and packet gaps.
+
+Before requesting subagent or automation review, provide a minimal review packet rather than raw chat context. Include at least:
+
+- goal and non-goals
+- changed files or diff scope
+- risk surfaces
+- reviewable constraints
+- required behavior tests or verification plan
+- known user decisions or accepted exceptions
+
+Add task-specific contracts, source-of-truth/fallback semantics, and implementation trace when relevant.
+
 For each major finding, classify it as one of:
 
 - concrete project bug
@@ -60,3 +73,5 @@ For each major finding, classify it as one of:
 - out-of-scope item
 
 Identify packet gaps when review required manual context reconstruction across plans, existing APIs, legacy behavior, config, tests, or user decisions.
+
+When a reviewer reports no findings, require evidence: inspected files, checked risks, commands or tests reviewed/run, and residual risks. Do not accept bare `LGTM`, "looks good", or "no obvious issues" as sufficient review evidence; treat that as shallow or insufficient review and request a stronger review or perform another one.
