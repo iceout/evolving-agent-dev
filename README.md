@@ -43,10 +43,15 @@ Stage 0 was intentionally lightweight:
 
 The `skills/` directory is the reviewable source for local Codex skills. The runtime install under Codex's skill directory is local state.
 
+Repo-tracked skills currently include:
+
+- `evolving-agent-process` - thin adapter for working in this repository's process docs and evidence.
+- `coding-review-loop` - generic review loop for non-trivial real-code project planning, review packets, and handoff.
+
 Install a skill by linking or copying the whole skill directory, not only `SKILL.md`.
 
 ```sh
-skill_name=evolving-agent-process
+skill_name=evolving-agent-process  # or coding-review-loop
 skill_source="$(pwd)/skills/$skill_name"
 skill_dest="${CODEX_HOME:-$HOME/.codex}/skills/$skill_name"
 
