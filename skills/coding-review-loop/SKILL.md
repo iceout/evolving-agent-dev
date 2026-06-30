@@ -37,6 +37,22 @@ First establish the evidence chain:
 
 If a quick patch is proposed before root cause is proven, label it as interim mitigation and keep it separate from final redesign. Avoid feature-specific heuristic patches unless explicitly justified and reviewed.
 
+## Focused Reuse Scan
+
+Before adding or changing a helper, fake, adapter, wrapper, serializer, collection getter, fallback, or test double, run a focused reuse scan across the current file and sibling modules/tests for same-concern helpers or source-of-truth patterns.
+
+This scan is especially important during review-fix work: do not only patch the reported failure if the fix introduces a new seam or helper.
+
+Ask:
+
+- Is this behavior real product or infrastructure strategy, or only test convenience?
+- Is the source of truth verified in project docs, config, runtime evidence, or existing helpers?
+- Can tests mock one boundary helper instead of pushing dependency-injection seams through production APIs?
+- Does this wrapper add semantics beyond a direct config or collection lookup?
+- Does this fake or test double model an external API, state machine, chained call, or boundary behavior that should be shared or explicitly local?
+
+Local helpers and fakes are fine when they are truly local. When they encode external API semantics such as cursor chaining, sorting, limits, retries, fallback behavior, or data-source selection, centralize the semantics or explain why a local duplicate is safer.
+
 ## Implementation Trace
 
 After implementation, report or write a compact trace:
