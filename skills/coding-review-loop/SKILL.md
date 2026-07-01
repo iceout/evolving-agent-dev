@@ -61,6 +61,8 @@ After implementation, report or write a compact trace:
 plan constraint -> implementation anchor -> behavior test -> verification command
 ```
 
+For promised dry-runs, shadow reports, exports, scripts, CLIs, or default entrypoints, include the runnable entrypoint, default config or parameters, expected output fields, and verification command.
+
 Distinguish local verification from production-like, rollout, or manual baseline verification. Do not claim strategy calibration from local tests alone.
 
 ## Review Behavior

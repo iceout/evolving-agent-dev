@@ -50,9 +50,33 @@ Name the existing helper, builder, adapter, serializer, guard, or pattern being 
 
 List behavior-level tests or manual checks required to prove the contract. Avoid implementation-detail assertions unless explicitly justified.
 
+## Runnable Acceptance / Entrypoints
+
+For requirements that promise dry-runs, shadow runs, reports, default scripts, CLIs, exports, or scheduled jobs, list the runnable entrypoints and defaults reviewers must check.
+
+Include:
+
+- script or command
+- default parameters, phase, mode, or config
+- expected output files, payload fields, report sections, or log markers
+- matrix dimensions such as time windows, enabled flags, dry-run vs write mode, or shadow vs production mode
+- whether the default entrypoint actually exercises the new behavior
+
 ## Verification Plan
 
 Record the real verification path: tests, lint/typecheck, manual runtime checks, production-like review, or explicit verification limits.
+
+When changing runnable scripts, CLIs, jobs, default parameters, or report outputs, include existing tests for those entrypoints, not only newly added core logic tests.
+
+## Requirement Traceability Checklist
+
+For each P0/P1 or acceptance-critical requirement, map:
+
+```text
+requirement -> implementation path -> user-facing entrypoint/default config -> expected output/report fields -> verification command/test
+```
+
+If a requirement has no runnable entrypoint or verification command, mark it as an open risk before implementation or review approval.
 
 ## Implementation Trace
 
