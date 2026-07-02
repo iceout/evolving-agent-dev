@@ -190,3 +190,11 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: The review packet captured high-level dry-run, shadow, report, and default-entrypoint intent, but did not force those promises into runnable acceptance criteria with concrete commands, default parameters, expected report fields, matrix dimensions, and entrypoint tests.
 - Category: `review` / `runnable acceptance gap`; secondary: `requirements` / `default entrypoint ambiguity`; `testing` / `entrypoint regression missed`; `process` / `requirement traceability gap`
 - Follow-up: Privacy-preserving external friction evidence only. Refine the `coding-review-loop` packet shape so promised scripts, CLIs, dry-runs, shadow reports, exports, default configs, and scheduled jobs map to implementation paths, expected outputs, and verification commands. This does not promote an active policy, create a formal evaluation, change Stage 0 counts, or create `docs/process-v0.3.md`.
+
+### 2026-07-02 - Manual real-project case transfer is copy-paste heavy
+
+- Context: Repeated real-project use of `coding-review-loop` and `idea-framing-loop` produced useful friction and process ideas, but transferring each case back to evolving-agent-dev required manual chat copy/paste.
+- What happened: The user had to manually summarize review misses, packet gaps, verification gaps, and process ideas from real project sessions into this repo for analysis.
+- Why it felt wrong: Manual transfer is high-friction, loses structured context, and makes batch distillation harder. The issue is not that every task needs a report; high-signal cases need a lightweight local capture format.
+- Category: `process` / `evidence capture friction`; secondary: `tooling` / `manual transfer`; `context` / `lost case structure`
+- Follow-up: Add triggered privacy-preserving case note and idea note capture to `coding-review-loop` and `idea-framing-loop`. Treat transferred notes as external privacy-preserving evidence, not internal accepted Stage 0 evidence. This does not create automation, active policy, formal evaluation, or `docs/process-v0.3.md`.

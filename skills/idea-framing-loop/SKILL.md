@@ -55,6 +55,20 @@ Small ideas can stay in conversation. Create a repo-local idea brief only when i
 - If the user says "just give me a proposal" or resists questioning, ask only the 1-2 most critical questions, then propose approaches.
 - If the user already supplied a fully formed idea with evidence, skip most questions and produce the brief or recommendation.
 
+## Idea Note Capture
+
+At the end of an idea-framing-loop session, capture a privacy-preserving idea note in the target repo only when the discussion produced a reusable process lesson, future skill idea, non-trivial product/process decision, or handoff candidate.
+
+Prefer `.agent/idea-framing-notes.md` when the target repo has no existing convention. If the repo should not keep agent notes, ask the user where to place the note or include the idea note in the final response.
+
+Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
+
+Idea notes are lighter than idea briefs. Use `references/idea-brief-shape.md` when the idea needs review, handoff, future planning, or implementation. Use `references/idea-note-shape.md` only when capturing a reusable lesson or future idea without creating a full brief.
+
+Do not record private data, credentials, customer identifiers, sensitive payloads, large code excerpts, or full chat transcripts. Generalize file paths, business identifiers, and data samples when needed.
+
+No reusable lesson or handoff candidate does not require an idea note.
+
 ## Reference
 
 Read `references/idea-brief-shape.md` only when creating an idea brief. Do not load it for trivial discussion.

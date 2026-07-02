@@ -65,6 +65,20 @@ For promised dry-runs, shadow reports, exports, scripts, CLIs, or default entryp
 
 Distinguish local verification from production-like, rollout, or manual baseline verification. Do not claim strategy calibration from local tests alone.
 
+## Case Note Capture
+
+At the end of a medium/high-risk coding-review-loop task, capture a privacy-preserving case note in the target repo only when there was notable process friction, a review miss, packet gap, verification gap, or reusable lesson.
+
+Prefer `.agent/coding-review-loop-cases.md` when the target repo has no existing convention. If the repo should not keep agent notes, ask the user where to place the note or include the case note in the final response.
+
+Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
+
+Do not record private data, credentials, customer identifiers, sensitive payloads, large code excerpts, or full chat transcripts. Generalize file paths, business identifiers, and data samples when needed.
+
+No notable friction does not require a case note.
+
+Read `references/case-note-shape.md` only when case note capture is triggered.
+
 ## Review Behavior
 
 When reviewing, put findings first.
