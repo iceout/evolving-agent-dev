@@ -48,6 +48,7 @@ Repo-tracked skills currently include:
 - `evolving-agent-process` - thin adapter for working in this repository's process docs and evidence.
 - `coding-review-loop` - generic review loop for non-trivial real-code project planning, review packets, and handoff.
 - `idea-framing-loop` - early idea-framing loop for clarifying new ideas before planning or coding.
+- `bug-investigation-loop` - root-cause investigation for bugs, failing tests, errors, regressions, and unexpected behavior before fixing.
 
 List local install status and install a tracked skill with the helper:
 
@@ -55,6 +56,7 @@ List local install status and install a tracked skill with the helper:
 python3 scripts/install-skill.py --list
 python3 scripts/install-skill.py --install idea-framing-loop
 python3 scripts/install-skill.py --install coding-review-loop --copy
+python3 scripts/install-skill.py --install bug-investigation-loop
 ```
 
 The helper installs the whole skill directory, not only `SKILL.md`. It uses a symlink by default, supports `--copy`, and refuses to overwrite an existing runtime skill directory.
@@ -62,7 +64,7 @@ The helper installs the whole skill directory, not only `SKILL.md`. It uses a sy
 You can also install manually by linking or copying the whole skill directory:
 
 ```sh
-skill_name=evolving-agent-process  # or coding-review-loop / idea-framing-loop
+skill_name=evolving-agent-process  # or coding-review-loop / idea-framing-loop / bug-investigation-loop
 skill_source="$(pwd)/skills/$skill_name"
 skill_dest="${CODEX_HOME:-$HOME/.codex}/skills/$skill_name"
 
