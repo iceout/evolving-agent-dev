@@ -83,6 +83,8 @@ Read `references/case-note-shape.md` only when case note capture is triggered.
 
 When reviewing, put findings first.
 
+For action/report/enum-like contracts, review semantic liveness: acceptance-critical values should have a producer, consumer, and behavior test, and report/config labels should not imply actionable behavior that code has not validated.
+
 For medium/high-risk coding tasks, subagent or automation review must use independent adversarial review semantics. Do not frame the review as confirmation that the main session's listed constraints are covered. Ask the reviewer to find concrete failure modes, contract violations, test gaps, scope drift, unsafe output, compatibility breaks, and packet gaps.
 
 Before requesting subagent or automation review, provide a minimal review packet rather than raw chat context. Include at least:

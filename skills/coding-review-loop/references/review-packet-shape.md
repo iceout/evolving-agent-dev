@@ -62,6 +62,19 @@ Include:
 - matrix dimensions such as time windows, enabled flags, dry-run vs write mode, or shadow vs production mode
 - whether the default entrypoint actually exercises the new behavior
 
+## Semantic Liveness / Report Truthfulness
+
+For action recommendations, report rows, enum-like values, or config-driven classifications, list how acceptance-critical values are produced, consumed, and tested.
+
+Check:
+
+- producer for each acceptance-critical action, status, enum value, or report field
+- consumer, renderer, or downstream behavior that uses it
+- behavior test showing the expected value is reachable
+- negative test for invalid or misleading config labels when config drives behavior
+- distinction between research/ablation output and actionable recommendation
+- deferred features remain consistent across plan, code, warnings, docs, and tests
+
 ## Verification Plan
 
 Record the real verification path: tests, lint/typecheck, manual runtime checks, production-like review, or explicit verification limits.

@@ -198,3 +198,19 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: Manual transfer is high-friction, loses structured context, and makes batch distillation harder. The issue is not that every task needs a report; high-signal cases need a lightweight local capture format.
 - Category: `process` / `evidence capture friction`; secondary: `tooling` / `manual transfer`; `context` / `lost case structure`
 - Follow-up: Add triggered privacy-preserving case note and idea note capture to `coding-review-loop` and `idea-framing-loop`. Treat transferred notes as external privacy-preserving evidence, not internal accepted Stage 0 evidence. This does not create automation, active policy, formal evaluation, or `docs/process-v0.3.md`.
+
+### 2026-07-07 - Action and report semantic liveness missed after review loop
+
+- Context: Batch distillation from an external real-project `.agent/coding-review-loop-cases.md` file after multiple `coding-review-loop` uses on a strategy/reporting system.
+- What happened: Follow-up review found that public action/report contracts could be structurally present while semantically dead or drifting: an expected action path was unreachable because generated signals never produced the needed action value; a contract field had no producer; report serialization conflated distinct semantic fields; duplicated semantic helpers risked drift; and deferred strategy rules were inconsistent across plan, implementation, warnings, and tests.
+- Why it felt wrong: The review loop checked known blockers and structural behavior, but did not perform a semantic-liveness pass over acceptance-critical action/report/enum-like values. Passing tests and existing report fields did not prove that each business value had a producer, consumer, and behavior test.
+- Category: `review` / `semantic liveness gap`; secondary: `testing` / `producer-consumer coverage missing`; `implementation` / `duplicated semantic helper`; `process` / `plan-code drift`
+- Follow-up: Treat as external privacy-preserving friction evidence. `coding-review-loop` should consider a narrow semantic liveness check for action/report/enum-like contracts: acceptance-critical values need producer, consumer, and behavior-test coverage; deferred features should stay consistent across plan, code, warnings, docs, and tests. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.
+
+### 2026-07-07 - Config-driven research reports needed executable truthfulness checks
+
+- Context: Batch distillation from an external real-project `coding-review-loop` case involving research CLI/report output.
+- What happened: Review found that a research report could rely too much on static config labels and loose thresholds, allowing variants with action-like report semantics that were not sufficiently validated by executable checks. Broad historical evidence was also too heavy to run locally, requiring a narrowed diagnostic window.
+- Why it felt wrong: The report could look like validated strategy evidence while still behaving like a research heat board. Config labels and report structure were not enough; actionable report semantics needed code-level validation, negative config tests, and a clear research-vs-action boundary.
+- Category: `review` / `report truthfulness gap`; secondary: `requirements` / `config-driven semantics`; `testing` / `negative config coverage`; `process` / `verification budget`
+- Follow-up: Treat as external privacy-preserving friction evidence. For config-driven research/report outputs, future packets should distinguish labels from validated behavior, require bounds/negative tests for action-driving config, and separate research/ablation output from actionable recommendations. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.
