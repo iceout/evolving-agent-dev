@@ -41,6 +41,8 @@ If a quick patch is proposed before root cause is proven, label it as interim mi
 
 Before adding or changing a helper, fake, adapter, wrapper, serializer, collection getter, fallback, or test double, run a focused reuse scan across the current file and sibling modules/tests for same-concern helpers or source-of-truth patterns.
 
+Search by semantic responsibility, not only feature keywords. Before adding a helper, check whether existing source-of-truth helpers plus caller-local state can express the behavior.
+
 This scan is especially important during review-fix work: do not only patch the reported failure if the fix introduces a new seam or helper.
 
 Ask:
@@ -52,6 +54,8 @@ Ask:
 - Does this fake or test double model an external API, state machine, chained call, or boundary behavior that should be shared or explicitly local?
 
 Local helpers and fakes are fine when they are truly local. When they encode external API semantics such as cursor chaining, sorting, limits, retries, fallback behavior, or data-source selection, centralize the semantics or explain why a local duplicate is safer.
+
+A helper should provide reuse, boundary isolation, or a stable business concept; otherwise keep short straight-line logic inline.
 
 ## Implementation Trace
 

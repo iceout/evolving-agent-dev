@@ -214,3 +214,27 @@ Append-only log for lightweight friction from micro tasks or scattered observati
 - Why it felt wrong: The report could look like validated strategy evidence while still behaving like a research heat board. Config labels and report structure were not enough; actionable report semantics needed code-level validation, negative config tests, and a clear research-vs-action boundary.
 - Category: `review` / `report truthfulness gap`; secondary: `requirements` / `config-driven semantics`; `testing` / `negative config coverage`; `process` / `verification budget`
 - Follow-up: Treat as external privacy-preserving friction evidence. For config-driven research/report outputs, future packets should distinguish labels from validated behavior, require bounds/negative tests for action-driving config, and separate research/ablation output from actionable recommendations. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.
+
+### 2026-07-07 - Reuse scan missed semantic-responsibility source helpers
+
+- Context: Batch distillation from an external real-project `coding-review-loop` case log created before recent skill refinements.
+- What happened: Several review misses involved adding local or sibling helpers for existing data semantics: a cutoff helper was duplicated with different edge behavior, a new source helper repeated existing action and UID cutoff semantics, and repeated private transform helpers made shared semantics look file-local.
+- Why it felt wrong: The reuse scan searched feature keywords and nearby code, but did not search by the helper's semantic responsibility or ask whether existing source-of-truth helpers plus caller-local state could express the behavior. New helpers made source semantics easier to drift and sometimes added names longer than the code they replaced.
+- Category: `implementation` / `semantic duplicate helper`; secondary: `context` / `source-of-truth helper missed`; `process` / `reuse scan insufficient`; `review` / `helper abstraction value`
+- Follow-up: Treat as external privacy-preserving friction evidence. `coding-review-loop` should refine focused reuse scan language to search by semantic responsibility, prefer existing source-of-truth helpers plus caller-local composition, and require helpers to provide reuse, boundary isolation, or a stable business concept. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.
+
+### 2026-07-07 - Middle-layer mocks hid repo-owned call contracts
+
+- Context: Batch distillation from an external real-project `coding-review-loop` case log involving test repair and fake datastore boundaries.
+- What happened: Tests introduced local fake datastore infrastructure despite existing shared fakes, and one test patched a repo-owned data-access helper with a permissive fake instead of faking the external datastore boundary. The test suite passed while the real call path later failed on a stricter keyword-only helper contract.
+- Why it felt wrong: The tests verified downstream behavior but skipped the repo-owned contract that needed coverage. Local fakes and loose call signatures created false confidence and made external-boundary semantics diverge across tests.
+- Category: `testing` / `test boundary fidelity`; secondary: `testing` / `duplicated test fake`; `review` / `middle-layer mock`; `process` / `verification gap`
+- Follow-up: Treat as external privacy-preserving friction evidence. For test doubles, `coding-review-loop` should require the boundary being faked to be explicit, prefer the lowest practical external IO boundary over repo-owned helpers whose call contract is under test, and keep fake call shapes faithful enough to catch signature regressions. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.
+
+### 2026-07-07 - Caller code broke upstream dataflow contracts
+
+- Context: Batch distillation from an external real-project `coding-review-loop` case log involving time-windowed and streaming batch data paths.
+- What happened: A bounded source scan yielded event times, but the caller discarded them and performed a broader first-event lookup per entity. Another helper exposed an iterator for large scans, but the caller immediately wrapped it in `list(...)`, losing streaming behavior.
+- Why it felt wrong: Review confirmed helper shape but did not trace whether downstream callers preserved the helper's time-window and streaming contracts. API shape looked correct while caller behavior widened the data source or materialized unbounded results.
+- Category: `review` / `dataflow contract preservation`; secondary: `performance` / `streaming contract lost`; `requirements` / `time-window semantics`; `testing` / `caller-level contract gap`
+- Follow-up: Treat as external privacy-preserving friction evidence. For time-windowed, streaming, batched, paginated, deduped, or source-filtered paths, review should trace helper contracts through callers and require tests that fail if callers widen, materialize, or recompute from a broader source. This does not create formal evaluation, active policy, Stage 0 evidence, or `docs/process-v0.3.md`.

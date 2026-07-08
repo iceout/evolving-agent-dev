@@ -50,6 +50,14 @@ Name the existing helper, builder, adapter, serializer, guard, or pattern being 
 
 List behavior-level tests or manual checks required to prove the contract. Avoid implementation-detail assertions unless explicitly justified.
 
+## Test Double Boundary Fidelity
+
+For test doubles, state the boundary being faked.
+
+Prefer faking the lowest practical external IO boundary instead of a repo-owned helper whose call contract is under test. Fakes should preserve the real call shape needed by the production path, especially for keyword-only parameters, chaining behavior, errors, and return-shape contracts.
+
+If adding fake infrastructure, search existing tests for shared fakes before creating a local fake.
+
 ## Runnable Acceptance / Entrypoints
 
 For requirements that promise dry-runs, shadow runs, reports, default scripts, CLIs, exports, or scheduled jobs, list the runnable entrypoints and defaults reviewers must check.
@@ -74,6 +82,18 @@ Check:
 - negative test for invalid or misleading config labels when config drives behavior
 - distinction between research/ablation output and actionable recommendation
 - deferred features remain consistent across plan, code, warnings, docs, and tests
+
+## Dataflow Contract Preservation
+
+For time-windowed, streaming, paginated, batched, deduped, or source-filtered data paths, trace whether downstream callers preserve the contract.
+
+Check:
+
+- bounded queries are not widened by later lookups
+- streaming or iterator APIs are not immediately materialized in batch paths
+- dedupe/source-filter semantics stay tied to the source-of-truth helper
+- caller-local state is used before adding a new source helper
+- tests include a case that would fail if the caller widens, materializes, or recomputes from the wrong source
 
 ## Verification Plan
 
