@@ -20,7 +20,9 @@ Record explicit user choices, accepted exceptions, privacy/output exceptions, an
 
 ## Risk Surfaces
 
-List relevant surfaces, such as public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, user-impacting live writes or notifications, side-effecting scheduled jobs, time/window, config/deployment, or multi-module docs/tests changes.
+List relevant surfaces, such as public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, changes to user-impacting live writes, notification delivery or recipient targeting, scheduled side-effect behavior, dry-run/live defaults, time/window, config/deployment, or multi-module docs/tests changes.
+
+Classify side-effect risk from changed capability or behavior, not domain nouns alone. Copy, formatting, comments, documentation, or similar changes do not trigger this category by themselves when delivery capability, recipients, execution mode, output sensitivity, and side-effect behavior remain unchanged; assess other risk surfaces independently.
 
 ## Debug / Bad-Case Evidence Chain
 

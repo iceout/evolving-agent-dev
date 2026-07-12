@@ -16,7 +16,7 @@ Keep plan artifacts lightweight and trigger-based.
 - Small tasks may keep the plan in the final response.
 - Medium-complexity tasks that need independent review, multi-round review, cross-agent handoff, or later implementation should create a repo-local plan/review packet.
 - High-risk tasks should have the packet reviewed before implementation.
-- Treat user-impacting live writes, notifications, and side-effecting scheduled jobs or exports as high-risk. Create the packet and make it reviewable before the first implementation edit; do not reconstruct it only after implementation has started.
+- Treat a task as high-risk when it enables or changes a user-impacting live side effect, including write execution, notification delivery or recipient targeting, scheduled side-effect behavior, or the default between dry-run and live execution. Create the packet and make it reviewable before the first implementation edit; do not reconstruct it only after implementation has started. Copy, formatting, comments, documentation, or similar changes do not trigger this rule by themselves when delivery capability, recipients, execution mode, output sensitivity, and side-effect behavior remain unchanged; assess other risk surfaces independently.
 - Future subagent or automation review should consume packet artifacts, not raw chat context.
 - Use existing repo conventions for plan docs. If unclear, ask; use a clearly repo-local temporary plan path only when the user asked for an artifact.
 
