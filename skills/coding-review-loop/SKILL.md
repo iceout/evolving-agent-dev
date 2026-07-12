@@ -16,6 +16,7 @@ Keep plan artifacts lightweight and trigger-based.
 - Small tasks may keep the plan in the final response.
 - Medium-complexity tasks that need independent review, multi-round review, cross-agent handoff, or later implementation should create a repo-local plan/review packet.
 - High-risk tasks should have the packet reviewed before implementation.
+- Treat user-impacting live writes, notifications, and side-effecting scheduled jobs or exports as high-risk. Create the packet and make it reviewable before the first implementation edit; do not reconstruct it only after implementation has started.
 - Future subagent or automation review should consume packet artifacts, not raw chat context.
 - Use existing repo conventions for plan docs. If unclear, ask; use a clearly repo-local temporary plan path only when the user asked for an artifact.
 
@@ -40,6 +41,8 @@ If a quick patch is proposed before root cause is proven, label it as interim mi
 ## Focused Reuse Scan
 
 Before adding or changing a helper, fake, adapter, wrapper, serializer, collection getter, fallback, or test double, run a focused reuse scan across the current file and sibling modules/tests for same-concern helpers or source-of-truth patterns.
+
+When removing or renaming a shared wrapper, adapter, getter, serializer, or other symbol, scan repository-wide imports and references and discover runnable entrypoints from repository conventions, task configuration, CI, CLIs, job definitions, and executable modules. Do not assume one directory glob covers every entrypoint.
 
 Search by semantic responsibility, not only feature keywords. Before adding a helper, check whether existing source-of-truth helpers plus caller-local state can express the behavior.
 

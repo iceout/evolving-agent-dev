@@ -148,6 +148,38 @@ Do not create runtime hooks, telemetry clients, dashboard jobs, or background di
 
 This keeps source projects in control of what crosses the boundary and avoids default cross-project aggregation.
 
+### Central Evidence Lineage
+
+Do not create a second ledger for central distillation. Use the distillation session report for the immutable source review and decision record, and the existing `docs/v0.3-scope.md` watchlist for the current cross-session state when a pattern needs later observation.
+
+A central lineage record may contain:
+
+- a privacy-safe source ID and case ID
+- normalized pattern
+- root-cause hypothesis and confidence
+- repository rule state: `absent` / `partial` / `present`
+- source-task attribution: `known rule absent` / `known rule present but not executed` / `loaded version unknown` / `timeline inconclusive`
+- accepted change or explicit no-change decision
+- change date, artifact, version, or commit when known
+- later comparable evidence
+- current outcome: `awaiting evidence` / `improved` / `repeated` / `inconclusive`
+- the evidence supporting that outcome
+
+Repository rule state describes the canonical repository rule at the relevant comparison point. Source-task attribution separately describes what can be established about the rule loaded by the source task.
+
+Use `known rule present but not executed` only when the task's loaded skill source or version is known to include the rule and the task facts show that the gate was skipped. Use `known rule absent` only when the loaded source/version is known and does not contain the rule. Repository commit dates alone do not prove which skill version a task loaded.
+
+Outcome meanings:
+
+- `awaiting evidence`: a change or no-change decision exists, but there is no later comparable evidence from a known relevant version.
+- `improved`: later comparable evidence used the changed version and shows the expected behavior with real verification.
+- `repeated`: later comparable evidence used the changed version and the normalized problem recurred.
+- `inconclusive`: version, comparability, ordering, or verification facts are insufficient.
+
+The target-project user records local facts and may record a skill source or version only when it is already visible. The evolving-agent-dev distiller owns cross-case normalization, root-cause classification, deduplication, change attribution, promotion decisions, and later outcome tracking.
+
+Assign privacy-safe source and case IDs during central distillation. Before creating a pattern, search existing inbox entries, distillation reports, and watchlist items. Reuse an existing pattern for supporting or later evidence; do not count a copied or semantically duplicate case as a new independent issue.
+
 ## Skill Effectiveness Retro
 
 Future optional workflow:

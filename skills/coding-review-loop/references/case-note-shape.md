@@ -17,12 +17,13 @@ Append one compact entry per case.
 
 - Task type:
 - Skill used: coding-review-loop
+- Skill source/version (optional; record an already-visible value, otherwise omit or use `unknown`):
 - Risk surfaces:
 - Phase: planning / implementation / review / review-fix / follow-up review
 
 ### What Happened
 
-Privacy-safe summary. Avoid private paths, user data, credentials, customer names, sensitive payloads, and large code excerpts.
+Privacy-safe summary. Avoid private paths, notification recipients, user/account/customer identifiers, credentials, sensitive payloads, and large code excerpts.
 
 ### Why It Mattered
 
@@ -64,3 +65,5 @@ What was intentionally omitted or generalized?
 When several entries accumulate, the user can copy this file back to evolving-agent-dev for batch distillation. Treat transferred entries as external privacy-preserving evidence, not accepted internal Stage 0 dogfood evidence.
 
 Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
+
+The optional skill source/version field is only for information already visible during the task. Omit it or write `unknown` when it is not convenient to obtain. Do not investigate commit history for the field. Cross-case attribution, root-cause classification, skill/process decisions, promotion, and later regression tracking belong to evolving-agent-dev, not the target-project user.

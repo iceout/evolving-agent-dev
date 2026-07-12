@@ -20,7 +20,7 @@ Record explicit user choices, accepted exceptions, privacy/output exceptions, an
 
 ## Risk Surfaces
 
-List relevant surfaces, such as public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, time/window, config/deployment, or multi-module docs/tests changes.
+List relevant surfaces, such as public interface, hot path, schema/contract, data semantics, sensitive output, batch/action/export, user-impacting live writes or notifications, side-effecting scheduled jobs, time/window, config/deployment, or multi-module docs/tests changes.
 
 ## Debug / Bad-Case Evidence Chain
 
@@ -45,6 +45,8 @@ Include only relevant contracts; mark others `N/A` with a reason.
 ## Reuse / Adapter Rationale
 
 Name the existing helper, builder, adapter, serializer, guard, or pattern being reused. If adding a new one, explain the distinct responsibility and why existing same-concern code does not fit.
+
+If removing or renaming a shared symbol, record the repository-wide import/reference scan and how runnable entrypoints were discovered from this repository's conventions. Do not rely on a single assumed scripts directory.
 
 ## Required Behavior Tests
 
@@ -79,6 +81,7 @@ Check:
 - producer for each acceptance-critical action, status, enum value, or report field
 - consumer, renderer, or downstream behavior that uses it
 - behavior test showing the expected value is reachable
+- for decision or action fields, one positive path and representative blocker or negative paths
 - negative test for invalid or misleading config labels when config drives behavior
 - distinction between research/ablation output and actionable recommendation
 - deferred features remain consistent across plan, code, warnings, docs, and tests
