@@ -43,6 +43,11 @@ Include only relevant contracts; mark others `N/A` with a reason.
 - Privacy/sensitive output.
 - Source-of-truth/proxy/fallback.
 - Mitigation vs final redesign.
+- Mutation/recovery, only when the task changes or reviews an applicable multi-step state-changing workflow with material state-transition risk; task size or write/mutation vocabulary alone does not trigger it. Otherwise use `N/A - no applicable multi-step state-changing workflow`.
+  - Transition map: record preflight-detectable blockers, the first mutation, and externally visible or irreversible effect boundaries. Check blockers detectable before the first mutation first; rejection there leaves relevant state unchanged without implying universal workflow atomicity.
+  - Boundary inventory: record actual mutation writers, copies, or independently mutable boundaries and each consistency contract. Protection at one independently mutable boundary does not protect another.
+  - Outcome matrix: distinguish pre-effect from post-effect status and failure, whole-operation retryability, and the state-aware non-replay direction. Whole-operation retry requires an explicit replay-safety guarantee; a recovery path alone does not establish safe replay.
+  - Behavior proof: under `Required Behavior Tests`, list applicable rejection-before-mutation and failure-after-effect cases. Mark either side `N/A` with a reason when it is not applicable; do not create low-value tests.
 
 ## Reuse / Adapter Rationale
 
