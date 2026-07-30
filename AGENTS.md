@@ -20,6 +20,11 @@ Read the smallest relevant set in this order:
 5. Relevant policy, decision, evaluation, casebook, skill-design, or v0.3
    documents only when the task touches them.
 
+For external case distillation, central lineage changes, or follow-up to an
+accepted refinement, read `docs/v0.3-scope.md`,
+`docs/skill-design/local-evidence-ledger.md`, and the relevant latest session
+report before editing.
+
 If this file conflicts with a more specific repository source of truth, follow
 the more specific document and report the mismatch when it affects the task.
 
