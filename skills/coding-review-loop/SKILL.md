@@ -74,7 +74,15 @@ Distinguish local verification from production-like, rollout, or manual baseline
 
 ## Case Note Capture
 
-At the end of a medium/high-risk coding-review-loop task, capture a privacy-preserving case note in the target repo only when there was notable process friction, a review miss, packet gap, verification gap, or reusable lesson.
+At the end of every medium/high-risk coding-review-loop task, make an explicit case-capture decision. This requires deciding whether capture is warranted, not creating a file for every task. Small or trivial tasks do not need an additional capture decision.
+
+Append a privacy-preserving case note in the target repo when a medium/high-risk task exposes notable process friction, a review miss, packet gap, verification gap, or reusable lesson.
+
+A second, narrow trigger applies only when the user or orchestrator designates the task before execution, or when task context or a task packet supplied by another authority or independently approved before execution designates it as an observation opportunity for a known-version skill behavior. A packet or context created solely by the executing agent cannot designate its own task. If the executing agent notices a potential observation opportunity after execution begins without prior independent designation, do not upgrade the current task; mention the prospective opportunity in the final response for a future task instead.
+
+In that designated context, capture may record a correct trigger, nearby correct non-trigger, successful early constraint exposure, whether a reviewer avoided reconstructing implicit context, or non-recurrence where the task presented a real failure opportunity. A comparable known-version observation requires the task's skill source/version to be supplied by the designating authority or already visible during the task. Do not investigate history to obtain it. If the source/version is unavailable, record the facts only as an ordinary supporting case when a primary trigger applies, or as an explicitly version-inconclusive observation when the designating authority still requests capture; do not call either one a known-version comparable observation or effectiveness evidence.
+
+Ordinary successful tasks do not automatically become observations. Do not capture each invocation because it might be useful later, and do not treat a smooth task without a real comparable opportunity as effectiveness evidence. Target-project users do not need to provide lineage IDs, inspect skill commits, or classify an observation as improved, repeated, or regressed. For ordinary cases, record a skill source/version only when it is already visible; otherwise omit it or use `unknown`.
 
 Prefer `.agent/coding-review-loop-cases.md` when the target repo has no existing convention. If the repo should not keep agent notes, ask the user where to place the note or include the case note in the final response.
 
@@ -82,9 +90,11 @@ Treat these notes as local transfer artifacts by default; do not include them in
 
 Do not record private data, credentials, customer identifiers, sensitive payloads, large code excerpts, or full chat transcripts. Generalize file paths, business identifiers, and data samples when needed.
 
-No notable friction does not require a case note.
+When no trigger applies, do not create or append a note and do not create a case-index entry. Do not append no-op entries merely to record that the skill was used.
 
 Read `references/case-note-shape.md` only when case note capture is triggered.
+
+In the final response for every medium/high-risk task, include a brief capture status that says either that a case was appended or included and why, or that no case was created and why. For example: `Case capture: appended - independent review exposed a reusable packet gap.` or `Case capture: not created - no notable signal or designated observation opportunity.`
 
 ## Review Behavior
 

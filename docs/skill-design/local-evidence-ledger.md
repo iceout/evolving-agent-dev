@@ -8,7 +8,7 @@ Record local, privacy-preserving, high-signal evidence that helps evaluate and i
 
 This borrows the useful idea behind gstack's local analytics, learnings, timeline, and eureka logs, but not its telemetry system. The goal is not usage metrics for their own sake; the goal is to make skill effectiveness, repeated friction, and reusable process lessons easier to distill.
 
-The design boundary is intentionally conservative: do not track everything, do not change current skill behavior, and do not add runtime logging or automation from this note.
+The design boundary is intentionally conservative: do not track everything, and do not add runtime logging or automation from this note. Triggered narrative guidance may evolve independently without turning this design into a usage ledger.
 
 ## Principles
 
@@ -29,7 +29,7 @@ The design boundary is intentionally conservative: do not track everything, do n
 - Complex dashboards or metrics automation.
 - Treating usage counts as proof of skill quality.
 - Creating a cross-project global ledger by default.
-- Changing current skill behavior in this design note.
+- Runtime capture or logging behavior beyond explicit triggered narrative guidance.
 
 ## Recommended Local Files
 
@@ -41,7 +41,11 @@ Already used or intended:
 - `.agent/idea-framing-notes.md`
 - `.agent/bug-investigation-cases.md`
 
-These capture high-signal narrative evidence. They should be written only when the skill session produces notable process friction, a review miss, a packet gap, a verification gap, a reusable lesson, a handoff candidate, or an evaluation candidate.
+These capture high-signal narrative evidence. For `coding-review-loop`, write them only when the task produces notable process friction, a review miss, a packet gap, a verification gap, a reusable lesson, or a narrow designated observation. A handoff can be recorded when it exposes one of those signals, such as a reusable lesson; evaluation candidacy remains a central distillation decision rather than a target-project trigger.
+
+A designated observation requires the user or orchestrator to designate it before execution, or task context or a packet supplied by another authority or independently approved before execution to identify the opportunity. The executing agent cannot self-designate through its own packet or context; an opportunity noticed after execution begins can only be proposed for a future task. A comparable known-version observation also requires the task's source/version from the designating authority or information already visible during the task. Without it, retain the facts only as a primary-trigger supporting case or an explicitly version-inconclusive observation, never as known-version effectiveness evidence.
+
+An authorized designated observation may record a successful trigger, nearby correct non-trigger, early constraint exposure, reviewer context sufficiency, or non-recurrence when a real failure opportunity existed. Ordinary successful tasks and smooth tasks without a real comparable opportunity are not automatically evidence.
 
 ### Case Index
 
@@ -49,13 +53,15 @@ Optional future local index:
 
 `.agent/skill-case-index.jsonl`
 
-Use one line per high-signal case note for batch distillation. A case index entry should exist only when a narrative case note exists.
+Use one line per high-signal case note for batch distillation. A case index entry should exist only when a narrative case note exists. A no-op capture decision must not create an index entry.
 
 Example:
 
 ```json
 {"ts":"2026-07-09T10:12:00Z","skill":"coding-review-loop","event":"case_note","outcome":"friction","note_file":".agent/coding-review-loop-cases.md","tags":["review-fix","dataflow"],"privacy":"local-transfer"}
 ```
+
+The example's `friction` outcome is illustrative, not a rule that narrative notes can record only failures. This design does not implement the JSONL index.
 
 The `note_file` field should point only to an approved local agent-note file, not to product source files or arbitrary paths.
 
@@ -89,7 +95,7 @@ Example:
 {"ts":"2026-07-09T10:30:00Z","skill":"bug-investigation-loop","event":"completed","outcome":"blocked","case_note":true,"handoff":"coding-review-loop","privacy":"local-transfer"}
 ```
 
-This file should not be a default write-on-every-invocation analytics stream. It is a possible future summary log for explicit opt-in designs.
+This file should not be a default write-on-every-invocation analytics stream. It is a possible future summary log for explicit opt-in designs and remains unimplemented in this refinement.
 
 ## Suggested Fields
 
@@ -124,7 +130,11 @@ Avoid by default:
 
 ## Trigger Rules
 
-Write narrative case notes only when there is notable process friction, review miss, packet gap, verification gap, reusable lesson, handoff candidate, or evaluation candidate.
+At the end of every medium/high-risk `coding-review-loop` task, make an explicit case-capture decision. This is a decision requirement, not a narrative-note requirement; small and trivial tasks have no additional capture burden.
+
+Write a narrative case note only when there is notable process friction, review miss, packet gap, verification gap, reusable lesson, or an independently designated observation opportunity. A designated observation may record successful or correct non-trigger behavior, but the target project must not classify it as `improved`, `repeated`, or `regression`. Handoff is not a separate trigger, and evaluation candidacy belongs to central distillation.
+
+When no trigger applies, record the not-created status and brief reason in the final response only. Do not create or append a narrative note or case-index entry, and do not write a no-op entry merely to record skill use.
 
 Write case index entries only when a narrative case note is created.
 
@@ -176,7 +186,9 @@ Outcome meanings:
 - `repeated`: later comparable evidence used the changed version and the normalized problem recurred.
 - `inconclusive`: version, comparability, ordering, or verification facts are insufficient.
 
-The target-project user records local facts and may record a skill source or version only when it is already visible. The evolving-agent-dev distiller owns cross-case normalization, root-cause classification, deduplication, change attribution, promotion decisions, and later outcome tracking.
+The target-project user records only local facts and may record a skill source or version only when it is already visible. The target project does not own inbox or casebook routing, skill refinement, evaluation decisions, lineage, root-cause classification, change/no-change decisions, promotion, regression classification, or later outcomes. The evolving-agent-dev distiller owns those central responsibilities.
+
+A designated observation with independently established authority, a real opportunity, and the task's visible or supplied source/version can preserve a successful trigger or correct non-trigger fact for later comparison, but it cannot assign a central outcome. A version-inconclusive observation is supporting evidence only. Central distillation determines comparability and any later `improved`, `repeated`, or `inconclusive` classification from versioned evidence.
 
 Assign privacy-safe source and case IDs during central distillation. Before creating a pattern, search existing inbox entries, distillation reports, and watchlist items. Reuse an existing pattern for supporting or later evidence; do not count a copied or semantically duplicate case as a new independent issue.
 
