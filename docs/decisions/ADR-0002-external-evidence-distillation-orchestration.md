@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted pending separate implementation
+Accepted; reference implementation is recorded separately.
 
 ## Context
 
@@ -51,7 +51,8 @@ outcome; or commit automatically.
 
 ## Decision
 
-Adopt option B only when every positive trigger below is established:
+Adopt option B for bounded editing only when every positive trigger below is
+established:
 
 1. The user explicitly requests external evidence distillation.
 2. The user explicitly provides a source note that is treated as read-only and
@@ -62,6 +63,14 @@ Adopt option B only when every positive trigger below is established:
    pilot, or outcome promotion.
 6. An analysis card clearly limits the files and content that may change.
 7. The platform supports a review subagent with isolated, fresh context.
+
+Admission is phased without weakening any trigger. Pre-analysis admission
+requires conditions 1, 2, 3, and 7 plus no obvious scope contradiction; it
+authorizes only reading the orchestration reference and starting read-only
+analysis. Analysis determines conditions 4 and 5 and produces condition 6, the
+frozen in-memory Distillation Card. Before any bounded record-only edit, all
+seven conditions must be established. If analysis cannot establish conditions
+4-6, return `needs decision` or an objection without editing.
 
 The future role protocol is:
 
@@ -147,18 +156,23 @@ The following are non-goals:
   clear-route tasks that require no record.
 - Do not commit automatically; commit authorization remains with the user.
 
-Any future implementation is limited to a narrow extension under
-`skills/evolving-agent-process/` and a short orchestration reference or
-similarly minimal carrier. It may define stable invariants, the Distillation
-Card shape, subagent-availability detection and degradation semantics,
-analysis/review role separation, objection conditions, the one-correction cap,
-and a fixed final-report shape.
+The reference implementation is limited to a narrow extension under
+`skills/evolving-agent-process/` and one short orchestration reference. It
+defines stable invariants, the Distillation Card shape, subagent-availability
+detection and degradation semantics, analysis/review role separation,
+objection conditions, the one-correction cap, and a fixed final-report shape.
 
-The implementation must not preselect a particular agent API, CLI, JSONL
-format, runtime hook, network service, background worker, or automatic commit
-mechanism. It must not move these details into `AGENTS.md`, rewrite
-`docs/process-v0.2.md`, or create a process-v0.3 document. A separately accepted
-implementation task must use `skill-creator` before changing the skill package.
+It does not preselect a particular agent API, CLI, JSONL format, runtime hook,
+network service, background worker, or automatic commit mechanism. It does not
+move these details into `AGENTS.md`, rewrite `docs/process-v0.2.md`, or create a
+process-v0.3 document. Any later change beyond this boundary requires separate
+authorization and must follow the applicable skill-package workflow.
+
+The canonical reference guidance and its verification boundary are recorded in
+the [implementation report](../session-reports/2026-08-18-external-evidence-distillation-orchestration-implementation.md).
+This establishes that the guidance exists, not behavioral effectiveness,
+fresh-context review quality, platform capability for a real workflow, or
+reduced user effort. It changes no external evidence outcome.
 
 ## Consequences
 
@@ -179,9 +193,9 @@ Costs and risks:
 - can still anchor the reviewer if context isolation is implemented poorly;
 - can encode a wrong route in the card, so the review must inspect source facts
   independently; and
-- cannot establish effectiveness until implemented and observed in applicable
-  natural, user-selected record-only tasks that record the orchestration
-  guidance/source version actually loaded for the observation.
+- cannot establish effectiveness from reference guidance alone; that requires
+  applicable natural, user-selected record-only observations that record the
+  orchestration guidance/source version actually loaded.
 
 ## Escape Hatch
 
@@ -202,20 +216,24 @@ this mechanism to make the case fit.
 - [ADR-0001](ADR-0001-role-separation.md) records the repository's broader
   role-separation rationale and lightweight escape hatch.
 
-These materials establish workflow constraints and examples. They do not prove
-that the orchestration described here is implemented or effective.
+These case materials establish workflow constraints and examples. They do not
+prove platform capability, end-to-end executability, or effectiveness. The
+linked implementation report separately establishes only that the canonical
+reference guidance exists.
 
 ## Evaluation or Observation Plan
 
-Implementation must first establish, through direct verification, that the
-selected platform can provide the intended context isolation and that the
-degradation path reports its absence truthfully. This decision alone establishes
-neither fact.
+The reference guidance is implemented, but platform capability, end-to-end
+executability, and behavioral effectiveness remain unestablished. Before any
+natural orchestration observation begins, the selected platform must directly
+and honestly establish condition 7: it can provide the intended fresh-context
+review boundary. An absent or inconclusive capability result requires the
+documented `needs decision` degradation and cannot admit an observation.
 
-After a separate implementation and independent review, observe natural,
-user-selected record-only tasks with a real opportunity to trigger or stop the
-mechanism. Record the implemented orchestration guidance/source version
-actually loaded for each observation. The external source task's historical
+Only on a platform that establishes condition 7 should natural, user-selected
+record-only tasks with a real opportunity to trigger or stop the mechanism be
+observed. Record the implemented orchestration guidance/source version actually
+loaded for each observation. The external source task's historical
 `coding-review-loop` version may remain unknown; that limits causal claims
 about the source task, not attribution of whether the versioned orchestration
 correctly triggered, stopped, or reduced forwarding. If the orchestration

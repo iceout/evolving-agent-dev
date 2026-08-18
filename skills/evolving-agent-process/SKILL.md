@@ -1,8 +1,6 @@
 ---
 name: evolving-agent-process
 description: "Use when working in evolving-agent-dev on process evidence: process docs, policies, casebook, evaluations, session reports, skill adapter, dogfood, friction routing, Stage 0/v0.3 readiness, or seed-vs-real evidence. Follow repo docs as source of truth."
-version: 0.1.0
-author: Bruce / Hermes Agent
 license: MIT
 metadata:
   hermes:
@@ -123,6 +121,29 @@ Avoid recursion for session reports:
 - Do not create another report just because you created a report.
 - If the only change is adding the required report, that report can document itself briefly.
 - If report editing reveals new friction, route it to the report follow-up or inbox instead of starting a report chain.
+
+## Conditional External-Evidence Distillation
+
+When the user explicitly requests distillation of an explicitly provided,
+privacy-reviewed, read-only external source note, first check pre-analysis
+admission: the user request, source boundary, requested `record-only` mode,
+honestly supportable fresh-context review, and no obvious scope contradiction.
+If those checks pass, read
+[the orchestration reference](references/external-evidence-distillation-orchestration.md)
+before considering a read-only analysis subagent.
+
+Analysis must then establish existing-lineage reuse, confirm that no new
+decision, implementation, or promotion is required, and produce the frozen
+in-memory Distillation Card. Do not make a bounded edit until all seven
+ADR-0002 gates are established.
+
+Do not enter this path for ordinary process work, discussions, micro tasks,
+unknown or new lineage, rule/skill/policy/evaluation/ADR changes, synthetic
+pilots, or outcome promotion. If admission or analysis fails, use the existing
+manual evidence workflow or return `needs decision`; never label an in-context
+review as fresh-context.
+The reference defines the roles and degradation contract without binding this
+skill to an agent API.
 
 ## Evidence Rules
 
