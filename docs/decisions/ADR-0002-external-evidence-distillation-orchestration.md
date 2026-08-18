@@ -223,17 +223,35 @@ reference guidance exists.
 
 ## Evaluation or Observation Plan
 
-The reference guidance is implemented, but platform capability, end-to-end
-executability, and behavioral effectiveness remain unestablished. Before any
-natural orchestration observation begins, the selected platform must directly
-and honestly establish condition 7: it can provide the intended fresh-context
-review boundary. An absent or inconclusive capability result requires the
-documented `needs decision` degradation and cannot admit an observation.
+The reference guidance is implemented. The [capability validation
+report](../session-reports/2026-08-18-external-evidence-distillation-capability-validation.md)
+records qualified current-platform evidence: a positive-controlled direct
+subagent probe showed that explicit no-turn forking withheld the latest parent
+user message while the full-context control reproduced it. This supports the
+narrow parent-conversation-turn boundary needed by the workflow when the Card
+remains task-local and is not passed to review. It does not audit the model's
+complete input, hidden platform context, memory or configuration injection,
+filesystem visibility, model or evidence independence, review quality,
+end-to-end workflow executability, or behavioral effectiveness. The separate
+ephemeral CLI probe established only execution-path availability, not context
+isolation.
 
-Only on a platform that establishes condition 7 should natural, user-selected
-record-only tasks with a real opportunity to trigger or stop the mechanism be
-observed. Record the implemented orchestration guidance/source version actually
-loaded for each observation. The external source task's historical
+Condition 7 is established for the selected execution surface, not reprobed for
+every task. On the observed collaboration surface, each review must use the
+established explicit no-turn boundary, must not receive the Card or parent
+conclusions through its prompt or files, and must report the boundary as
+parent-turn withholding rather than fully audited prompt isolation. Revalidate
+the capability when the execution surface, relevant configuration, context
+semantics, or observed behavior materially changes, or when the applicable
+boundary cannot be identified. An absent, stale, or inconclusive capability
+result requires the documented `needs decision` degradation and cannot admit
+an observation.
+
+Only on an execution surface with an applicable condition 7 result should
+natural, user-selected record-only tasks with a real opportunity to trigger or
+stop the mechanism be observed. Record the implemented orchestration
+guidance/source version actually loaded for each observation. The external
+source task's historical
 `coding-review-loop` version may remain unknown; that limits causal claims
 about the source task, not attribution of whether the versioned orchestration
 correctly triggered, stopped, or reduced forwarding. If the orchestration
