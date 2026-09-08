@@ -37,13 +37,13 @@ Keep the first pass lightweight: gather enough evidence to avoid guessing, not a
 5. Test Hypothesis
    - Confirm with a targeted test, command, assertion, log, debugger output, or code inspection.
    - If the hypothesis fails, update the evidence chain before forming the next one.
-   - After three failed hypotheses, stop and ask whether to continue, instrument, or escalate.
+   - After three failed hypotheses, reassess shared assumptions and missing observations before another attempt. State what evidence or diagnostic method will change. Continue within the authorized task when a useful next step exists; pause for user input when progress requires unavailable evidence, a material scope or risk decision, or additional permission. Do not repeat equivalent attempts without new evidence.
 
 6. Fix Boundary
    - If root cause is confirmed and the fix is small, make the minimal root-cause fix.
    - Add or update a regression test that would fail without the fix.
    - If the fix touches public interfaces, schemas/contracts, data semantics, sensitive output, entrypoint behavior, or multiple modules, hand off to `coding-review-loop`.
-   - If the fix touches more than a small local area, ask before broadening scope.
+   - A larger fix within the original goal requires the appropriate planning and review, not renewed permission solely because more files are involved. Ask before a material scope expansion or user-owned trade-off; preserve explicit plan-only instructions and existing execution permissions.
    - If only a mitigation is possible, label it as mitigation and keep it separate from a root-cause fix.
 
 7. Verify

@@ -18,7 +18,7 @@ Keep plan artifacts lightweight and trigger-based.
 - High-risk tasks should have the packet reviewed before implementation.
 - Treat a task as high-risk when it enables or changes a user-impacting live side effect, including write execution, notification delivery or recipient targeting, scheduled side-effect behavior, or the default between dry-run and live execution. Create the packet and make it reviewable before the first implementation edit; do not reconstruct it only after implementation has started. Copy, formatting, comments, documentation, or similar changes do not trigger this rule by themselves when delivery capability, recipients, execution mode, output sensitivity, and side-effect behavior remain unchanged; assess other risk surfaces independently.
 - Future subagent or automation review should consume packet artifacts, not raw chat context.
-- Use existing repo conventions for plan docs. If unclear, ask; use a clearly repo-local temporary plan path only when the user asked for an artifact.
+- Use existing repo conventions for plan docs. When a packet is needed within the authorized task and no convention exists, choose a descriptive, non-conflicting repo-local temporary path and report it. Ask only if a repository restriction or material user decision prevents that choice. Respect explicit no-file or plan-only instructions; necessary planning does not authorize implementation or external actions beyond the task.
 
 Read `references/review-packet-shape.md` only when a packet is needed. Do not load it for trivial tasks.
 
@@ -62,7 +62,7 @@ A helper should provide reuse, boundary isolation, or a stable business concept;
 
 ## Implementation Trace
 
-After implementation, report or write a compact trace:
+After implementation, update the packet's existing requirement trace when present; otherwise report or write a compact trace. Do not maintain a duplicate table:
 
 ```text
 plan constraint -> implementation anchor -> behavior test -> verification command

@@ -4,7 +4,7 @@
 
 This is a lightweight review target and handoff artifact for real code projects, not a longer prompt. Use it only when a task needs independent review, multi-round review, cross-agent handoff, later implementation, or high-risk implementation review.
 
-Small tasks do not need a packet. Sections are optional; mark `N/A` with a reason when a section is not applicable. Future subagent or automation review should consume packet artifacts, not raw chat context.
+Small tasks do not need a packet. Every packet needs the goal and scope boundaries (including changed files or diff scope), relevant risks and reviewable constraints, known user decisions or exceptions, and a verification path. These may be combined into a few short sections. Include other sections only when their risk or workflow applies; omit ordinary inapplicable sections instead of filling a form. Record an explicit exclusion only when it affects acceptance or review, including the conditional exclusions specified under Task-Specific Contracts. Future subagent or automation review should consume packet artifacts, not raw chat context.
 
 ## Goal
 
@@ -34,7 +34,7 @@ State constraints the implementation or review must preserve. Prefer bullets tha
 
 ## Task-Specific Contracts
 
-Include only relevant contracts; mark others `N/A` with a reason.
+Include only relevant contracts. Omit ordinary inapplicable contracts; retain the explicit mutation/recovery and target-context exclusions below so reviewers can distinguish a considered risk from an overlooked one.
 
 - Collection/cardinality/counting.
 - Failure/status/degraded behavior.
@@ -117,17 +117,17 @@ When changing runnable scripts, CLIs, jobs, default parameters, or report output
 
 ## Requirement Traceability Checklist
 
-For each P0/P1 or acceptance-critical requirement, map:
+Use one evolving trace for each P0/P1 or acceptance-critical requirement. Before implementation, record planned paths and verification; during implementation, replace them with actual anchors and results:
 
 ```text
 requirement -> implementation path -> user-facing entrypoint/default config -> expected output/report fields -> verification command/test
 ```
 
-If a requirement has no runnable entrypoint or verification command, mark it as an open risk before implementation or review approval.
+If a requirement has no runnable entrypoint or verification command, mark it as an open risk before implementation or review approval. Link cross-artifact checks where relevant. Planned verification is not a completed result.
 
 ## Implementation Trace
 
-During or after implementation, map requirement -> changed artifact -> behavior test or verification -> cross-artifact check. For plan-only packets, leave this `N/A until implementation`.
+Use the updated Requirement Traceability Checklist for this purpose; do not create a second table. If a packet uses an existing repository implementation-trace format, extend that instead. For plan-only work, actual implementation and verification results remain pending.
 
 ## Independent Reviewer Checklist
 

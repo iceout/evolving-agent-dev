@@ -4,9 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import os
 import re
 import shutil
+import stat
 import sys
 from pathlib import Path
 
@@ -55,6 +58,67 @@ def install_status(name: str, source: Path, dest_root: Path) -> str:
     return "exists: not a skill directory"
 
 
+def package_fingerprint(package: Path) -> str:
+    """Hash a package snapshot without following internal links or special files."""
+    if not stat.S_ISDIR(package.stat().st_mode):
+        raise ValueError("not a directory")
+    digest = hashlib.sha256(b"skill-package-sha256-v1\n")
+
+    def visit(directory: Path) -> None:
+        for path in sorted(directory.iterdir(), key=lambda item: item.name):
+            mode = path.lstat().st_mode
+            relative = path.relative_to(package).as_posix()
+            if stat.S_ISDIR(mode):
+                record = [relative, "directory"]
+            elif stat.S_ISREG(mode):
+                record = [relative, "file", mode & 0o111, hashlib.sha256(path.read_bytes()).hexdigest()]
+            else:
+                raise ValueError("internal symlink or special file")
+            digest.update(json.dumps(record, ensure_ascii=True, separators=(",", ":")).encode("ascii") + b"\n")
+            if stat.S_ISDIR(mode):
+                visit(path)
+
+    if not stat.S_ISREG((package / "SKILL.md").lstat().st_mode):
+        raise ValueError("missing SKILL.md")
+    visit(package)
+    return "sha256-v1:" + digest.hexdigest()
+
+
+def fingerprint_status(package: Path) -> tuple[str | None, str]:
+    try:
+        return package_fingerprint(package), "ok"
+    except FileNotFoundError:
+        return None, "missing"
+    except OSError:
+        return None, "unreadable"
+    except ValueError as error:
+        return None, f"unsupported ({error})"
+
+
+def package_comparison(source: Path, dest: Path) -> tuple[str, str | None, str | None]:
+    source_hash, source_state = fingerprint_status(source)
+    runtime_hash, runtime_state = fingerprint_status(dest)
+    if source_hash is None:
+        state = f"repository {source_state}; runtime {runtime_state}"
+    elif runtime_hash is None:
+        state = f"runtime {runtime_state}"
+    else:
+        state = "matches repository" if source_hash == runtime_hash else "differs from repository"
+    return state, source_hash, runtime_hash
+
+
+def inspect_skill(root: Path, dest_root: Path, name: str) -> int:
+    check_skill_name(name)
+    source = root / "skills" / name
+    state, source_hash, runtime_hash = package_comparison(source, dest_root / name)
+    print(f"Skill: {name}")
+    print(f"Status: {state}")
+    print(f"Repository fingerprint: {source_hash or 'unavailable'}")
+    print(f"Runtime fingerprint: {runtime_hash or 'unavailable'}")
+    print("On-disk snapshot only; does not establish what a session loaded.")
+    return 0 if source_hash is not None and runtime_hash is not None else 1
+
+
 def list_skills(root: Path, dest_root: Path) -> int:
     names = tracked_skills(root)
     if not names:
@@ -68,7 +132,12 @@ def list_skills(root: Path, dest_root: Path) -> int:
     print(f"{'-' * width}  ------")
     for name in names:
         source = root / "skills" / name
-        print(f"{name.ljust(width)}  {install_status(name, source, dest_root)}")
+        state, _, _ = package_comparison(source, dest_root / name)
+        try:
+            location = install_status(name, source, dest_root)
+        except OSError:
+            location = "installation location unreadable"
+        print(f"{name.ljust(width)}  {location}; {state}")
 
     if dest_root.exists():
         extras = sorted(
@@ -120,6 +189,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="List and install repo-tracked Codex skills.")
     action = parser.add_mutually_exclusive_group(required=True)
     action.add_argument("--list", action="store_true", help="List tracked skills and local install status.")
+    action.add_argument("--inspect", metavar="SKILL", help="Compare package fingerprints on disk (not session loading).")
     action.add_argument("--install", metavar="SKILL", help="Install one tracked skill by name.")
     parser.add_argument("--copy", action="store_true", help="Copy instead of symlinking when installing.")
     parser.add_argument("--dry-run", action="store_true", help="Show what would happen without changing files.")
@@ -132,11 +202,11 @@ def main() -> int:
     root = repo_root()
     dest_root = runtime_root(args.runtime_root)
 
-    if args.list:
+    if args.list or args.inspect:
         if args.copy or args.dry_run:
             print("--copy and --dry-run are only meaningful with --install", file=sys.stderr)
             return 1
-        return list_skills(root, dest_root)
+        return list_skills(root, dest_root) if args.list else inspect_skill(root, dest_root, args.inspect)
 
     return install_skill(root, dest_root, args.install, args.copy, args.dry_run)
 
