@@ -5,6 +5,7 @@
 - [Purpose And Applicability](#purpose-and-applicability)
 - [Seven Positive Triggers](#seven-positive-triggers)
 - [Baseline And Capability Handling](#baseline-and-capability-handling)
+- [CLI Review Fallback](#cli-review-fallback)
 - [Analysis And Distillation Card](#analysis-and-distillation-card)
 - [Bounded Implementation](#bounded-implementation)
 - [Fresh-Context Review](#fresh-context-review)
@@ -36,7 +37,8 @@ All seven conditions must be established before any bounded record-only edit:
    pilot, or outcome promotion.
 6. The in-memory Distillation Card clearly bounds the files and content that
    may change.
-7. The platform provides a review subagent with isolated fresh context.
+7. An available review surface provides the required fresh-context boundary:
+   a direct review subagent or a validated new CLI review session.
 
 ### Pre-Analysis Admission
 
@@ -70,13 +72,19 @@ Before any edit:
 - read only the repository sources needed to establish lineage, attribution,
   artifact routing, and verification boundaries.
 
-Verify or explicitly probe whether the current platform can create the required
-fresh-context reviewer. Here, fresh context means only that the reviewer does
-not inherit the Distillation Card or the parent's conclusion-oriented
-reasoning. It does not mean filesystem non-visibility, model independence, or
+Use an applicable capability result or explicitly probe whether the selected
+surface can start the required fresh-context reviewer. Here, fresh context
+means only that the reviewer does not inherit the Distillation Card or the
+parent's conclusion-oriented reasoning. It does not mean filesystem
+non-visibility, model independence, or
 evidence independence.
 
-If the capability is missing or cannot be verified honestly, stop with
+Treat execution capacity separately from context capability. If a direct review
+subagent cannot start, automatically try the applicable CLI path below within
+the authorized task. A thread-limit error on one surface does not establish
+that all review paths are unavailable.
+
+If no available path has a supportable context boundary, stop with
 `needs decision` and explain the limitation. The orchestrator may suggest the
 existing manual evidence path, but must not run an in-context reviewer and call
 it fresh-context. Capability absence is not an evidence failure, lineage
@@ -84,6 +92,41 @@ conclusion, or reason to expand scope.
 
 Do not bind this workflow to a particular child-agent API. Use only a platform
 facility whose actual context boundary can be stated accurately.
+
+## CLI Review Fallback
+
+Use a new `codex review` process for reviewer-start failures such as exhausted
+subagent capacity, when the CLI's version/configuration and context semantics
+are covered by an applicable validation. In the repository, read
+`docs/session-reports/2026-09-08-cli-review-context-validation.md` relative to
+the repository root for the current controlled CLI evidence.
+It supports non-inheritance of a tested existing conversation, not complete
+model-input isolation. Revalidate on material changes to the execution surface,
+context semantics, or relevant configuration; do not repeat the probe per task.
+
+- Start in the target repository with a read-only reviewer sandbox. Supply
+  only the Fresh-Context Review inputs and fixed rubric through a temporary
+  prompt file or structured stdin. Explicitly request staged, unstaged, and
+  relevant untracked changes, including the new report. For the validated CLI:
+  `codex review -c 'sandbox_mode="read-only"' -` reads the custom prompt from
+  stdin. Custom prompts conflict with `--uncommitted`, `--base`, and `--commit`;
+  do not combine them. Check local help when the installed syntax differs.
+- Do not resume or fork a prior conversation, pass chat transcripts or the
+  Distillation Card, or ask the reviewer to read session history. Ordinary
+  repository guidance/configuration remains visible; keep conclusion-oriented
+  analysis out of the reviewer inputs and files.
+- Attempt the applicable CLI alternative without another task-scope permission
+  question. If the outer sandbox blocks CLI initialization, use the platform's
+  required permission mechanism; keep the reviewer sandbox read-only. Do not
+  bypass permissions, replace provider configuration, or weaken the rubric.
+- Inspect the actual review result and process status. Starting a process or
+  exiting successfully without a substantive review is not approval. Preserve
+  failures and unresolved findings; use `needs decision` when execution or the
+  context boundary cannot be established after the applicable fallback.
+- This fallback replaces only an unavailable reviewer execution path. It does
+  not replace the analysis subagent, retry a substantive finding with another
+  reviewer, reset the one-correction/one-re-review limit, or broaden the task.
+  Report which surface ran and the precise evidence supporting its boundary.
 
 ## Analysis And Distillation Card
 
@@ -123,9 +166,9 @@ authorization. Never run `git add` or `git commit` automatically.
 
 ## Fresh-Context Review
 
-The review subagent is read-only. It must not edit or run `git add` or
-`git commit`. Do not provide it with the Distillation Card or the parent's
-conclusion-oriented reasoning.
+The reviewer, whether a direct subagent or CLI session, is read-only. It must
+not edit or run `git add` or `git commit`. Do not provide it with the
+Distillation Card or the parent's conclusion-oriented reasoning.
 
 Provide only:
 
@@ -170,7 +213,8 @@ Stop with `needs decision` or an objection when:
 - unknown-version source evidence would be used to infer `improved`,
   `repeated`, regression, or effectiveness;
 - review exposes a substantive mapping or privacy judgment; or
-- fresh-context review capability is unavailable or unverifiable.
+- no available review surface provides a verified applicable context boundary,
+  after the CLI fallback has been considered or attempted as applicable.
 
 ## Observation Version And Final Report
 

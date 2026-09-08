@@ -137,6 +137,11 @@ decision, implementation, or promotion is required, and produce the frozen
 in-memory Distillation Card. Do not make a bounded edit until all seven
 ADR-0002 gates are established.
 
+If the review subagent cannot start, automatically try the validated new-session
+`codex review` path in the reference before declaring review unavailable.
+Keep the same read-only inputs, rubric, and correction limit. This fallback
+does not replace analysis or bypass a substantive review finding.
+
 Do not enter this path for ordinary process work, discussions, micro tasks,
 unknown or new lineage, rule/skill/policy/evaluation/ADR changes, synthetic
 pilots, or outcome promotion. If admission or analysis fails, use the existing

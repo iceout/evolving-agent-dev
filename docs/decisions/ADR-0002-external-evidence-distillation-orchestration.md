@@ -62,7 +62,8 @@ established:
 5. The task needs no new rule, lineage, policy, ADR, evaluation, synthetic
    pilot, or outcome promotion.
 6. An analysis card clearly limits the files and content that may change.
-7. The platform supports a review subagent with isolated, fresh context.
+7. An available review surface supports the required fresh-context boundary,
+   through a direct review subagent or validated new CLI review session.
 
 Admission is phased without weakening any trigger. Pre-analysis admission
 requires conditions 1, 2, 3, and 7 plus no obvious scope contradiction; it
@@ -104,7 +105,7 @@ bounded record-only changes it authorizes. It does not delegate user authority:
 the user still supplies the source, starts the task, decides whether to accept
 the result, and authorizes any commit.
 
-The review subagent must be role-isolated from the analysis subagent. It does
+The reviewer must be role-isolated from the analysis subagent. It does
 not receive the Distillation Card or the parent's conclusion-oriented
 reasoning. Its inputs are limited to the source note, necessary repository
 sources, final diff and new files, and a fixed review rubric. It is read-only,
@@ -132,13 +133,22 @@ The workflow must stop and return `needs decision` or an objection when:
   `improved`, `repeated`, or regression;
 - the reviewer finds that evidence mapping or the privacy boundary requires a
   substantive judgment; or
-- the platform cannot provide the required fresh-context review.
+- no available review surface can provide the required fresh-context review
+  after considering the validated CLI alternative.
 
 The last condition has explicit degradation semantics. Without isolated
 fresh-context review capability, the orchestrated path is unavailable. The
 agent reports the missing capability and returns `needs decision`; it may offer
 the existing manual review path, but must not claim that independent or
 fresh-context review occurred.
+
+The user-authorized 2026-09-08 extension adds a narrow execution fallback:
+when the direct reviewer cannot start, automatically attempt the applicable
+validated new-session CLI review path before declaring review unavailable.
+Capacity failure is not a content finding or proof that every surface is
+unavailable. Keep the same inputs, read-only scope, fixed rubric, and correction
+cap; do not use fallback to replace analysis, evade findings, or bypass platform
+permissions. The orchestration reference owns operational details.
 
 The following are non-goals:
 
@@ -162,7 +172,7 @@ defines stable invariants, the Distillation Card shape, subagent-availability
 detection and degradation semantics, analysis/review role separation,
 objection conditions, the one-correction cap, and a fixed final-report shape.
 
-It does not preselect a particular agent API, CLI, JSONL format, runtime hook,
+It does not require a single agent API, CLI, JSONL format, runtime hook,
 network service, background worker, or automatic commit mechanism. It does not
 move these details into `AGENTS.md`, rewrite `docs/process-v0.2.md`, or create a
 process-v0.3 document. Any later change beyond this boundary requires separate
@@ -234,13 +244,25 @@ complete input, hidden platform context, memory or configuration injection,
 filesystem visibility, model or evidence independence, review quality,
 end-to-end workflow executability, or behavioral effectiveness. The separate
 ephemeral CLI probe established only execution-path availability, not context
-isolation.
+isolation; that historical result remains unchanged.
+
+The [2026-09-08 controlled CLI validation](../session-reports/2026-09-08-cli-review-context-validation.md)
+adds narrow support for new-session `codex review` on the tested CLI surface.
+A resumed-session positive control recovered an earlier random marker; a new
+review with the same query returned none; a supplied-marker review control
+recovered the marker. Recorded session identities and absence of observed tool
+calls support non-inheritance of that existing conversation. They do not audit
+hidden inputs, global configuration, memory, filesystem visibility, or every
+possible parent context, and do not establish review quality or effectiveness.
 
 Condition 7 is established for the selected execution surface, not reprobed for
 every task. On the observed collaboration surface, each review must use the
 established explicit no-turn boundary, must not receive the Card or parent
 conclusions through its prompt or files, and must report the boundary as
-parent-turn withholding rather than fully audited prompt isolation. Revalidate
+parent-turn withholding rather than fully audited prompt isolation. The CLI
+alternative must start a new review process with only the permitted inputs,
+without resuming/forking a conversation or reading session history, and report
+the tested prior-conversation non-inheritance boundary. Revalidate
 the capability when the execution surface, relevant configuration, context
 semantics, or observed behavior materially changes, or when the applicable
 boundary cannot be identified. An absent, stale, or inconclusive capability
