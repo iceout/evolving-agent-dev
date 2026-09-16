@@ -4,12 +4,10 @@
 from __future__ import annotations
 
 import argparse
-import hashlib
-import json
 import os
 import re
+import runpy
 import shutil
-import stat
 import sys
 from pathlib import Path
 
@@ -26,6 +24,18 @@ def runtime_root(override: str | None) -> Path:
     codex_home = os.environ.get("CODEX_HOME")
     base = Path(codex_home).expanduser() if codex_home else Path.home() / ".codex"
     return base / "skills"
+
+
+def inspection_roots(override: str | None, name: str | None) -> list[Path]:
+    if override:
+        return [runtime_root(override)]
+    candidates = [runtime_root(None), Path.home() / ".agents" / "skills", Path.home() / ".codex" / "skills"]
+    roots = []
+    for root in candidates:
+        target = root / name if name else root
+        if root not in roots and (target.exists() or target.is_symlink()):
+            roots.append(root)
+    return roots or [runtime_root(None)]
 
 
 def tracked_skills(root: Path) -> list[str]:
@@ -58,41 +68,9 @@ def install_status(name: str, source: Path, dest_root: Path) -> str:
     return "exists: not a skill directory"
 
 
-def package_fingerprint(package: Path) -> str:
-    """Hash a package snapshot without following internal links or special files."""
-    if not stat.S_ISDIR(package.stat().st_mode):
-        raise ValueError("not a directory")
-    digest = hashlib.sha256(b"skill-package-sha256-v1\n")
-
-    def visit(directory: Path) -> None:
-        for path in sorted(directory.iterdir(), key=lambda item: item.name):
-            mode = path.lstat().st_mode
-            relative = path.relative_to(package).as_posix()
-            if stat.S_ISDIR(mode):
-                record = [relative, "directory"]
-            elif stat.S_ISREG(mode):
-                record = [relative, "file", mode & 0o111, hashlib.sha256(path.read_bytes()).hexdigest()]
-            else:
-                raise ValueError("internal symlink or special file")
-            digest.update(json.dumps(record, ensure_ascii=True, separators=(",", ":")).encode("ascii") + b"\n")
-            if stat.S_ISDIR(mode):
-                visit(path)
-
-    if not stat.S_ISREG((package / "SKILL.md").lstat().st_mode):
-        raise ValueError("missing SKILL.md")
-    visit(package)
-    return "sha256-v1:" + digest.hexdigest()
-
-
-def fingerprint_status(package: Path) -> tuple[str | None, str]:
-    try:
-        return package_fingerprint(package), "ok"
-    except FileNotFoundError:
-        return None, "missing"
-    except OSError:
-        return None, "unreadable"
-    except ValueError as error:
-        return None, f"unsupported ({error})"
+# Reuse the standalone helper shipped with copied as well as linked skills.
+_identity = runpy.run_path(str(repo_root() / "skills/coding-review-loop/scripts/skill_identity.py"))
+fingerprint_status = _identity["fingerprint_status"]
 
 
 def package_comparison(source: Path, dest: Path) -> tuple[str, str | None, str | None]:
@@ -112,6 +90,7 @@ def inspect_skill(root: Path, dest_root: Path, name: str) -> int:
     source = root / "skills" / name
     state, source_hash, runtime_hash = package_comparison(source, dest_root / name)
     print(f"Skill: {name}")
+    print(f"Runtime skills dir: {dest_root}")
     print(f"Status: {state}")
     print(f"Repository fingerprint: {source_hash or 'unavailable'}")
     print(f"Runtime fingerprint: {runtime_hash or 'unavailable'}")
@@ -206,7 +185,12 @@ def main() -> int:
         if args.copy or args.dry_run:
             print("--copy and --dry-run are only meaningful with --install", file=sys.stderr)
             return 1
-        return list_skills(root, dest_root) if args.list else inspect_skill(root, dest_root, args.inspect)
+        if args.inspect:
+            check_skill_name(args.inspect)
+        results = []
+        for location in inspection_roots(args.runtime_root, args.inspect):
+            results.append(list_skills(root, location) if args.list else inspect_skill(root, location, args.inspect))
+        return max(results)
 
     return install_skill(root, dest_root, args.install, args.copy, args.dry_run)
 

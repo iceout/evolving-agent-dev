@@ -1,5 +1,6 @@
 """Exercise the installer CLI against isolated repository and runtime trees."""
 
+import json
 import os
 from pathlib import Path
 import shutil
@@ -10,6 +11,7 @@ import unittest
 
 
 SCRIPT = Path(__file__).resolve().parents[1] / "scripts" / "install-skill.py"
+IDENTITY = SCRIPT.parent.parent / "skills" / "coding-review-loop" / "scripts" / "skill_identity.py"
 
 
 class InstallSkillTests(unittest.TestCase):
@@ -20,11 +22,79 @@ class InstallSkillTests(unittest.TestCase):
         self.script = self.root / "repo" / "scripts" / SCRIPT.name
         self.script.parent.mkdir(parents=True)
         shutil.copyfile(SCRIPT, self.script)
+        helper = self.root / "repo" / "skills" / "coding-review-loop" / "scripts" / "skill_identity.py"
+        helper.parent.mkdir(parents=True)
+        shutil.copyfile(IDENTITY, helper)
         self.source = self.root / "repo" / "skills" / "example"
         (self.source / "references").mkdir(parents=True)
         (self.source / "SKILL.md").write_text('---\nname: example\ndescription: Example\n---\n')
         (self.source / "references" / "contract.md").write_text("Original contract\n")
         self.runtime = self.root / "runtime"
+
+    def run_default_cli(self, *args, code=0, codex_home=None):
+        env = dict(os.environ, HOME=str(self.root / "home"))
+        env.pop("CODEX_HOME", None)
+        if codex_home:
+            env["CODEX_HOME"] = str(codex_home)
+        result = subprocess.run([sys.executable, "-B", str(self.script), *args],
+                                capture_output=True, text=True, timeout=10, env=env)
+        self.assertEqual(result.returncode, code, result.stdout + result.stderr)
+        return result.stdout + result.stderr
+
+    def test_default_inspection_finds_agents_install_and_reports_multiple_copies(self):
+        agents = self.root / "home" / ".agents" / "skills" / "example"
+        agents.parent.mkdir(parents=True)
+        shutil.copytree(self.source, agents)
+        output = self.run_default_cli("--inspect", "example")
+        self.assertIn("matches repository", output)
+        self.assertIn(str(agents.parent), output)
+        self.assertNotIn("runtime missing", output)
+        codex_home = self.root / "custom-codex"
+        second = codex_home / "skills" / "example"
+        shutil.copytree(self.source, second)
+        (second / "references" / "contract.md").write_text("Different copy\n")
+        output = self.run_default_cli("--inspect", "example", codex_home=codex_home)
+        self.assertIn(str(second.parent), output)
+        self.assertIn(str(agents.parent), output)
+        self.assertIn("differs from repository", output)
+        self.assertIn("matches repository", output)
+        self.assertIn(str(agents.parent), self.run_default_cli("--list"))
+
+    def test_explicit_inspection_root_and_install_destination_are_preserved(self):
+        agents = self.root / "home" / ".agents" / "skills" / "example"
+        agents.parent.mkdir(parents=True)
+        shutil.copytree(self.source, agents)
+        output = self.run_default_cli("--inspect", "example", "--runtime-root", str(self.runtime), code=1)
+        self.assertIn("runtime missing", output)
+        self.assertNotIn(str(agents.parent), output)
+        output = self.run_default_cli("--install", "example", "--dry-run")
+        self.assertIn(str(self.root / "home" / ".codex" / "skills"), output)
+        self.assertFalse((self.root / "home" / ".codex").exists())
+
+    def test_packaged_identity_runs_from_copy_without_repository_and_detects_drift(self):
+        package = self.root / "standalone" / "coding-review-loop"
+        shutil.copytree(IDENTITY.parent.parent, package)
+        helper = package / "scripts" / "skill_identity.py"
+
+        def receipt():
+            result = subprocess.run([sys.executable, "-B", str(helper)], cwd=self.root,
+                                    capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            return json.loads(result.stdout)
+
+        before_files = sorted(p.relative_to(package) for p in package.rglob("*"))
+        first = receipt()
+        self.assertEqual(first, receipt())
+        self.assertEqual(before_files, sorted(p.relative_to(package) for p in package.rglob("*")))
+        self.assertNotIn(str(self.root), json.dumps(first))
+        contract = package / "references" / "case-note-shape.md"
+        contract.write_text(contract.read_text() + "\nChanged contract\n")
+        self.assertNotEqual(first["fingerprint"], receipt()["fingerprint"])
+        shutil.copytree(package, self.runtime / "example")
+        shutil.rmtree(self.source)
+        shutil.copytree(package, self.source)
+        output = self.run_cli("--inspect", "example")
+        self.assertIn(receipt()["fingerprint"], output)
 
     def run_cli(self, *args, code=0):
         result = subprocess.run(

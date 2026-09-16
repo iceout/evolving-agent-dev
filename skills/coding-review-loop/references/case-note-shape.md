@@ -15,7 +15,7 @@ Append one compact entry per case batch. Consecutive planning, review, review-fi
 
 - Capture reason: review miss / packet gap / verification gap / process friction / reusable lesson / designated observation
 - Task context: <task type; risk surfaces; phase>
-- Skill source/version (optional for ordinary cases; required for a comparable designated observation and supplied by the designating authority or already visible):
+- Skill source/version: <coding-review-loop; start sha256-v1:...; end sha256-v1:...; captured at first use before planning; unchanged / changed / inconclusive, or unknown with reason>
 
 ### Expected And Observed
 
@@ -40,7 +40,7 @@ Append one compact entry per case batch. Consecutive planning, review, review-fi
 
 - **Capture reason:** State why the entry is worth creating. Keep `designated observation` distinct from friction, misses, and gaps; do not enter a central lineage outcome.
 - **Task context:** Compress task type, risk surfaces, and phase into one line or short paragraph. Do not copy the full packet.
-- **Skill source/version:** For ordinary friction, miss, gap, or lesson cases, omit the field or use `unknown` when the value is not already visible. For a comparable designated observation, record the task's source/version supplied by the designating authority or already visible during the task. Do not investigate history. If unavailable, use a primary-trigger supporting case when applicable or label the requested observation `version inconclusive`; do not call it a known-version comparable observation or effectiveness evidence.
+- **Skill source/version:** Required in every new case. Use the Task-Start Skill Identity receipt from `SKILL.md` and the check at capture; record full fingerprints, acquisition timing, and any change or uncertainty. Identify the skill by name, not a private installation path. An authority-supplied version may also be recorded with its basis; distinguish it from locally observed content. If acquisition failed, record `unknown` and why. A late snapshot or lost start receipt cannot establish a task-start version. Do not investigate history or backfill older entries from current disk state. Attribution alone does not designate an observation or prove execution/effectiveness; inconclusive attribution prevents a known-version comparable claim.
 - **Expected:** Record the factual plan, contract, or skill behavior that can be compared with what happened.
 - **Observed:** Record the actual execution or review observation. A successful designated observation may state that expected behavior occurred; do not record model-internal reasoning.
 - **Detection:** Name the packet review, independent reviewer, test, command, runtime check, or user observation without copying full logs.
@@ -63,4 +63,4 @@ When several entries accumulate, the user can copy this file back to evolving-ag
 
 Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
 
-The skill source/version field remains optional for ordinary cases and may be omitted or set to `unknown`. A comparable designated observation requires the task's source/version from the designating authority or information already visible during the task. Do not investigate commit history or infer a historical loaded version from the task date, repository state, or current runtime linkage.
+The identity field does not add a case-capture trigger. Without a capture trigger, keep the receipt task-local and write no usage log. Historical notes without receipts remain unknown; do not infer a historical loaded version from the task date, repository state, or current runtime linkage.
