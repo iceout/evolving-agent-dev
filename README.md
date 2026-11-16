@@ -31,6 +31,7 @@ Stage 0 was intentionally lightweight:
 - `docs/principles.md` - stable beliefs that guide the system.
 - `docs/process-v0.2.md` - completed Stage 0 process record and baseline routing rules.
 - `docs/v0.3-scope.md` - current refinement and external-evidence state.
+- `docs/v0.4-scope.md` - proposed direction for re-testing, retiring, and shrinking guidance; scope draft, authorizes nothing.
 - `docs/process-v0.1.md` - earlier process draft kept for history.
 - `docs/session-reports/` - raw records for tasks with substantive changes.
 - `docs/casebook/inbox.md` - append-only inbox for lightweight friction from micro tasks or scattered observations.
@@ -102,3 +103,5 @@ When `CODEX_HOME` is set, use `$CODEX_HOME/skills/<skill-name>/`. Otherwise the 
 Stage 0 exited with caveats; its frozen counts and limitations are recorded in [Stage 0 progress](docs/stage0-progress.md). Current work includes skill refinements, external evidence distillation, and the bounded orchestration authorized by [ADR-0002](docs/decisions/ADR-0002-external-evidence-distillation-orchestration.md).
 
 Use [the v0.3 scope note](docs/v0.3-scope.md) for current outcomes and next decisions. An implemented rule does not establish effectiveness. Broader automation, evaluation promotion, or a finalized process-v0.3 document requires an explicit scope decision.
+
+[The v0.4 scope note](docs/v0.4-scope.md) is a proposed direction for re-testing, retiring, and shrinking guidance. It is a draft: it authorizes no deletion, no demotion of canonical skill guidance, no skill retirement, and no change to any v0.3 lineage outcome or evaluation candidate.
