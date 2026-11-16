@@ -33,6 +33,10 @@ outcome on a small, self-contained task.
 Freeze before the first run:
 
 1. This file and the fixture list, committed as-is.
+   For the bounded pilot below, a committed base plus an exact, hashed snapshot
+   of the pilot amendment is sufficient before scoring; review of that amendment
+   may precede its commit. Record both identities and freeze all execution inputs
+   in the same manifest. This is a local freeze, not independent preregistration.
 2. `sha256` of both files, recorded in the run log.
 3. The classification table and Stage 1-to-2 mapping below, exact fixture
    contents, prompts, judge template, harness instructions, and isolation recipe.
@@ -268,6 +272,45 @@ F9, and C1, plus F4 as the sensitivity control. That set covers a likely-interna
 likely-load-bearing items, a pure-detection task, and the method's own validity
 check. It cannot support a retirement decision for the untested items, and the
 report must say so.
+
+### Bounded first pilot
+
+Start with that six-fixture cut, not the full budget. Cap preparation, execution,
+judging and reporting together at four hours. Stage 1 is at most 12 scored runs;
+run C1's A/B pair first and stop immediately if either fails. Invalid isolation
+or treatment delivery also stops scoring. Preparation/preflight is not a scored
+run and cannot yield a rule classification.
+
+For this pilot only, replace automatic Stage 2 escalation with a four-run reserve
+for at most one inline item. Before any result, fix priority as F3, then F6, then
+F4; select the first with a valid pass/pass, fail/pass, or pass/fail Stage 1 pair.
+If controls fail or the time reserve is insufficient, do not use it. Record all
+eligible but unconfirmed items as `screen-only / confirmation deferred`, never
+as confirmed `internalized`, `load-bearing`, or `harmful`. F1/F9 remain policy/
+reference probes; C1 is not a rule item. Maximum scored budget: 16 runs. Stage 3
+and expansion require a later scope/budget decision. This changes the allocation,
+not the three-per-condition classification threshold.
+
+Build only six neutral projects using one standard-library test convention and
+one isolation recipe; freeze only their source excerpts and criteria. Use one
+first-pass blind judge; disputed judgments remain inconclusive unless a second
+blind judge fits the reserve. Do not build a reusable orchestration service.
+F6 still requires ordering evidence for its pre-edit claim even without F11.
+
+If F4 does not discriminate, report sensitivity as unestablished. A/B both
+passing could reflect an easy fixture or competent baseline; it does not prove
+the instrument broken. Preserve the control's restriction against using this
+pilot to retire items, and do not rewrite fixtures after observing responses.
+At the deadline, report actual cost, controls, warnings and deferred work even
+if no actionable candidate emerged. A temporary experiment driver may use an
+existing model API and route its sole exec tool into the isolated environment;
+freeze its source and tool schema, verify it on an unscored smoke task, and keep
+it outside the repository. No reusable agent service or broader orchestration
+framework is part of this pilot. Failure of end-to-end isolation stops scoring.
+
+For the first review checkpoint, stop after Stage 1 and judging. Do not spend the
+Stage 2 reserve or start Stage 3 before review. Report eligibility for later
+confirmation, not a confirmed classification from a single pair.
 
 ## Recording
 
