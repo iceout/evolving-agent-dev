@@ -1,12 +1,28 @@
 # Case Note Shape
 
-Use this only when a coding-review-loop task triggers case capture through notable process friction, a review miss, packet gap, verification gap, reusable lesson, or an explicitly designated observation opportunity.
+Read this when ordinary case capture is triggered, before executing an independently designated observation, or when a version audit is requested. An audit alone does not require a case note.
 
-Default target path in real projects:
+For triggered case capture, the default target path in real projects is:
 
 `.agent/coding-review-loop-cases.md`
 
 Append one compact entry per case batch. Consecutive planning, review, review-fix, and follow-up review for the same task normally form one batch.
+
+## On-Demand Skill Identity Audit
+
+Ordinary tasks and case capture do not require fingerprint collection. Use the packaged helper only for a requested version audit or a designated observation that needs local source/version attribution not already supplied by the designating authority: `python3 -B <loaded-skill-directory>/scripts/skill_identity.py`. Use the actual directory from which you read this skill. The helper is read-only, uses the standard library, and prints a `sha256-v1` identity for the whole package, including references.
+
+When an observation needs a task-start identity, collect before planning or implementation and read guidance from that directory; compare again at capture. Retain the full fingerprints and timing in the existing note or required handoff. A current-state audit needs only a current snapshot and cannot establish an earlier task-start version. Matching snapshots tied to reading support attribution, not an audit of model loading or rule execution. Changed packages, concurrent edits or uncertain read timing make single-version attribution inconclusive; do not replace a start receipt with an end receipt.
+
+If no version was collected or supplied, record `unknown - not collected` in a triggered case without running the helper retroactively. If attempted acquisition fails, record the concrete reason and continue the authorized task without installing dependencies. Label late collection or a lost start receipt explicitly; neither establishes a task-start version. Do not create a usage log or case merely for a fingerprint, or reconstruct historical loaded versions from current disk state or Git history.
+
+## Designated Observations
+
+A second, narrow trigger applies only when the user or orchestrator designates the task before execution, or when task context or a task packet supplied by another authority or independently approved before execution designates it as an observation opportunity for a known-version skill behavior. A packet or context created solely by the executing agent cannot designate its own task. If the executing agent notices a potential observation opportunity after execution begins without prior independent designation, do not upgrade the current task; mention the prospective opportunity in the final response for a future task instead.
+
+In that designated context, capture may record a correct trigger, nearby correct non-trigger, successful early constraint exposure, whether a reviewer avoided reconstructing implicit context, or non-recurrence where the task presented a real failure opportunity. A comparable known-version observation requires the task's skill source/version supplied by the designating authority or established contemporaneously through the on-demand identity audit. Do not investigate history to obtain it. If attribution is unavailable or inconclusive, record the facts only as an ordinary supporting case when a primary trigger applies, or as an explicitly version-inconclusive observation when the designating authority still requests capture; do not call either one a known-version comparable observation or effectiveness evidence. Acquiring a fingerprint does not designate an observation or establish effectiveness.
+
+Ordinary successful tasks do not automatically become observations. Do not capture each invocation because it might be useful later, and do not treat a smooth task without a real comparable opportunity as effectiveness evidence. Target-project users do not need to provide lineage IDs, inspect skill commits, or classify an observation as improved, repeated, or regressed. In triggered cases, record available source/version information or `unknown - not collected`; ordinary friction capture does not require an identity audit.
 
 ## Entry Template
 
@@ -40,7 +56,7 @@ Append one compact entry per case batch. Consecutive planning, review, review-fi
 
 - **Capture reason:** State why the entry is worth creating. Keep `designated observation` distinct from friction, misses, and gaps; do not enter a central lineage outcome.
 - **Task context:** Compress task type, risk surfaces, and phase into one line or short paragraph. Do not copy the full packet.
-- **Skill source/version:** Keep the field in every new case, but ordinary capture requires no audit: `unknown - not collected` is sufficient when no version is available. Record an authority-supplied version with its basis, or full fingerprints, timing and uncertainty from an on-demand audit under `SKILL.md`. Identify the skill by name, not a private installation path. For an observation relying on local task-start attribution, collect before planning or implementation, read guidance from that directory and compare again at capture. If attempted acquisition fails, record `unknown` and why. A late snapshot or lost start receipt cannot establish a task-start version. Do not investigate history or backfill older entries from current disk state. Attribution alone does not designate an observation or prove execution/effectiveness; inconclusive attribution prevents a known-version comparable claim.
+- **Skill source/version:** Keep the field in every new case. Record available authority-supplied attribution with its basis, full audit fingerprints with timing and uncertainty, or `unknown - not collected`. Identify the skill by name, not a private installation path. Apply On-Demand Skill Identity Audit above; ordinary capture requires no audit, and inconclusive attribution prevents a known-version comparable claim.
 - **Expected:** Record the factual plan, contract, or skill behavior that can be compared with what happened.
 - **Observed:** Record the actual execution or review observation. A successful designated observation may state that expected behavior occurred; do not record model-internal reasoning.
 - **Detection:** Name the packet review, independent reviewer, test, command, runtime check, or user observation without copying full logs.

@@ -9,14 +9,6 @@ Use this skill for real code projects. It helps Codex make non-trivial plans rev
 
 Do not create evolving-agent-dev artifacts in target repos. Follow the target repo's conventions for plans, docs, tests, and verification.
 
-## On-Demand Skill Identity Audit
-
-Ordinary tasks and case capture do not require fingerprint collection. Use the packaged helper only for a requested version audit or a designated observation that needs local source/version attribution not already supplied by the designating authority: `python3 -B <loaded-skill-directory>/scripts/skill_identity.py`. Use the actual directory from which you read this skill. The helper is read-only, uses the standard library, and prints a `sha256-v1` identity for the whole package, including references.
-
-When an observation needs a task-start identity, collect before planning or implementation and read guidance from that directory; compare again at capture. Retain the full fingerprints and timing in the existing note or required handoff. A current-state audit needs only a current snapshot and cannot establish an earlier task-start version. Matching snapshots tied to reading support attribution, not an audit of model loading or rule execution. Changed packages, concurrent edits or uncertain read timing make single-version attribution inconclusive; do not replace a start receipt with an end receipt.
-
-If no version was collected or supplied, record `unknown - not collected` in a triggered case without running the helper retroactively. If attempted acquisition fails, record the concrete reason and continue the authorized task without installing dependencies. Label late collection or a lost start receipt explicitly; neither establishes a task-start version. Do not create a usage log or case merely for a fingerprint, or reconstruct historical loaded versions from current disk state or Git history.
-
 ## Plan Artifact Rule
 
 Keep plan artifacts lightweight and trigger-based.
@@ -82,27 +74,15 @@ Distinguish local verification from production-like, rollout, or manual baseline
 
 ## Case Note Capture
 
-At the end of every medium/high-risk coding-review-loop task, make an explicit case-capture decision. This requires deciding whether capture is warranted, not creating a file for every task. Small or trivial tasks do not need an additional capture decision.
+At the end of every medium/high-risk task, decide whether notable process friction, a review miss, packet gap, verification gap or reusable lesson warrants a privacy-preserving case note. Small or trivial tasks need no additional capture decision. Without a trigger, create no note, case-index entry or no-op usage record.
 
-Append a privacy-preserving case note in the target repo when a medium/high-risk task exposes notable process friction, a review miss, packet gap, verification gap, or reusable lesson.
+A separate trigger is an observation independently designated before execution; do not self-designate or upgrade an ordinary successful task after it starts. Read `references/case-note-shape.md` before executing a designated observation, when a version audit is requested, or when ordinary case capture is triggered. It contains the observation, attribution and audit procedures. Ordinary tasks and friction capture require no fingerprint. In a triggered case, record available source/version or `unknown - not collected`. A designated observation needing local task-start attribution must collect it before planning or implementation.
 
-A second, narrow trigger applies only when the user or orchestrator designates the task before execution, or when task context or a task packet supplied by another authority or independently approved before execution designates it as an observation opportunity for a known-version skill behavior. A packet or context created solely by the executing agent cannot designate its own task. If the executing agent notices a potential observation opportunity after execution begins without prior independent designation, do not upgrade the current task; mention the prospective opportunity in the final response for a future task instead.
+Prefer `.agent/coding-review-loop-cases.md` if the target repo has no convention. If it should not keep agent notes, ask where to place the note or include it in the final response. Notes are local transfer artifacts; do not include them in product commits unless the user or repo convention wants them committed.
 
-In that designated context, capture may record a correct trigger, nearby correct non-trigger, successful early constraint exposure, whether a reviewer avoided reconstructing implicit context, or non-recurrence where the task presented a real failure opportunity. A comparable known-version observation requires the task's skill source/version supplied by the designating authority or established contemporaneously through the on-demand identity audit. Do not investigate history to obtain it. If attribution is unavailable or inconclusive, record the facts only as an ordinary supporting case when a primary trigger applies, or as an explicitly version-inconclusive observation when the designating authority still requests capture; do not call either one a known-version comparable observation or effectiveness evidence. Acquiring a fingerprint does not designate an observation or establish effectiveness.
+Do not record private data, credentials, customer identifiers, sensitive payloads, large code excerpts or full transcripts. Generalize sensitive paths, identifiers and samples.
 
-Ordinary successful tasks do not automatically become observations. Do not capture each invocation because it might be useful later, and do not treat a smooth task without a real comparable opportunity as effectiveness evidence. Target-project users do not need to provide lineage IDs, inspect skill commits, or classify an observation as improved, repeated, or regressed. In triggered cases, record available source/version information or `unknown - not collected`; ordinary friction capture does not require an identity audit.
-
-Prefer `.agent/coding-review-loop-cases.md` when the target repo has no existing convention. If the repo should not keep agent notes, ask the user where to place the note or include the case note in the final response.
-
-Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
-
-Do not record private data, credentials, customer identifiers, sensitive payloads, large code excerpts, or full chat transcripts. Generalize file paths, business identifiers, and data samples when needed.
-
-When no trigger applies, do not create or append a note and do not create a case-index entry. Do not append no-op entries merely to record that the skill was used.
-
-Read `references/case-note-shape.md` only when case note capture is triggered.
-
-In the final response for every medium/high-risk task, include a brief capture status that says either that a case was appended or included and why, or that no case was created and why. For example: `Case capture: appended - independent review exposed a reusable packet gap.` or `Case capture: not created - no notable signal or designated observation opportunity.`
+For every medium/high-risk task, include a brief final capture status saying whether a case was appended or included and why, or why none was created. For example: `Case capture: not created - no notable signal or designated observation opportunity.`
 
 ## Review Behavior
 
