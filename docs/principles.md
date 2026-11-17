@@ -38,8 +38,27 @@ When a workflow feels wrong, record the concrete situation. Do not immediately c
 
 ## 9. Evaluation beats prompt guessing
 
-Prompt changes should eventually be validated with behavior-level evaluation cases.
+Use behavior-level evaluation cases to test uncertain behavior hypotheses and
+support effectiveness claims. Evaluation is not a prerequisite for every prompt
+maintenance change; apply principle 11 to those changes.
 
 ## 10. The process should stay lightweight
 
 The workflow should help development, not become bureaucracy. Prefer small records, clear decisions, and short feedback loops.
+
+## 11. Maintain prompts and process rules as ordinary engineering changes
+
+Simplifying, demoting, rewriting or deleting a prompt or process rule does not
+require an A/B experiment or proof of effectiveness first. Maintainer review
+and verification proportionate to the risk are sufficient. Keep changes
+reviewable and preserve a recovery path, such as Git history and revert.
+
+Review should establish either equivalent behavior or an explicit, acceptable
+behavior change. Moving guidance to an on-demand reference can reduce its
+visibility; removing a mandatory step can reduce the information collected.
+Reversibility helps manage these trade-offs but does not replace verification.
+
+A maintenance decision does not establish that a model has internalized a rule,
+that the rule is ineffective, or that outcomes improved. Those claims require
+their own evidence. Missing effectiveness evidence is not, by itself, a reason
+to retain every existing rule.
