@@ -15,7 +15,7 @@ Append one compact entry per case batch. Consecutive planning, review, review-fi
 
 - Capture reason: review miss / packet gap / verification gap / process friction / reusable lesson / designated observation
 - Task context: <task type; risk surfaces; phase>
-- Skill source/version: <coding-review-loop; start sha256-v1:...; end sha256-v1:...; captured at first use before planning; unchanged / changed / inconclusive, or unknown with reason>
+- Skill source/version: <coding-review-loop; unknown - not collected, or available authority-supplied version / audit fingerprints with timing and attribution limits>
 
 ### Expected And Observed
 
@@ -40,7 +40,7 @@ Append one compact entry per case batch. Consecutive planning, review, review-fi
 
 - **Capture reason:** State why the entry is worth creating. Keep `designated observation` distinct from friction, misses, and gaps; do not enter a central lineage outcome.
 - **Task context:** Compress task type, risk surfaces, and phase into one line or short paragraph. Do not copy the full packet.
-- **Skill source/version:** Required in every new case. Use the Task-Start Skill Identity receipt from `SKILL.md` and the check at capture; record full fingerprints, acquisition timing, and any change or uncertainty. Identify the skill by name, not a private installation path. An authority-supplied version may also be recorded with its basis; distinguish it from locally observed content. If acquisition failed, record `unknown` and why. A late snapshot or lost start receipt cannot establish a task-start version. Do not investigate history or backfill older entries from current disk state. Attribution alone does not designate an observation or prove execution/effectiveness; inconclusive attribution prevents a known-version comparable claim.
+- **Skill source/version:** Keep the field in every new case, but ordinary capture requires no audit: `unknown - not collected` is sufficient when no version is available. Record an authority-supplied version with its basis, or full fingerprints, timing and uncertainty from an on-demand audit under `SKILL.md`. Identify the skill by name, not a private installation path. For an observation relying on local task-start attribution, collect before planning or implementation, read guidance from that directory and compare again at capture. If attempted acquisition fails, record `unknown` and why. A late snapshot or lost start receipt cannot establish a task-start version. Do not investigate history or backfill older entries from current disk state. Attribution alone does not designate an observation or prove execution/effectiveness; inconclusive attribution prevents a known-version comparable claim.
 - **Expected:** Record the factual plan, contract, or skill behavior that can be compared with what happened.
 - **Observed:** Record the actual execution or review observation. A successful designated observation may state that expected behavior occurred; do not record model-internal reasoning.
 - **Detection:** Name the packet review, independent reviewer, test, command, runtime check, or user observation without copying full logs.
@@ -63,4 +63,4 @@ When several entries accumulate, the user can copy this file back to evolving-ag
 
 Treat these notes as local transfer artifacts by default; do not include them in product commits unless the user or target repo convention explicitly wants agent notes committed.
 
-The identity field does not add a case-capture trigger. Without a capture trigger, keep the receipt task-local and write no usage log. Historical notes without receipts remain unknown; do not infer a historical loaded version from the task date, repository state, or current runtime linkage.
+The identity field does not add a case-capture or audit trigger. Without a capture trigger, keep any audit receipt task-local and write no usage log. Historical notes without contemporaneous attribution remain unknown; do not infer a historical loaded version from the task date, repository state, or current runtime linkage.
